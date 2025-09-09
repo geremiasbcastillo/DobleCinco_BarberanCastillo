@@ -1,7 +1,7 @@
 ﻿
 namespace DobleCinco_BarberanCastillo
 {
-    partial class Form1
+    partial class FormMDI
     {
         private const string V = "Usuario";
 
@@ -33,6 +33,7 @@ namespace DobleCinco_BarberanCastillo
         {
             menuStrip1 = new MenuStrip();
             usuarioToolStripMenuItem = new ToolStripMenuItem();
+            productosToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,7 +41,7 @@ namespace DobleCinco_BarberanCastillo
             // 
             menuStrip1.BackColor = Color.LightGreen;
             menuStrip1.Dock = DockStyle.Left;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem, productosToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(126, 450);
@@ -49,13 +50,24 @@ namespace DobleCinco_BarberanCastillo
             // 
             // usuarioToolStripMenuItem
             // 
+            usuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
             usuarioToolStripMenuItem.Image = Properties.Resources.history;
             usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            usuarioToolStripMenuItem.Size = new Size(113, 20);
+            usuarioToolStripMenuItem.Size = new Size(113, 40);
             usuarioToolStripMenuItem.Text = "Usuario";
+            usuarioToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             usuarioToolStripMenuItem.Click += usuarioToolStripMenuItem_Click;
             // 
-            // Form1
+            // productosToolStripMenuItem
+            // 
+            productosToolStripMenuItem.Font = new Font("Segoe UI", 11F);
+            productosToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
+            productosToolStripMenuItem.Name = "productosToolStripMenuItem";
+            productosToolStripMenuItem.Size = new Size(113, 24);
+            productosToolStripMenuItem.Text = "Productos";
+            productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
+            // 
+            // FormMDI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -63,7 +75,7 @@ namespace DobleCinco_BarberanCastillo
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "FormMDI";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -76,5 +88,6 @@ namespace DobleCinco_BarberanCastillo
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem usuarioToolStripMenuItem;
+        private ToolStripMenuItem productosToolStripMenuItem;
     }
 }
