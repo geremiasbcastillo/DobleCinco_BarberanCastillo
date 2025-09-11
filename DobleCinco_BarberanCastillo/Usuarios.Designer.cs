@@ -47,15 +47,8 @@
             LFecha = new Label();
             textBox9 = new TextBox();
             LSexo = new Label();
-            dataGridView1 = new DataGridView();
-            id_usuario = new DataGridViewTextBoxColumn();
-            usuario_nombre = new DataGridViewTextBoxColumn();
-            usuario_apellido = new DataGridViewTextBoxColumn();
-            usuario_dni = new DataGridViewTextBoxColumn();
-            usuario_telefono = new DataGridViewTextBoxColumn();
-            usuario_direccion = new DataGridViewTextBoxColumn();
-            usuario_perfil = new DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dgvUsuarios = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             SuspendLayout();
             // 
             // LUsuarios
@@ -222,57 +215,21 @@
             LSexo.TabIndex = 17;
             LSexo.Text = "Sexo";
             // 
-            // dataGridView1
+            // dgvUsuarios
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_usuario, usuario_nombre, usuario_apellido, usuario_dni, usuario_telefono, usuario_direccion, usuario_perfil });
-            dataGridView1.Location = new Point(268, 578);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(744, 233);
-            dataGridView1.TabIndex = 19;
+            dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsuarios.Location = new Point(353, 613);
+            dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.Size = new Size(240, 150);
+            dgvUsuarios.TabIndex = 19;
             // 
-            // id_usuario
-            // 
-            id_usuario.HeaderText = "id_usuario";
-            id_usuario.Name = "id_usuario";
-            // 
-            // usuario_nombre
-            // 
-            usuario_nombre.HeaderText = "Nombre";
-            usuario_nombre.Name = "usuario_nombre";
-            // 
-            // usuario_apellido
-            // 
-            usuario_apellido.HeaderText = "Apellido";
-            usuario_apellido.Name = "usuario_apellido";
-            // 
-            // usuario_dni
-            // 
-            usuario_dni.HeaderText = "DNI";
-            usuario_dni.Name = "usuario_dni";
-            // 
-            // usuario_telefono
-            // 
-            usuario_telefono.HeaderText = "Telefono";
-            usuario_telefono.Name = "usuario_telefono";
-            // 
-            // usuario_direccion
-            // 
-            usuario_direccion.HeaderText = "Direccion";
-            usuario_direccion.Name = "usuario_direccion";
-            // 
-            // usuario_perfil
-            // 
-            usuario_perfil.HeaderText = "Perfil";
-            usuario_perfil.Name = "usuario_perfil";
-            // 
-            // Form2
+            // Usuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LimeGreen;
             ClientSize = new Size(1349, 930);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvUsuarios);
             Controls.Add(textBox9);
             Controls.Add(LSexo);
             Controls.Add(textBox8);
@@ -293,9 +250,9 @@
             Controls.Add(LNombre);
             Controls.Add(LUsuarios);
             ForeColor = SystemColors.ControlLightLight;
-            Name = "Form2";
+            Name = "Usuarios";
             Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -321,13 +278,6 @@
         private Label LFecha;
         private TextBox textBox9;
         private Label LSexo;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn id_usuario;
-        private DataGridViewTextBoxColumn usuario_nombre;
-        private DataGridViewTextBoxColumn usuario_apellido;
-        private DataGridViewTextBoxColumn usuario_dni;
-        private DataGridViewTextBoxColumn usuario_telefono;
-        private DataGridViewTextBoxColumn usuario_direccion;
-        private DataGridViewTextBoxColumn usuario_perfil;
+        private DataGridView dgvUsuarios;
     }
 }

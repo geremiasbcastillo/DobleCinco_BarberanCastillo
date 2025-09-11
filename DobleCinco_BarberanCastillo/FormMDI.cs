@@ -20,5 +20,12 @@ namespace DobleCinco_BarberanCastillo
             prd.MdiParent = this;
             prd.Show();
         }
+
+        private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ventas vts = new Ventas();
+            vts.MdiParent = this;
+            vts.Show();
+        }
     }
 }

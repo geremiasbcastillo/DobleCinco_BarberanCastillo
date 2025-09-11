@@ -49,10 +49,27 @@
             panel4 = new Panel();
             LProducto = new Label();
             textBox6 = new TextBox();
+            textBox7 = new TextBox();
+            LDesc = new Label();
+            LBuscar = new Button();
+            textBox8 = new TextBox();
+            LStockAgregar = new Label();
+            textBox9 = new TextBox();
+            label8 = new Label();
+            textBox10 = new TextBox();
+            label9 = new Label();
+            label10 = new Label();
+            button1 = new Button();
+            dataGridView1 = new DataGridView();
+            id_producto = new DataGridViewTextBoxColumn();
+            producto_descripcion = new DataGridViewTextBoxColumn();
+            producto_cantidad = new DataGridViewTextBoxColumn();
+            producto_costo = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -208,7 +225,6 @@
             LFecha.Size = new Size(61, 25);
             LFecha.TabIndex = 0;
             LFecha.Text = "Fecha:";
-            LFecha.Click += label7_Click;
             // 
             // dateTimePicker1
             // 
@@ -227,16 +243,26 @@
             label7.Size = new Size(72, 25);
             label7.TabIndex = 2;
             label7.Text = "Factura:";
-            label7.Click += this.label7_Click_1;
             // 
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(button1);
+            panel4.Controls.Add(label10);
+            panel4.Controls.Add(textBox10);
+            panel4.Controls.Add(label9);
+            panel4.Controls.Add(textBox9);
+            panel4.Controls.Add(label8);
+            panel4.Controls.Add(textBox8);
+            panel4.Controls.Add(LStockAgregar);
+            panel4.Controls.Add(LBuscar);
+            panel4.Controls.Add(textBox7);
+            panel4.Controls.Add(LDesc);
             panel4.Controls.Add(textBox6);
             panel4.Controls.Add(LProducto);
             panel4.Location = new Point(181, 510);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1246, 191);
+            panel4.Size = new Size(1246, 223);
             panel4.TabIndex = 4;
             // 
             // LProducto
@@ -256,12 +282,140 @@
             textBox6.Size = new Size(138, 23);
             textBox6.TabIndex = 1;
             // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(542, 34);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(407, 23);
+            textBox7.TabIndex = 3;
+            // 
+            // LDesc
+            // 
+            LDesc.AutoSize = true;
+            LDesc.Font = new Font("Segoe UI", 13F);
+            LDesc.Location = new Point(420, 31);
+            LDesc.Name = "LDesc";
+            LDesc.Size = new Size(113, 25);
+            LDesc.TabIndex = 2;
+            LDesc.Text = "Descripcion: ";
+            // 
+            // LBuscar
+            // 
+            LBuscar.Font = new Font("Segoe UI", 13F);
+            LBuscar.Location = new Point(1087, 31);
+            LBuscar.Name = "LBuscar";
+            LBuscar.Size = new Size(89, 31);
+            LBuscar.TabIndex = 4;
+            LBuscar.Text = "Buscar";
+            LBuscar.UseVisualStyleBackColor = true;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(143, 118);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(138, 23);
+            textBox8.TabIndex = 6;
+            // 
+            // LStockAgregar
+            // 
+            LStockAgregar.AutoSize = true;
+            LStockAgregar.Font = new Font("Segoe UI", 13F);
+            LStockAgregar.Location = new Point(42, 115);
+            LStockAgregar.Name = "LStockAgregar";
+            LStockAgregar.Size = new Size(64, 25);
+            LStockAgregar.TabIndex = 5;
+            LStockAgregar.Text = "Stock: ";
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(465, 118);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(138, 23);
+            textBox9.TabIndex = 8;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 13F);
+            label8.Location = new Point(333, 115);
+            label8.Name = "label8";
+            label8.Size = new Size(116, 25);
+            label8.TabIndex = 7;
+            label8.Text = "Precio Costo:";
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(779, 118);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(138, 23);
+            textBox10.TabIndex = 10;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 13F);
+            label9.Location = new Point(644, 115);
+            label9.Name = "label9";
+            label9.Size = new Size(118, 25);
+            label9.TabIndex = 9;
+            label9.Text = "Precio Venta: ";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 13F);
+            label10.Location = new Point(959, 115);
+            label10.Name = "label10";
+            label10.Size = new Size(87, 25);
+            label10.TabIndex = 11;
+            label10.Text = "Cantidad:";
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 13F);
+            button1.Location = new Point(560, 170);
+            button1.Name = "button1";
+            button1.Size = new Size(92, 37);
+            button1.TabIndex = 12;
+            button1.Text = "Agregar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
+            dataGridView1.Location = new Point(181, 803);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1246, 144);
+            dataGridView1.TabIndex = 5;
+            // 
+            // id_producto
+            // 
+            id_producto.HeaderText = "id_producto";
+            id_producto.Name = "id_producto";
+            // 
+            // producto_descripcion
+            // 
+            producto_descripcion.HeaderText = "Descripcion";
+            producto_descripcion.Name = "producto_descripcion";
+            // 
+            // producto_cantidad
+            // 
+            producto_cantidad.HeaderText = "Cantidad";
+            producto_cantidad.Name = "producto_cantidad";
+            // 
+            // producto_costo
+            // 
+            producto_costo.HeaderText = "Precio Costo";
+            producto_costo.Name = "producto_costo";
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 192);
-            ClientSize = new Size(1856, 904);
+            ClientSize = new Size(1856, 1061);
+            Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -277,6 +431,7 @@
             panel3.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -304,5 +459,21 @@
         private Panel panel4;
         private TextBox textBox6;
         private Label LProducto;
+        private Button LBuscar;
+        private TextBox textBox7;
+        private Label LDesc;
+        private Button button1;
+        private Label label10;
+        private TextBox textBox10;
+        private Label label9;
+        private TextBox textBox9;
+        private Label label8;
+        private TextBox textBox8;
+        private Label LStockAgregar;
+        private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn id_producto;
+        private DataGridViewTextBoxColumn producto_descripcion;
+        private DataGridViewTextBoxColumn producto_cantidad;
+        private DataGridViewTextBoxColumn producto_costo;
     }
 }
