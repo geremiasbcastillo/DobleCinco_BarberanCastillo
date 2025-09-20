@@ -25,16 +25,6 @@ namespace DobleCinco_BarberanCastillo
 
         }
 
-        private void CargarDatos()
-        {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = "SELECT * FROM Usuarios";
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvUsuarios.DataSource = dt;
-            }
-        }
+        
     }
 }
