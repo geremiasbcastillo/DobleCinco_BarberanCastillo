@@ -32,8 +32,9 @@
             LVentas = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
-            button1 = new Button();
             label1 = new Label();
+            button1 = new Button();
+            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -71,21 +72,13 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(0, 64, 0);
+            panel3.Controls.Add(comboBox1);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(button1);
             panel3.Location = new Point(555, 80);
             panel3.Name = "panel3";
             panel3.Size = new Size(530, 268);
             panel3.TabIndex = 0;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(221, 188);
-            button1.Name = "button1";
-            button1.Size = new Size(96, 39);
-            button1.TabIndex = 5;
-            button1.Text = "Generar";
-            button1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -97,6 +90,24 @@
             label1.Size = new Size(151, 28);
             label1.TabIndex = 6;
             label1.Text = "Tipo de usuario:";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(221, 188);
+            button1.Name = "button1";
+            button1.Size = new Size(96, 39);
+            button1.TabIndex = 5;
+            button1.Text = "Generar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Gerente", "Administrador", "Dueño", "Todos" });
+            comboBox1.Location = new Point(254, 52);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 7;
             // 
             // ReporteUsuario
             // 
@@ -123,5 +134,6 @@
         private Panel panel3;
         private Label label1;
         private Button button1;
+        private ComboBox comboBox1;
     }
 }

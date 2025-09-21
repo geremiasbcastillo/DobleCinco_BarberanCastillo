@@ -19,6 +19,7 @@ namespace DobleCinco_BarberanCastillo
         public Usuarios()
         {
             InitializeComponent();
+            dgvUsuarios.RowHeadersVisible = false;
         }
 
         private void Usuarios_Load(object sender, EventArgs e)
@@ -28,14 +29,14 @@ namespace DobleCinco_BarberanCastillo
 
         private void CargarDatos()
         {
-            using var conn = new SqlConnection(connectionString); // Simplifica 'using' y 'new'
+            using var conn = new SqlConnection(connectionString);
             string query = "SELECT * FROM Usuario";
-            var da = new SqlDataAdapter(query, conn); // Simplifica 'new'
-            var dt = new DataTable(); // Simplifica 'new'
+            var da = new SqlDataAdapter(query, conn);
+            var dt = new DataTable();
             da.Fill(dt);
+            dgvUsuarios.DataSource = null; // Fuerza el refresco
             dgvUsuarios.DataSource = dt;
-
-
+            dgvUsuarios.Refresh(); // Asegura que se actualice la vista
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
