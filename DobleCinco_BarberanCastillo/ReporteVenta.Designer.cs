@@ -32,12 +32,12 @@
             LVentas = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
             button1 = new Button();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -87,28 +87,31 @@
             panel3.Size = new Size(530, 268);
             panel3.TabIndex = 0;
             // 
-            // label1
+            // button1
             // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(207, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(119, 25);
-            label1.TabIndex = 0;
-            label1.Text = "--- Fecha ---";
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(217, 168);
+            button1.Name = "button1";
+            button1.Size = new Size(98, 34);
+            button1.TabIndex = 5;
+            button1.Text = "Generar";
+            button1.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // dateTimePicker2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(70, 67);
-            label2.Name = "label2";
-            label2.Size = new Size(144, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Generar desde: ";
+            dateTimePicker2.Format = DateTimePickerFormat.Short;
+            dateTimePicker2.Location = new Point(337, 105);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(104, 23);
+            dateTimePicker2.TabIndex = 4;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new Point(88, 105);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(104, 23);
+            dateTimePicker1.TabIndex = 3;
             // 
             // label3
             // 
@@ -121,30 +124,28 @@
             label3.TabIndex = 2;
             label3.Text = "Hasta: ";
             // 
-            // dateTimePicker1
+            // label2
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(88, 105);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(104, 23);
-            dateTimePicker1.TabIndex = 3;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(70, 67);
+            label2.Name = "label2";
+            label2.Size = new Size(144, 25);
+            label2.TabIndex = 1;
+            label2.Text = "Generar desde: ";
             // 
-            // dateTimePicker2
+            // label1
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(337, 105);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(104, 23);
-            dateTimePicker2.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(228, 173);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "Generar";
-            button1.UseVisualStyleBackColor = true;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(207, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(119, 25);
+            label1.TabIndex = 0;
+            label1.Text = "--- Fecha ---";
             // 
             // ReporteVenta
             // 

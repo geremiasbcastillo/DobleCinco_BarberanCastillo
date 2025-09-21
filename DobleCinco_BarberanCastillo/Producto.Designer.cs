@@ -42,15 +42,6 @@
             LMinimo = new Label();
             LCategoria = new Label();
             dataGridView1 = new DataGridView();
-            TBNombre = new TextBox();
-            LNombre = new Label();
-            panel5 = new Panel();
-            panel1 = new Panel();
-            BAgregarImagen = new Button();
-            BProducto_agregar = new Button();
-            CBCategoria = new ComboBox();
-            PBproducto_imagen = new PictureBox();
-            toolTip1 = new ToolTip(components);
             id_producto = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             producto_descripcion = new DataGridViewTextBoxColumn();
@@ -60,6 +51,15 @@
             producto_minimo = new DataGridViewTextBoxColumn();
             producto_categoria = new DataGridViewTextBoxColumn();
             dgvproducto_foto = new DataGridViewImageColumn();
+            TBNombre = new TextBox();
+            LNombre = new Label();
+            panel5 = new Panel();
+            panel1 = new Panel();
+            BAgregarImagen = new Button();
+            BProducto_agregar = new Button();
+            CBCategoria = new ComboBox();
+            PBproducto_imagen = new PictureBox();
+            toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel5.SuspendLayout();
             panel1.SuspendLayout();
@@ -184,10 +184,55 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, Nombre, producto_descripcion, producto_costo, producto_venta, producto_stock, producto_minimo, producto_categoria, dgvproducto_foto });
-            dataGridView1.Location = new Point(139, 376);
+            dataGridView1.Location = new Point(139, 381);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(945, 322);
+            dataGridView1.Size = new Size(945, 211);
             dataGridView1.TabIndex = 13;
+            // 
+            // id_producto
+            // 
+            id_producto.HeaderText = "id_usuario";
+            id_producto.Name = "id_producto";
+            // 
+            // Nombre
+            // 
+            Nombre.HeaderText = "Nombre";
+            Nombre.Name = "Nombre";
+            // 
+            // producto_descripcion
+            // 
+            producto_descripcion.HeaderText = "Descripcion";
+            producto_descripcion.Name = "producto_descripcion";
+            // 
+            // producto_costo
+            // 
+            producto_costo.HeaderText = "Precio Costo";
+            producto_costo.Name = "producto_costo";
+            // 
+            // producto_venta
+            // 
+            producto_venta.HeaderText = "Precio Venta";
+            producto_venta.Name = "producto_venta";
+            // 
+            // producto_stock
+            // 
+            producto_stock.HeaderText = "Stock";
+            producto_stock.Name = "producto_stock";
+            // 
+            // producto_minimo
+            // 
+            producto_minimo.HeaderText = "Stock Mínimo";
+            producto_minimo.Name = "producto_minimo";
+            // 
+            // producto_categoria
+            // 
+            producto_categoria.HeaderText = "Categoria";
+            producto_categoria.Name = "producto_categoria";
+            // 
+            // dgvproducto_foto
+            // 
+            dgvproducto_foto.HeaderText = "Imagen";
+            dgvproducto_foto.Name = "dgvproducto_foto";
             // 
             // TBNombre
             // 
@@ -287,51 +332,6 @@
             PBproducto_imagen.SizeMode = PictureBoxSizeMode.CenterImage;
             PBproducto_imagen.TabIndex = 18;
             PBproducto_imagen.TabStop = false;
-            // 
-            // id_producto
-            // 
-            id_producto.HeaderText = "id_usuario";
-            id_producto.Name = "id_producto";
-            // 
-            // Nombre
-            // 
-            Nombre.HeaderText = "Nombre";
-            Nombre.Name = "Nombre";
-            // 
-            // producto_descripcion
-            // 
-            producto_descripcion.HeaderText = "Descripcion";
-            producto_descripcion.Name = "producto_descripcion";
-            // 
-            // producto_costo
-            // 
-            producto_costo.HeaderText = "Precio Costo";
-            producto_costo.Name = "producto_costo";
-            // 
-            // producto_venta
-            // 
-            producto_venta.HeaderText = "Precio Venta";
-            producto_venta.Name = "producto_venta";
-            // 
-            // producto_stock
-            // 
-            producto_stock.HeaderText = "Stock";
-            producto_stock.Name = "producto_stock";
-            // 
-            // producto_minimo
-            // 
-            producto_minimo.HeaderText = "Stock Mínimo";
-            producto_minimo.Name = "producto_minimo";
-            // 
-            // producto_categoria
-            // 
-            producto_categoria.HeaderText = "Categoria";
-            producto_categoria.Name = "producto_categoria";
-            // 
-            // dgvproducto_foto
-            // 
-            dgvproducto_foto.HeaderText = "Imagen";
-            dgvproducto_foto.Name = "dgvproducto_foto";
             // 
             // Producto
             // 

@@ -119,5 +119,10 @@ namespace DobleCinco_BarberanCastillo
                 e.Handled = true; // Cancela el evento, evitando que el carácter se ingrese
             }
         }
+
+        private void TNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

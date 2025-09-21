@@ -49,7 +49,11 @@
             dgvUsuarios = new DataGridView();
             BAgregar = new Button();
             DTFecha = new DateTimePicker();
+            panel5 = new Panel();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
+            panel5.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // LUsuarios
@@ -57,7 +61,7 @@
             LUsuarios.AutoSize = true;
             LUsuarios.Font = new Font("Segoe UI", 25F);
             LUsuarios.ForeColor = SystemColors.ControlLightLight;
-            LUsuarios.Location = new Point(64, 43);
+            LUsuarios.Location = new Point(21, 18);
             LUsuarios.Name = "LUsuarios";
             LUsuarios.Size = new Size(147, 46);
             LUsuarios.TabIndex = 0;
@@ -67,7 +71,7 @@
             // 
             LNombre.AutoSize = true;
             LNombre.Font = new Font("Segoe UI", 15F);
-            LNombre.Location = new Point(268, 163);
+            LNombre.Location = new Point(100, 15);
             LNombre.Name = "LNombre";
             LNombre.Size = new Size(85, 28);
             LNombre.TabIndex = 1;
@@ -75,15 +79,16 @@
             // 
             // TNombre
             // 
-            TNombre.Location = new Point(415, 168);
+            TNombre.Location = new Point(284, 20);
             TNombre.Name = "TNombre";
             TNombre.Size = new Size(228, 23);
             TNombre.TabIndex = 2;
+            TNombre.TextChanged += TNombre_TextChanged;
             TNombre.KeyPress += TNombre_KeyPress;
             // 
             // TApellido
             // 
-            TApellido.Location = new Point(415, 235);
+            TApellido.Location = new Point(284, 70);
             TApellido.Name = "TApellido";
             TApellido.Size = new Size(228, 23);
             TApellido.TabIndex = 4;
@@ -93,7 +98,7 @@
             // 
             LApellido.AutoSize = true;
             LApellido.Font = new Font("Segoe UI", 15F);
-            LApellido.Location = new Point(268, 230);
+            LApellido.Location = new Point(100, 65);
             LApellido.Name = "LApellido";
             LApellido.Size = new Size(86, 28);
             LApellido.TabIndex = 3;
@@ -101,7 +106,7 @@
             // 
             // TDni
             // 
-            TDni.Location = new Point(415, 301);
+            TDni.Location = new Point(284, 120);
             TDni.Name = "TDni";
             TDni.Size = new Size(228, 23);
             TDni.TabIndex = 6;
@@ -111,7 +116,7 @@
             // 
             LDNI.AutoSize = true;
             LDNI.Font = new Font("Segoe UI", 15F);
-            LDNI.Location = new Point(268, 296);
+            LDNI.Location = new Point(100, 115);
             LDNI.Name = "LDNI";
             LDNI.Size = new Size(46, 28);
             LDNI.TabIndex = 5;
@@ -119,7 +124,7 @@
             // 
             // TCorreo
             // 
-            TCorreo.Location = new Point(415, 366);
+            TCorreo.Location = new Point(284, 170);
             TCorreo.Name = "TCorreo";
             TCorreo.Size = new Size(228, 23);
             TCorreo.TabIndex = 8;
@@ -129,7 +134,7 @@
             // 
             LCorreo.AutoSize = true;
             LCorreo.Font = new Font("Segoe UI", 15F);
-            LCorreo.Location = new Point(268, 361);
+            LCorreo.Location = new Point(100, 165);
             LCorreo.Name = "LCorreo";
             LCorreo.Size = new Size(72, 28);
             LCorreo.TabIndex = 7;
@@ -137,7 +142,7 @@
             // 
             // TContraseña
             // 
-            TContraseña.Location = new Point(1087, 171);
+            TContraseña.Location = new Point(831, 20);
             TContraseña.Name = "TContraseña";
             TContraseña.Size = new Size(228, 23);
             TContraseña.TabIndex = 10;
@@ -146,7 +151,7 @@
             // 
             LContraseña.AutoSize = true;
             LContraseña.Font = new Font("Segoe UI", 15F);
-            LContraseña.Location = new Point(838, 163);
+            LContraseña.Location = new Point(625, 15);
             LContraseña.Name = "LContraseña";
             LContraseña.Size = new Size(110, 28);
             LContraseña.TabIndex = 9;
@@ -154,7 +159,7 @@
             // 
             // TTelefono
             // 
-            TTelefono.Location = new Point(1087, 235);
+            TTelefono.Location = new Point(831, 70);
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(228, 23);
             TTelefono.TabIndex = 12;
@@ -164,7 +169,7 @@
             // 
             LTelefono.AutoSize = true;
             LTelefono.Font = new Font("Segoe UI", 15F);
-            LTelefono.Location = new Point(838, 230);
+            LTelefono.Location = new Point(625, 65);
             LTelefono.Name = "LTelefono";
             LTelefono.Size = new Size(86, 28);
             LTelefono.TabIndex = 11;
@@ -172,7 +177,7 @@
             // 
             // TDireccion
             // 
-            TDireccion.Location = new Point(1087, 304);
+            TDireccion.Location = new Point(831, 120);
             TDireccion.Name = "TDireccion";
             TDireccion.Size = new Size(228, 23);
             TDireccion.TabIndex = 14;
@@ -181,7 +186,7 @@
             // 
             Direccion.AutoSize = true;
             Direccion.Font = new Font("Segoe UI", 15F);
-            Direccion.Location = new Point(838, 293);
+            Direccion.Location = new Point(625, 115);
             Direccion.Name = "Direccion";
             Direccion.Size = new Size(94, 28);
             Direccion.TabIndex = 13;
@@ -191,7 +196,7 @@
             // 
             LFecha.AutoSize = true;
             LFecha.Font = new Font("Segoe UI", 15F);
-            LFecha.Location = new Point(838, 361);
+            LFecha.Location = new Point(625, 165);
             LFecha.Name = "LFecha";
             LFecha.Size = new Size(191, 28);
             LFecha.TabIndex = 15;
@@ -202,6 +207,7 @@
             dgvUsuarios.AllowUserToAddRows = false;
             dgvUsuarios.AllowUserToDeleteRows = false;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+<<<<<<< HEAD
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -211,6 +217,9 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle1;
             dgvUsuarios.Location = new Point(353, 616);
+=======
+            dgvUsuarios.Location = new Point(205, 310);
+>>>>>>> c19f0811f53fb197d573f78f6dbeea02e8fcda6b
             dgvUsuarios.Name = "dgvUsuarios";
             dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = Color.White;
@@ -222,21 +231,57 @@
             // 
             // BAgregar
             // 
+            BAgregar.Font = new Font("Segoe UI", 12F);
             BAgregar.ForeColor = SystemColors.ActiveCaptionText;
-            BAgregar.Location = new Point(647, 490);
+            BAgregar.Location = new Point(522, 230);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(157, 43);
             BAgregar.TabIndex = 20;
-            BAgregar.Text = "Agregar";
+            BAgregar.Text = "Agregar usuario";
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
             // 
             // DTFecha
             // 
-            DTFecha.Location = new Point(1087, 366);
+            DTFecha.Location = new Point(831, 170);
             DTFecha.Name = "DTFecha";
             DTFecha.Size = new Size(228, 23);
             DTFecha.TabIndex = 21;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(0, 64, 0);
+            panel5.Controls.Add(LUsuarios);
+            panel5.Location = new Point(45, 12);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1213, 86);
+            panel5.TabIndex = 22;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(DTFecha);
+            panel1.Controls.Add(BAgregar);
+            panel1.Controls.Add(dgvUsuarios);
+            panel1.Controls.Add(LFecha);
+            panel1.Controls.Add(TDireccion);
+            panel1.Controls.Add(Direccion);
+            panel1.Controls.Add(TTelefono);
+            panel1.Controls.Add(LTelefono);
+            panel1.Controls.Add(TContraseña);
+            panel1.Controls.Add(LContraseña);
+            panel1.Controls.Add(TCorreo);
+            panel1.Controls.Add(LCorreo);
+            panel1.Controls.Add(TDni);
+            panel1.Controls.Add(LDNI);
+            panel1.Controls.Add(TApellido);
+            panel1.Controls.Add(LApellido);
+            panel1.Controls.Add(TNombre);
+            panel1.Controls.Add(LNombre);
+            panel1.Location = new Point(45, 98);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1213, 721);
+            panel1.TabIndex = 23;
             // 
             // Usuarios
             // 
@@ -244,32 +289,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 192);
             ClientSize = new Size(1437, 1036);
-            Controls.Add(DTFecha);
-            Controls.Add(BAgregar);
-            Controls.Add(dgvUsuarios);
-            Controls.Add(LFecha);
-            Controls.Add(TDireccion);
-            Controls.Add(Direccion);
-            Controls.Add(TTelefono);
-            Controls.Add(LTelefono);
-            Controls.Add(TContraseña);
-            Controls.Add(LContraseña);
-            Controls.Add(TCorreo);
-            Controls.Add(LCorreo);
-            Controls.Add(TDni);
-            Controls.Add(LDNI);
-            Controls.Add(TApellido);
-            Controls.Add(LApellido);
-            Controls.Add(TNombre);
-            Controls.Add(LNombre);
-            Controls.Add(LUsuarios);
+            Controls.Add(panel1);
+            Controls.Add(panel5);
             ForeColor = SystemColors.ControlLightLight;
             Name = "Usuarios";
             Text = "Form2";
             Load += Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -293,5 +324,7 @@
         private DataGridView dgvUsuarios;
         private Button BAgregar;
         private DateTimePicker DTFecha;
+        private Panel panel5;
+        private Panel panel1;
     }
 }
