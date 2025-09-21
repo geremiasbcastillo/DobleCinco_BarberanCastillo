@@ -226,8 +226,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LimeGreen;
-            ClientSize = new Size(1349, 1036);
+            BackColor = Color.FromArgb(192, 255, 192);
+            ClientSize = new Size(1437, 1036);
             Controls.Add(DTFecha);
             Controls.Add(BAgregar);
             Controls.Add(dgvUsuarios);

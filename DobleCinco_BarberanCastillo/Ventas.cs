@@ -107,5 +107,10 @@ namespace DobleCinco_BarberanCastillo
                 e.Handled = true; // Cancela el evento, evitando que el carácter se ingrese
             }
         }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
