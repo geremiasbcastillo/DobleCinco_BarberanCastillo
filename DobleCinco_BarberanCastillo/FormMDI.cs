@@ -27,5 +27,10 @@ namespace DobleCinco_BarberanCastillo
             vts.MdiParent = this;
             vts.Show();
         }
+
+        private void FormMDI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,14 +30,14 @@
         {
             label1 = new Label();
             LDescripcion = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            TBDescripcion = new TextBox();
+            TBCosto = new TextBox();
             PCosto = new Label();
-            textBox3 = new TextBox();
+            TBVenta = new TextBox();
             PVenta = new Label();
-            textBox4 = new TextBox();
+            TBStock = new TextBox();
             LStock = new Label();
-            textBox5 = new TextBox();
+            TBStockMinimo = new TextBox();
             LMinimo = new Label();
             LCategoria = new Label();
             LImagen = new Label();
@@ -49,6 +49,8 @@
             producto_stock = new DataGridViewTextBoxColumn();
             producto_minimo = new DataGridViewTextBoxColumn();
             producto_categoria = new DataGridViewTextBoxColumn();
+            TBNombre = new TextBox();
+            LNombre = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -72,19 +74,20 @@
             LDescripcion.TabIndex = 1;
             LDescripcion.Text = "Descripcion";
             // 
-            // textBox1
+            // TBDescripcion
             // 
-            textBox1.Location = new Point(376, 143);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(254, 23);
-            textBox1.TabIndex = 2;
+            TBDescripcion.Location = new Point(376, 143);
+            TBDescripcion.Name = "TBDescripcion";
+            TBDescripcion.Size = new Size(254, 23);
+            TBDescripcion.TabIndex = 2;
             // 
-            // textBox2
+            // TBCosto
             // 
-            textBox2.Location = new Point(376, 203);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(254, 23);
-            textBox2.TabIndex = 4;
+            TBCosto.Location = new Point(376, 203);
+            TBCosto.Name = "TBCosto";
+            TBCosto.Size = new Size(254, 23);
+            TBCosto.TabIndex = 4;
+            TBCosto.KeyPress += TBCosto_KeyPress;
             // 
             // PCosto
             // 
@@ -96,12 +99,13 @@
             PCosto.TabIndex = 3;
             PCosto.Text = "Precio Costo";
             // 
-            // textBox3
+            // TBVenta
             // 
-            textBox3.Location = new Point(376, 269);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(254, 23);
-            textBox3.TabIndex = 6;
+            TBVenta.Location = new Point(376, 269);
+            TBVenta.Name = "TBVenta";
+            TBVenta.Size = new Size(254, 23);
+            TBVenta.TabIndex = 6;
+            TBVenta.KeyPress += TBVenta_KeyPress;
             // 
             // PVenta
             // 
@@ -113,12 +117,13 @@
             PVenta.TabIndex = 5;
             PVenta.Text = "Precio venta";
             // 
-            // textBox4
+            // TBStock
             // 
-            textBox4.Location = new Point(376, 333);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(254, 23);
-            textBox4.TabIndex = 8;
+            TBStock.Location = new Point(376, 333);
+            TBStock.Name = "TBStock";
+            TBStock.Size = new Size(254, 23);
+            TBStock.TabIndex = 8;
+            TBStock.KeyPress += TBStock_KeyPress;
             // 
             // LStock
             // 
@@ -130,12 +135,13 @@
             LStock.TabIndex = 7;
             LStock.Text = "Stock";
             // 
-            // textBox5
+            // TBStockMinimo
             // 
-            textBox5.Location = new Point(376, 395);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(254, 23);
-            textBox5.TabIndex = 10;
+            TBStockMinimo.Location = new Point(376, 395);
+            TBStockMinimo.Name = "TBStockMinimo";
+            TBStockMinimo.Size = new Size(254, 23);
+            TBStockMinimo.TabIndex = 10;
+            TBStockMinimo.KeyPress += TBStockMinimo_KeyPress;
             // 
             // LMinimo
             // 
@@ -211,28 +217,48 @@
             producto_categoria.HeaderText = "Categoria";
             producto_categoria.Name = "producto_categoria";
             // 
+            // TBNombre
+            // 
+            TBNombre.Location = new Point(376, 91);
+            TBNombre.Name = "TBNombre";
+            TBNombre.Size = new Size(254, 23);
+            TBNombre.TabIndex = 15;
+            // 
+            // LNombre
+            // 
+            LNombre.AutoSize = true;
+            LNombre.Font = new Font("Segoe UI", 15F);
+            LNombre.Location = new Point(179, 83);
+            LNombre.Name = "LNombre";
+            LNombre.Size = new Size(85, 28);
+            LNombre.TabIndex = 14;
+            LNombre.Text = "Nombre";
+            // 
             // Producto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(128, 255, 128);
             ClientSize = new Size(1856, 906);
+            Controls.Add(TBNombre);
+            Controls.Add(LNombre);
             Controls.Add(dataGridView1);
             Controls.Add(LImagen);
             Controls.Add(LCategoria);
-            Controls.Add(textBox5);
+            Controls.Add(TBStockMinimo);
             Controls.Add(LMinimo);
-            Controls.Add(textBox4);
+            Controls.Add(TBStock);
             Controls.Add(LStock);
-            Controls.Add(textBox3);
+            Controls.Add(TBVenta);
             Controls.Add(PVenta);
-            Controls.Add(textBox2);
+            Controls.Add(TBCosto);
             Controls.Add(PCosto);
-            Controls.Add(textBox1);
+            Controls.Add(TBDescripcion);
             Controls.Add(LDescripcion);
             Controls.Add(label1);
             Name = "Producto";
             Text = "Ventas";
+            Load += Producto_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -242,14 +268,14 @@
 
         private Label label1;
         private Label LDescripcion;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox TBDescripcion;
+        private TextBox TBCosto;
         private Label PCosto;
-        private TextBox textBox3;
+        private TextBox TBVenta;
         private Label PVenta;
-        private TextBox textBox4;
+        private TextBox TBStock;
         private Label LStock;
-        private TextBox textBox5;
+        private TextBox TBStockMinimo;
         private Label LMinimo;
         private Label LCategoria;
         private Label LImagen;
@@ -261,5 +287,7 @@
         private DataGridViewTextBoxColumn producto_stock;
         private DataGridViewTextBoxColumn producto_minimo;
         private DataGridViewTextBoxColumn producto_categoria;
+        private TextBox TBNombre;
+        private Label LNombre;
     }
 }

@@ -77,6 +77,7 @@
             TNombre.Name = "TNombre";
             TNombre.Size = new Size(228, 23);
             TNombre.TabIndex = 2;
+            TNombre.KeyPress += TNombre_KeyPress;
             // 
             // TApellido
             // 
@@ -84,6 +85,7 @@
             TApellido.Name = "TApellido";
             TApellido.Size = new Size(228, 23);
             TApellido.TabIndex = 4;
+            TApellido.KeyPress += TApellido_KeyPress;
             // 
             // LApellido
             // 
@@ -101,6 +103,7 @@
             TDni.Name = "TDni";
             TDni.Size = new Size(228, 23);
             TDni.TabIndex = 6;
+            TDni.KeyPress += TDni_KeyPress;
             // 
             // LDNI
             // 
@@ -118,6 +121,7 @@
             TCorreo.Name = "TCorreo";
             TCorreo.Size = new Size(228, 23);
             TCorreo.TabIndex = 8;
+            TCorreo.KeyPress += TCorreo_KeyPress;
             // 
             // LCorreo
             // 
@@ -152,6 +156,7 @@
             TTelefono.Name = "TTelefono";
             TTelefono.Size = new Size(228, 23);
             TTelefono.TabIndex = 12;
+            TTelefono.KeyPress += TTelefono_KeyPress;
             // 
             // LTelefono
             // 
@@ -197,6 +202,7 @@
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.Size = new Size(798, 366);
             dgvUsuarios.TabIndex = 19;
+            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
             // 
             // BAgregar
             // 

@@ -45,7 +45,7 @@ namespace DobleCinco_BarberanCastillo
             menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(126, 450);
+            menuStrip1.Size = new Size(93, 450);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -54,7 +54,7 @@ namespace DobleCinco_BarberanCastillo
             usuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
             usuarioToolStripMenuItem.Image = Properties.Resources.history;
             usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            usuarioToolStripMenuItem.Size = new Size(113, 40);
+            usuarioToolStripMenuItem.Size = new Size(80, 40);
             usuarioToolStripMenuItem.Text = "Usuario";
             usuarioToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             usuarioToolStripMenuItem.Click += usuarioToolStripMenuItem_Click;
@@ -64,7 +64,7 @@ namespace DobleCinco_BarberanCastillo
             productosToolStripMenuItem.Font = new Font("Segoe UI", 11F);
             productosToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            productosToolStripMenuItem.Size = new Size(113, 24);
+            productosToolStripMenuItem.Size = new Size(80, 24);
             productosToolStripMenuItem.Text = "Productos";
             productosToolStripMenuItem.Click += productosToolStripMenuItem_Click;
             // 
@@ -72,7 +72,7 @@ namespace DobleCinco_BarberanCastillo
             // 
             ventasToolStripMenuItem.Font = new Font("Segoe UI", 11F);
             ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
-            ventasToolStripMenuItem.Size = new Size(113, 24);
+            ventasToolStripMenuItem.Size = new Size(80, 24);
             ventasToolStripMenuItem.Text = "Ventas";
             ventasToolStripMenuItem.Click += ventasToolStripMenuItem_Click;
             // 
@@ -86,6 +86,7 @@ namespace DobleCinco_BarberanCastillo
             MainMenuStrip = menuStrip1;
             Name = "FormMDI";
             Text = "Form1";
+            Load += FormMDI_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

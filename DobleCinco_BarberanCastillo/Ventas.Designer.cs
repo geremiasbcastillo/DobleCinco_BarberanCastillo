@@ -30,35 +30,35 @@
         {
             panel1 = new Panel();
             label1 = new Label();
-            textBox1 = new TextBox();
+            TBVendedor = new TextBox();
             LVentas = new Label();
             panel2 = new Panel();
             label6 = new Label();
-            textBox5 = new TextBox();
+            TBDomicilio = new TextBox();
             label5 = new Label();
-            textBox4 = new TextBox();
+            TBDni = new TextBox();
             label4 = new Label();
-            textBox3 = new TextBox();
+            TBApellido = new TextBox();
             label3 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            TBNombre = new TextBox();
             panel3 = new Panel();
             label7 = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            DTPFecha = new DateTimePicker();
             LFecha = new Label();
             panel4 = new Panel();
             button1 = new Button();
             label10 = new Label();
-            textBox10 = new TextBox();
+            TBVenta = new TextBox();
             label9 = new Label();
-            textBox9 = new TextBox();
+            TBCosto = new TextBox();
             label8 = new Label();
-            textBox8 = new TextBox();
+            TBStock = new TextBox();
             LStockAgregar = new Label();
             LBuscar = new Button();
-            textBox7 = new TextBox();
+            TBDescripcion = new TextBox();
             LDesc = new Label();
-            textBox6 = new TextBox();
+            TBProducto = new TextBox();
             LProducto = new Label();
             dataGridView1 = new DataGridView();
             id_producto = new DataGridViewTextBoxColumn();
@@ -80,7 +80,7 @@
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(TBVendedor);
             panel1.Location = new Point(18, 15);
             panel1.Name = "panel1";
             panel1.Size = new Size(550, 102);
@@ -97,12 +97,13 @@
             label1.TabIndex = 0;
             label1.Text = "Vendedor: ";
             // 
-            // textBox1
+            // TBVendedor
             // 
-            textBox1.Location = new Point(201, 42);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(313, 23);
-            textBox1.TabIndex = 1;
+            TBVendedor.Location = new Point(201, 42);
+            TBVendedor.Name = "TBVendedor";
+            TBVendedor.Size = new Size(313, 23);
+            TBVendedor.TabIndex = 1;
+            TBVendedor.KeyPress += TBVendedor_KeyPress;
             // 
             // LVentas
             // 
@@ -120,14 +121,14 @@
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(textBox5);
+            panel2.Controls.Add(TBDomicilio);
             panel2.Controls.Add(label5);
-            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(TBDni);
             panel2.Controls.Add(label4);
-            panel2.Controls.Add(textBox3);
+            panel2.Controls.Add(TBApellido);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(TBNombre);
             panel2.Location = new Point(663, 15);
             panel2.Name = "panel2";
             panel2.Size = new Size(535, 296);
@@ -143,12 +144,12 @@
             label6.TabIndex = 8;
             label6.Text = "Domicilio:";
             // 
-            // textBox5
+            // TBDomicilio
             // 
-            textBox5.Location = new Point(193, 241);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(313, 23);
-            textBox5.TabIndex = 7;
+            TBDomicilio.Location = new Point(193, 241);
+            TBDomicilio.Name = "TBDomicilio";
+            TBDomicilio.Size = new Size(313, 23);
+            TBDomicilio.TabIndex = 7;
             // 
             // label5
             // 
@@ -160,12 +161,13 @@
             label5.TabIndex = 6;
             label5.Text = "DNI:";
             // 
-            // textBox4
+            // TBDni
             // 
-            textBox4.Location = new Point(193, 187);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(313, 23);
-            textBox4.TabIndex = 5;
+            TBDni.Location = new Point(193, 187);
+            TBDni.Name = "TBDni";
+            TBDni.Size = new Size(313, 23);
+            TBDni.TabIndex = 5;
+            TBDni.KeyPress += TBDni_KeyPress;
             // 
             // label4
             // 
@@ -177,12 +179,13 @@
             label4.TabIndex = 4;
             label4.Text = "Apellido: ";
             // 
-            // textBox3
+            // TBApellido
             // 
-            textBox3.Location = new Point(193, 137);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(313, 23);
-            textBox3.TabIndex = 3;
+            TBApellido.Location = new Point(193, 137);
+            TBApellido.Name = "TBApellido";
+            TBApellido.Size = new Size(313, 23);
+            TBApellido.TabIndex = 3;
+            TBApellido.KeyPress += TBApellido_KeyPress;
             // 
             // label3
             // 
@@ -205,18 +208,19 @@
             label2.Text = "Datos del cliente";
             label2.Click += label2_Click;
             // 
-            // textBox2
+            // TBNombre
             // 
-            textBox2.Location = new Point(193, 78);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(313, 23);
-            textBox2.TabIndex = 1;
+            TBNombre.Location = new Point(193, 78);
+            TBNombre.Name = "TBNombre";
+            TBNombre.Size = new Size(313, 23);
+            TBNombre.TabIndex = 1;
+            TBNombre.KeyPress += TBNombre_KeyPress;
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(label7);
-            panel3.Controls.Add(dateTimePicker1);
+            panel3.Controls.Add(DTPFecha);
             panel3.Controls.Add(LFecha);
             panel3.Location = new Point(18, 147);
             panel3.Name = "panel3";
@@ -233,13 +237,13 @@
             label7.TabIndex = 2;
             label7.Text = "Factura:";
             // 
-            // dateTimePicker1
+            // DTPFecha
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(268, 26);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 1;
+            DTPFecha.Format = DateTimePickerFormat.Short;
+            DTPFecha.Location = new Point(268, 26);
+            DTPFecha.Name = "DTPFecha";
+            DTPFecha.Size = new Size(200, 23);
+            DTPFecha.TabIndex = 1;
             // 
             // LFecha
             // 
@@ -256,16 +260,16 @@
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(button1);
             panel4.Controls.Add(label10);
-            panel4.Controls.Add(textBox10);
+            panel4.Controls.Add(TBVenta);
             panel4.Controls.Add(label9);
-            panel4.Controls.Add(textBox9);
+            panel4.Controls.Add(TBCosto);
             panel4.Controls.Add(label8);
-            panel4.Controls.Add(textBox8);
+            panel4.Controls.Add(TBStock);
             panel4.Controls.Add(LStockAgregar);
             panel4.Controls.Add(LBuscar);
-            panel4.Controls.Add(textBox7);
+            panel4.Controls.Add(TBDescripcion);
             panel4.Controls.Add(LDesc);
-            panel4.Controls.Add(textBox6);
+            panel4.Controls.Add(TBProducto);
             panel4.Controls.Add(LProducto);
             panel4.Location = new Point(18, 338);
             panel4.Name = "panel4";
@@ -294,12 +298,13 @@
             label10.TabIndex = 11;
             label10.Text = "Cantidad:";
             // 
-            // textBox10
+            // TBVenta
             // 
-            textBox10.Location = new Point(779, 118);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(138, 23);
-            textBox10.TabIndex = 10;
+            TBVenta.Location = new Point(779, 118);
+            TBVenta.Name = "TBVenta";
+            TBVenta.Size = new Size(138, 23);
+            TBVenta.TabIndex = 10;
+            TBVenta.KeyPress += TBVenta_KeyPress;
             // 
             // label9
             // 
@@ -311,12 +316,13 @@
             label9.TabIndex = 9;
             label9.Text = "Precio Venta: ";
             // 
-            // textBox9
+            // TBCosto
             // 
-            textBox9.Location = new Point(465, 118);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(138, 23);
-            textBox9.TabIndex = 8;
+            TBCosto.Location = new Point(465, 118);
+            TBCosto.Name = "TBCosto";
+            TBCosto.Size = new Size(138, 23);
+            TBCosto.TabIndex = 8;
+            TBCosto.KeyPress += TBCosto_KeyPress;
             // 
             // label8
             // 
@@ -328,12 +334,13 @@
             label8.TabIndex = 7;
             label8.Text = "Precio Costo:";
             // 
-            // textBox8
+            // TBStock
             // 
-            textBox8.Location = new Point(143, 118);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(138, 23);
-            textBox8.TabIndex = 6;
+            TBStock.Location = new Point(143, 118);
+            TBStock.Name = "TBStock";
+            TBStock.Size = new Size(138, 23);
+            TBStock.TabIndex = 6;
+            TBStock.KeyPress += TBStock_KeyPress;
             // 
             // LStockAgregar
             // 
@@ -358,12 +365,12 @@
             LBuscar.UseVisualStyleBackColor = true;
             LBuscar.Click += LBuscar_Click;
             // 
-            // textBox7
+            // TBDescripcion
             // 
-            textBox7.Location = new Point(542, 34);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(407, 23);
-            textBox7.TabIndex = 3;
+            TBDescripcion.Location = new Point(542, 34);
+            TBDescripcion.Name = "TBDescripcion";
+            TBDescripcion.Size = new Size(407, 23);
+            TBDescripcion.TabIndex = 3;
             // 
             // LDesc
             // 
@@ -375,12 +382,12 @@
             LDesc.TabIndex = 2;
             LDesc.Text = "Descripcion: ";
             // 
-            // textBox6
+            // TBProducto
             // 
-            textBox6.Location = new Point(165, 34);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(138, 23);
-            textBox6.TabIndex = 1;
+            TBProducto.Location = new Point(165, 34);
+            TBProducto.Name = "TBProducto";
+            TBProducto.Size = new Size(138, 23);
+            TBProducto.TabIndex = 1;
             // 
             // LProducto
             // 
@@ -455,6 +462,7 @@
             Controls.Add(panel5);
             Name = "Ventas";
             Text = "Ventas";
+            Load += Ventas_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -474,35 +482,35 @@
 
         private Panel panel1;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox TBVendedor;
         private Label LVentas;
         private Panel panel2;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox TBNombre;
         private Label label6;
-        private TextBox textBox5;
+        private TextBox TBDomicilio;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox TBDni;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox TBApellido;
         private Label label3;
         private Panel panel3;
         private Label LFecha;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker DTPFecha;
         private Label label7;
         private Panel panel4;
-        private TextBox textBox6;
+        private TextBox TBProducto;
         private Label LProducto;
         private Button LBuscar;
-        private TextBox textBox7;
+        private TextBox TBDescripcion;
         private Label LDesc;
         private Button button1;
         private Label label10;
-        private TextBox textBox10;
+        private TextBox TBVenta;
         private Label label9;
-        private TextBox textBox9;
+        private TextBox TBCosto;
         private Label label8;
-        private TextBox textBox8;
+        private TextBox TBStock;
         private Label LStockAgregar;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn id_producto;
