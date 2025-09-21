@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            panel2 = new Panel();
-            label1 = new Label();
-            TBDni = new TextBox();
-            TBContraseña = new TextBox();
-            label2 = new Label();
-            button1 = new Button();
             panel3 = new Panel();
             label3 = new Label();
+            panel2 = new Panel();
+            button1 = new Button();
+            TBContraseña = new TextBox();
+            label2 = new Label();
+            TBDni = new TextBox();
+            label1 = new Label();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -51,65 +51,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(537, 468);
             panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(0, 64, 0);
-            panel2.Controls.Add(button1);
-            panel2.Controls.Add(TBContraseña);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(TBDni);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(111, 117);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(292, 276);
-            panel2.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13F);
-            label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(18, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(47, 25);
-            label1.TabIndex = 0;
-            label1.Text = "DNI:";
-            // 
-            // TBDni
-            // 
-            TBDni.Location = new Point(129, 32);
-            TBDni.Name = "TBDni";
-            TBDni.Size = new Size(137, 23);
-            TBDni.TabIndex = 1;
-            // 
-            // TBContraseña
-            // 
-            TBContraseña.Location = new Point(129, 117);
-            TBContraseña.Name = "TBContraseña";
-            TBContraseña.Size = new Size(137, 23);
-            TBContraseña.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13F);
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(18, 114);
-            label2.Name = "label2";
-            label2.Size = new Size(105, 25);
-            label2.TabIndex = 2;
-            label2.Text = "Contraseña:";
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(96, 191);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 32);
-            button1.TabIndex = 4;
-            button1.Text = "Iniciar";
-            button1.UseVisualStyleBackColor = true;
+            panel1.Paint += panel1_Paint;
             // 
             // panel3
             // 
@@ -131,19 +73,78 @@
             label3.TabIndex = 0;
             label3.Text = "Iniciar Sesión";
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(0, 64, 0);
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(TBContraseña);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(TBDni);
+            panel2.Controls.Add(label1);
+            panel2.Location = new Point(111, 117);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(292, 276);
+            panel2.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(96, 191);
+            button1.Name = "button1";
+            button1.Size = new Size(87, 32);
+            button1.TabIndex = 4;
+            button1.Text = "Iniciar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // TBContraseña
+            // 
+            TBContraseña.Location = new Point(129, 117);
+            TBContraseña.Name = "TBContraseña";
+            TBContraseña.Size = new Size(137, 23);
+            TBContraseña.TabIndex = 3;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 13F);
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(18, 114);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 25);
+            label2.TabIndex = 2;
+            label2.Text = "Contraseña:";
+            // 
+            // TBDni
+            // 
+            TBDni.Location = new Point(129, 32);
+            TBDni.Name = "TBDni";
+            TBDni.Size = new Size(137, 23);
+            TBDni.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13F);
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(18, 29);
+            label1.Name = "label1";
+            label1.Size = new Size(47, 25);
+            label1.TabIndex = 0;
+            label1.Text = "DNI:";
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(532, 465);
+            ClientSize = new Size(882, 695);
             Controls.Add(panel1);
             Name = "Login";
             Text = "Login";
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
