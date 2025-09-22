@@ -43,8 +43,8 @@ namespace DobleCinco_BarberanCastillo
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    // Credenciales correctas, abrir el formulario principal
-                    FormMDI mainForm = new FormMDI();
+                    int idPerfil = Convert.ToInt32(dr["id_perfil"]); // Asegúrate de que la consulta traiga este campo
+                    FormMDI mainForm = new FormMDI(idPerfil);
                     mainForm.Show();
                     this.Hide();
                 }

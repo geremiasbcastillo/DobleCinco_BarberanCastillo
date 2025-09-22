@@ -4,9 +4,12 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class FormMDI : Form
     {
-        public FormMDI()
+        private int perfilUsuario;
+
+        public FormMDI(int perfil)
         {
             InitializeComponent();
+            perfilUsuario = perfil;
         }
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -18,12 +21,13 @@ namespace DobleCinco_BarberanCastillo
                     frm.BringToFront();
                     frm.Focus();
                     return;
-                } else
+                }
+                else
                 {
                     frm.Close();
                 }
             }
-            Usuarios user = Usuarios.VentanaUnica();
+            Usuarios user = new Usuarios();
             user.MdiParent = this;
             user.StartPosition = FormStartPosition.Manual;
             user.Location = new Point(0, 0);
@@ -76,7 +80,78 @@ namespace DobleCinco_BarberanCastillo
 
         private void FormMDI_Load(object sender, EventArgs e)
         {
+            usuarioToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
+            productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
+            ventasToolStripMenuItem.Enabled = perfilUsuario == 1 || perfilUsuario == 2; // Habilita el menú si el perfil es 1 (administrador) o 2 (vendedor)
+            ReportesToolStripMenuItem.Enabled = perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
+            RUsuarioToolStripMenuItem.Enabled = perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
+            RVentasToolStripMenuItem.Enabled = perfilUsuario == 1; // Habilita el menú si el perfil es 1 (administrador) o 2 (vendedor)
+        }
 
+        private void ReportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is Reportes)
+                {
+                    frm.BringToFront();
+                    frm.Focus();
+                    return;
+                }
+                else
+                {
+                    frm.Close();
+                }
+            }
+            Reportes rtes = new Reportes();
+            rtes.MdiParent = this;
+            rtes.StartPosition = FormStartPosition.Manual;
+            rtes.Location = new Point(0, 0);
+            rtes.Show();
+        }
+
+        private void RUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is ReporteUsuario)
+                {
+                    frm.BringToFront();
+                    frm.Focus();
+                    return;
+                }
+                else
+                {
+                    frm.Close();
+                }
+            }
+            ReporteUsuario rusr = new ReporteUsuario();
+            rusr.MdiParent = this;
+            rusr.StartPosition = FormStartPosition.Manual;
+            rusr.Location = new Point(0, 0);
+            rusr.Show();
+        }
+
+        private void RVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is ReporteVenta)
+                {
+                    frm.BringToFront();
+                    frm.Focus();
+                    return;
+                }
+                else
+                {
+                    frm.Close();
+                }
+            }
+            ReporteVenta rvtas = new ReporteVenta();
+            rvtas.MdiParent = this;
+            rvtas.StartPosition = FormStartPosition.Manual;
+            rvtas.Location = new Point(0, 0);
+            rvtas.Show();
         }
     }
 }
