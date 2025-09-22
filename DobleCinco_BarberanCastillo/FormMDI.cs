@@ -153,5 +153,11 @@ namespace DobleCinco_BarberanCastillo
             rvtas.Location = new Point(0, 0);
             rvtas.Show();
         }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            Application.Exit(); // Esto fuerza el cierre de toda la aplicación
+        }
     }
 }
