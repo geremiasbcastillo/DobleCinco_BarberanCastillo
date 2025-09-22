@@ -45,12 +45,12 @@
             LTelefono = new Label();
             TDireccion = new TextBox();
             Direccion = new Label();
-            LFecha = new Label();
             dgvUsuarios = new DataGridView();
             BAgregar = new Button();
-            DTFecha = new DateTimePicker();
             panel5 = new Panel();
             panel1 = new Panel();
+            DTNacimiento = new DateTimePicker();
+            LFechaNac = new Label();
             cuPerfil2 = new DobleCinco_BarberanCastillo.Controles.CUPerfil();
             LCategoria = new Label();
             BEliminar = new Button();
@@ -196,16 +196,6 @@
             Direccion.TabIndex = 13;
             Direccion.Text = "Direccion";
             // 
-            // LFecha
-            // 
-            LFecha.AutoSize = true;
-            LFecha.Font = new Font("Segoe UI", 15F);
-            LFecha.Location = new Point(625, 165);
-            LFecha.Name = "LFecha";
-            LFecha.Size = new Size(191, 28);
-            LFecha.TabIndex = 15;
-            LFecha.Text = "Fecha de nacimiento";
-            // 
             // dgvUsuarios
             // 
             dgvUsuarios.AllowUserToAddRows = false;
@@ -228,7 +218,7 @@
             dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.Size = new Size(798, 366);
             dgvUsuarios.TabIndex = 19;
-            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
+            dgvUsuarios.CellClick += dgvUsuarios_CellClick;
             // 
             // BAgregar
             // 
@@ -242,13 +232,6 @@
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
             // 
-            // DTFecha
-            // 
-            DTFecha.Location = new Point(831, 170);
-            DTFecha.Name = "DTFecha";
-            DTFecha.Size = new Size(228, 23);
-            DTFecha.TabIndex = 21;
-            // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(0, 64, 0);
@@ -261,14 +244,14 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(DTNacimiento);
+            panel1.Controls.Add(LFechaNac);
             panel1.Controls.Add(cuPerfil2);
             panel1.Controls.Add(LCategoria);
             panel1.Controls.Add(BEliminar);
             panel1.Controls.Add(BModificar);
-            panel1.Controls.Add(DTFecha);
             panel1.Controls.Add(BAgregar);
             panel1.Controls.Add(dgvUsuarios);
-            panel1.Controls.Add(LFecha);
             panel1.Controls.Add(TDireccion);
             panel1.Controls.Add(Direccion);
             panel1.Controls.Add(TTelefono);
@@ -289,12 +272,30 @@
             panel1.TabIndex = 23;
             panel1.Paint += panel1_Paint;
             // 
+            // DTNacimiento
+            // 
+            DTNacimiento.Format = DateTimePickerFormat.Short;
+            DTNacimiento.Location = new Point(831, 219);
+            DTNacimiento.Name = "DTNacimiento";
+            DTNacimiento.Size = new Size(228, 23);
+            DTNacimiento.TabIndex = 27;
+            // 
+            // LFechaNac
+            // 
+            LFechaNac.AutoSize = true;
+            LFechaNac.Font = new Font("Segoe UI", 15F);
+            LFechaNac.Location = new Point(625, 214);
+            LFechaNac.Name = "LFechaNac";
+            LFechaNac.Size = new Size(168, 28);
+            LFechaNac.TabIndex = 26;
+            LFechaNac.Text = "Fecha Nacimiento";
+            // 
             // cuPerfil2
             // 
             cuPerfil2.BackColor = Color.Transparent;
-            cuPerfil2.Location = new Point(284, 212);
+            cuPerfil2.Location = new Point(831, 165);
             cuPerfil2.Name = "cuPerfil2";
-            cuPerfil2.Size = new Size(237, 28);
+            cuPerfil2.Size = new Size(228, 28);
             cuPerfil2.TabIndex = 25;
             cuPerfil2.Load += cuPerfil2_Load;
             // 
@@ -302,7 +303,7 @@
             // 
             LCategoria.AutoSize = true;
             LCategoria.Font = new Font("Segoe UI", 15F);
-            LCategoria.Location = new Point(100, 212);
+            LCategoria.Location = new Point(625, 162);
             LCategoria.Name = "LCategoria";
             LCategoria.Size = new Size(97, 28);
             LCategoria.TabIndex = 24;
@@ -378,7 +379,9 @@
         private Button BEliminar;
         private Button BModificar;
         private Label LCategoria;
-        private Controles.CUPerfil cuPerfil1;
         private Controles.CUPerfil cuPerfil2;
+        private Controles.CUPerfil cuPerfil1;
+        private DateTimePicker DTNacimiento;
+        private Label LFechaNac;
     }
 }

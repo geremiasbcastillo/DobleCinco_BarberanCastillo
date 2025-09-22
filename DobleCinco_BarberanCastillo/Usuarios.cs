@@ -65,7 +65,7 @@ namespace DobleCinco_BarberanCastillo
             {
                 try
                 {
-                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1)";
+                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
                     cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
@@ -74,8 +74,8 @@ namespace DobleCinco_BarberanCastillo
                     cmd.Parameters.AddWithValue("@Dni", TDni.Text);
                     cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
                     cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
-                    cmd.Parameters.AddWithValue("@Fecha", DTFecha.Value);
-                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil1.IdSeleccionado.ToString());
+                    cmd.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
+                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado.ToString());
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -91,26 +91,39 @@ namespace DobleCinco_BarberanCastillo
 
         private void BModificar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado == 0) return;
+            if (idSeleccionado == null || idSeleccionado == 0)
+            {
+                MessageBox.Show("El control de perfil no está inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "UPDATE Usuarios SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@DireccionWHERE Id=@Id";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
-                cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
-                cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
-                cmd.Parameters.AddWithValue("@Dni", TDni.Text);
-                cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
-                cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
-                cmd.Parameters.AddWithValue("@Fecha", DTFecha.Value);
-                cmd.Parameters.AddWithValue("@Perfil", cuPerfil1.IdSeleccionado);
-                cmd.Parameters.AddWithValue("@Id", idSeleccionado);
+                try
+                {
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+
+                    string query = "UPDATE Usuario SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@Direccion, fecha_nacimiento_usuario=@Fecha, id_perfil=@Perfil WHERE id_usuario=@Id";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                    cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                    cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                    cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
+                    cmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                    cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                    cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                    cmd.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
+                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado);
+                    cmd.Parameters.AddWithValue("@Id", idSeleccionado);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al modificar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             CargarDatos();
             LimpiarCampos();
@@ -121,7 +134,7 @@ namespace DobleCinco_BarberanCastillo
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Usuarios WHERE Id=@Id";
+                string query = "DELETE FROM Usuario WHERE id_usuario=@Id";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", idSeleccionado);
 
@@ -132,23 +145,7 @@ namespace DobleCinco_BarberanCastillo
             CargarDatos();
             LimpiarCampos();
         }
-        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
-                idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
-                TNombre.Text = fila.Cells["Nombre"].Value.ToString();
-                TApellido.Text = fila.Cells["Apellido"].Value.ToString();
-                TCorreo.Text = fila.Cells["Correo"].Value.ToString();
-                TTelefono.Text = fila.Cells["Teléfono"].Value.ToString();
-                TDni.Text = fila.Cells["DNI"].Value.ToString();
-                TContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
-                TDireccion.Text = fila.Cells["Dirección"].Value.ToString();
-                cuPerfil1.IdSeleccionado = Convert.ToInt32(fila.Cells["Perfil"].Value);
 
-            }
-        }
 
         private void LimpiarCampos()
         {
@@ -160,11 +157,6 @@ namespace DobleCinco_BarberanCastillo
             TContraseña.Clear();
             TDireccion.Clear();
             idSeleccionado = 0;
-        }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void TDni_KeyPress(object sender, KeyPressEventArgs e)
@@ -223,6 +215,22 @@ namespace DobleCinco_BarberanCastillo
 
         }
 
-        
+        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
+                idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
+                TNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                TApellido.Text = fila.Cells["Apellido"].Value.ToString();
+                TCorreo.Text = fila.Cells["Correo"].Value.ToString();
+                TTelefono.Text = fila.Cells["Teléfono"].Value.ToString();
+                TDni.Text = fila.Cells["DNI"].Value.ToString();
+                TDireccion.Text = fila.Cells["Dirección"].Value.ToString();
+                cuPerfil2.IdSeleccionado = Convert.ToInt32(fila.Cells["Perfil"].Value);
+                // DTNacimiento no se está cargando porque no está en el DataGridView
+
+            }
+        }
     }
 }
