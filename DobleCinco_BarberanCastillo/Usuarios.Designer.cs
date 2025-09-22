@@ -51,6 +51,10 @@
             DTFecha = new DateTimePicker();
             panel5 = new Panel();
             panel1 = new Panel();
+            cuPerfil2 = new DobleCinco_BarberanCastillo.Controles.CUPerfil();
+            LCategoria = new Label();
+            BEliminar = new Button();
+            BModificar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel5.SuspendLayout();
             panel1.SuspendLayout();
@@ -207,24 +211,21 @@
             dgvUsuarios.AllowUserToAddRows = false;
             dgvUsuarios.AllowUserToDeleteRows = false;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-<<<<<<< HEAD
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle1;
-            dgvUsuarios.Location = new Point(353, 616);
-=======
-            dgvUsuarios.Location = new Point(205, 310);
->>>>>>> c19f0811f53fb197d573f78f6dbeea02e8fcda6b
+            dgvUsuarios.Location = new Point(211, 382);
             dgvUsuarios.Name = "dgvUsuarios";
             dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.MenuHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlLightLight;
             dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.Size = new Size(798, 366);
             dgvUsuarios.TabIndex = 19;
             dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
@@ -233,7 +234,7 @@
             // 
             BAgregar.Font = new Font("Segoe UI", 12F);
             BAgregar.ForeColor = SystemColors.ActiveCaptionText;
-            BAgregar.Location = new Point(522, 230);
+            BAgregar.Location = new Point(528, 302);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(157, 43);
             BAgregar.TabIndex = 20;
@@ -260,6 +261,10 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(cuPerfil2);
+            panel1.Controls.Add(LCategoria);
+            panel1.Controls.Add(BEliminar);
+            panel1.Controls.Add(BModificar);
             panel1.Controls.Add(DTFecha);
             panel1.Controls.Add(BAgregar);
             panel1.Controls.Add(dgvUsuarios);
@@ -280,8 +285,52 @@
             panel1.Controls.Add(LNombre);
             panel1.Location = new Point(45, 98);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1213, 721);
+            panel1.Size = new Size(1213, 786);
             panel1.TabIndex = 23;
+            panel1.Paint += panel1_Paint;
+            // 
+            // cuPerfil2
+            // 
+            cuPerfil2.BackColor = Color.Transparent;
+            cuPerfil2.Location = new Point(284, 212);
+            cuPerfil2.Name = "cuPerfil2";
+            cuPerfil2.Size = new Size(237, 28);
+            cuPerfil2.TabIndex = 25;
+            cuPerfil2.Load += cuPerfil2_Load;
+            // 
+            // LCategoria
+            // 
+            LCategoria.AutoSize = true;
+            LCategoria.Font = new Font("Segoe UI", 15F);
+            LCategoria.Location = new Point(100, 212);
+            LCategoria.Name = "LCategoria";
+            LCategoria.Size = new Size(97, 28);
+            LCategoria.TabIndex = 24;
+            LCategoria.Text = "Categoria";
+            // 
+            // BEliminar
+            // 
+            BEliminar.Font = new Font("Segoe UI", 12F);
+            BEliminar.ForeColor = SystemColors.ActiveCaptionText;
+            BEliminar.Location = new Point(747, 302);
+            BEliminar.Name = "BEliminar";
+            BEliminar.Size = new Size(157, 43);
+            BEliminar.TabIndex = 23;
+            BEliminar.Text = "Eliminar";
+            BEliminar.UseVisualStyleBackColor = true;
+            BEliminar.Click += BEliminar_Click;
+            // 
+            // BModificar
+            // 
+            BModificar.Font = new Font("Segoe UI", 12F);
+            BModificar.ForeColor = SystemColors.ActiveCaptionText;
+            BModificar.Location = new Point(316, 302);
+            BModificar.Name = "BModificar";
+            BModificar.Size = new Size(157, 43);
+            BModificar.TabIndex = 22;
+            BModificar.Text = "Modificar";
+            BModificar.UseVisualStyleBackColor = true;
+            BModificar.Click += BModificar_Click;
             // 
             // Usuarios
             // 
@@ -293,7 +342,7 @@
             Controls.Add(panel5);
             ForeColor = SystemColors.ControlLightLight;
             Name = "Usuarios";
-            Text = "Form2";
+            Text = "Usuarios";
             Load += Usuarios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             panel5.ResumeLayout(false);
@@ -326,5 +375,10 @@
         private DateTimePicker DTFecha;
         private Panel panel5;
         private Panel panel1;
+        private Button BEliminar;
+        private Button BModificar;
+        private Label LCategoria;
+        private Controles.CUPerfil cuPerfil1;
+        private Controles.CUPerfil cuPerfil2;
     }
 }

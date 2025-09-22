@@ -31,14 +31,14 @@ namespace DobleCinco_BarberanCastillo
             IniciarSesion(dni, contraseña);
         }
 
-        private void IniciarSesion(string dni, string contraseña)
+        private void IniciarSesion(string pDni, string pContraseña)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Usuario WHERE dni_usuario = @Dni AND contraseña_usuario = @Contraseña";
                 cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Dni", dni);
-                cmd.Parameters.AddWithValue("@Contraseña", contraseña);
+                cmd.Parameters.AddWithValue("@Dni", pDni);
+                cmd.Parameters.AddWithValue("@Contraseña", pContraseña);
                 conn.Open();
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -63,6 +63,14 @@ namespace DobleCinco_BarberanCastillo
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void TBDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela el evento, evitando que el carácter se ingrese
+            }
         }
     }
 }

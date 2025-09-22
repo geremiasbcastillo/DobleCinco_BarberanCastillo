@@ -32,11 +32,7 @@
             panel3 = new Panel();
             label3 = new Label();
             panel2 = new Panel();
-<<<<<<< HEAD
             BInicio = new Button();
-=======
-            button1 = new Button();
->>>>>>> c19f0811f53fb197d573f78f6dbeea02e8fcda6b
             TBContraseña = new TextBox();
             label2 = new Label();
             TBDni = new TextBox();
@@ -80,11 +76,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 64, 0);
-<<<<<<< HEAD
             panel2.Controls.Add(BInicio);
-=======
-            panel2.Controls.Add(button1);
->>>>>>> c19f0811f53fb197d573f78f6dbeea02e8fcda6b
             panel2.Controls.Add(TBContraseña);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(TBDni);
@@ -94,7 +86,6 @@
             panel2.Size = new Size(292, 276);
             panel2.TabIndex = 0;
             // 
-<<<<<<< HEAD
             // BInicio
             // 
             BInicio.Font = new Font("Segoe UI", 12F);
@@ -105,17 +96,6 @@
             BInicio.Text = "Iniciar";
             BInicio.UseVisualStyleBackColor = true;
             BInicio.Click += BInicio_Click;
-=======
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(96, 191);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 32);
-            button1.TabIndex = 4;
-            button1.Text = "Iniciar";
-            button1.UseVisualStyleBackColor = true;
->>>>>>> c19f0811f53fb197d573f78f6dbeea02e8fcda6b
             // 
             // TBContraseña
             // 
@@ -123,6 +103,7 @@
             TBContraseña.Name = "TBContraseña";
             TBContraseña.Size = new Size(137, 23);
             TBContraseña.TabIndex = 3;
+            TBContraseña.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -141,6 +122,7 @@
             TBDni.Name = "TBDni";
             TBDni.Size = new Size(137, 23);
             TBDni.TabIndex = 1;
+            TBDni.KeyPress += TBDni_KeyPress;
             // 
             // label1
             // 
@@ -157,7 +139,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(882, 695);
+            ClientSize = new Size(534, 467);
             Controls.Add(panel1);
             Name = "Login";
             Text = "Login";

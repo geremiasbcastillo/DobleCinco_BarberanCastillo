@@ -289,6 +289,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1213, 718);
             panel1.TabIndex = 17;
+            panel1.Paint += panel1_Paint;
             // 
             // BAgregarImagen
             // 

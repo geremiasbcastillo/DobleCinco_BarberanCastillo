@@ -9,7 +9,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Usuarios user = new Usuarios();
+            Usuarios user = Usuarios.VentanaUnica();
             user.MdiParent = this;
             user.Show();
         }

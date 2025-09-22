@@ -16,10 +16,19 @@ namespace DobleCinco_BarberanCastillo
     {
         string connectionString = "Server=localhost;Database=doble_cinco;Trusted_Connection=True;";
         int idSeleccionado = 0;
+        private static Usuarios instancia = null;
+        public static Usuarios VentanaUnica()
+        {
+            if (instancia == null || instancia.IsDisposed)
+            {
+                instancia = new Usuarios();
+                return instancia;
+            }
+            return instancia;
+        }
         public Usuarios()
         {
             InitializeComponent();
-            dgvUsuarios.RowHeadersVisible = false;
         }
 
         private void Usuarios_Load(object sender, EventArgs e)
@@ -30,20 +39,63 @@ namespace DobleCinco_BarberanCastillo
         private void CargarDatos()
         {
             using var conn = new SqlConnection(connectionString);
-            string query = "SELECT * FROM Usuario";
+            // Selecciona solo las columnas que quieres mostrar y les pones alias para los headers
+            string query = @"SELECT 
+                        id_usuario AS [ID], 
+                        nombre_usuario AS [Nombre], 
+                        apellido_usuario AS [Apellido], 
+                        correo_usuario AS [Correo], 
+                        telefono_usuario AS [Teléfono],
+                        dni_usuario AS [DNI],
+                        direccion_usuario AS [Dirección],
+                        id_perfil AS [Perfil],
+                        id_estado AS [Estado] 
+                     FROM Usuario";
             var da = new SqlDataAdapter(query, conn);
             var dt = new DataTable();
             da.Fill(dt);
-            dgvUsuarios.DataSource = null; // Fuerza el refresco
+            dgvUsuarios.DataSource = null;
             dgvUsuarios.DataSource = dt;
-            dgvUsuarios.Refresh(); // Asegura que se actualice la vista
+            dgvUsuarios.Refresh();
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, 1, 1, @Fecha)";
+                try
+                {
+                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                    cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                    cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                    cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
+                    cmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                    cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                    cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                    cmd.Parameters.AddWithValue("@Fecha", DTFecha.Value);
+                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil1.IdSeleccionado.ToString());
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            CargarDatos();
+            LimpiarCampos();
+        }
+
+        private void BModificar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0) return;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuarios SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@DireccionWHERE Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
                 cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
@@ -53,6 +105,8 @@ namespace DobleCinco_BarberanCastillo
                 cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
                 cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
                 cmd.Parameters.AddWithValue("@Fecha", DTFecha.Value);
+                cmd.Parameters.AddWithValue("@Perfil", cuPerfil1.IdSeleccionado);
+                cmd.Parameters.AddWithValue("@Id", idSeleccionado);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -60,6 +114,40 @@ namespace DobleCinco_BarberanCastillo
             }
             CargarDatos();
             LimpiarCampos();
+        }
+        private void BEliminar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0) return;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Usuarios WHERE Id=@Id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id", idSeleccionado);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            CargarDatos();
+            LimpiarCampos();
+        }
+        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvUsuarios.Rows[e.RowIndex];
+                idSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
+                TNombre.Text = fila.Cells["Nombre"].Value.ToString();
+                TApellido.Text = fila.Cells["Apellido"].Value.ToString();
+                TCorreo.Text = fila.Cells["Correo"].Value.ToString();
+                TTelefono.Text = fila.Cells["Teléfono"].Value.ToString();
+                TDni.Text = fila.Cells["DNI"].Value.ToString();
+                TContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
+                TDireccion.Text = fila.Cells["Dirección"].Value.ToString();
+                cuPerfil1.IdSeleccionado = Convert.ToInt32(fila.Cells["Perfil"].Value);
+
+            }
         }
 
         private void LimpiarCampos()
@@ -124,5 +212,17 @@ namespace DobleCinco_BarberanCastillo
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cuPerfil2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

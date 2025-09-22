@@ -84,7 +84,7 @@ namespace DobleCinco_BarberanCastillo
 
         private string rutaImagenProducto = "";
 
-       
+
 
         private void BProducto_agregar_Click(object sender, EventArgs e)
         {
@@ -120,6 +120,11 @@ namespace DobleCinco_BarberanCastillo
                     rutaImagenProducto = ofd.FileName; // Guarda la ruta para usarla después
                 }
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
