@@ -224,11 +224,11 @@
             // 
             BAgregar.Font = new Font("Segoe UI", 12F);
             BAgregar.ForeColor = SystemColors.ActiveCaptionText;
-            BAgregar.Location = new Point(528, 302);
+            BAgregar.Location = new Point(781, 309);
             BAgregar.Name = "BAgregar";
-            BAgregar.Size = new Size(157, 43);
+            BAgregar.Size = new Size(171, 43);
             BAgregar.TabIndex = 20;
-            BAgregar.Text = "Agregar usuario";
+            BAgregar.Text = "Agregar Usuario";
             BAgregar.UseVisualStyleBackColor = true;
             BAgregar.Click += BAgregar_Click;
             // 
@@ -311,13 +311,13 @@
             // 
             // BEliminar
             // 
-            BEliminar.Font = new Font("Segoe UI", 12F);
+            BEliminar.Font = new Font("Segoe UI", 10F);
             BEliminar.ForeColor = SystemColors.ActiveCaptionText;
-            BEliminar.Location = new Point(747, 302);
+            BEliminar.Location = new Point(542, 309);
             BEliminar.Name = "BEliminar";
-            BEliminar.Size = new Size(157, 43);
+            BEliminar.Size = new Size(169, 43);
             BEliminar.TabIndex = 23;
-            BEliminar.Text = "Eliminar";
+            BEliminar.Text = "Dar de baja / Dar de alta";
             BEliminar.UseVisualStyleBackColor = true;
             BEliminar.Click += BEliminar_Click;
             // 
@@ -325,7 +325,7 @@
             // 
             BModificar.Font = new Font("Segoe UI", 12F);
             BModificar.ForeColor = SystemColors.ActiveCaptionText;
-            BModificar.Location = new Point(316, 302);
+            BModificar.Location = new Point(321, 308);
             BModificar.Name = "BModificar";
             BModificar.Size = new Size(157, 43);
             BModificar.TabIndex = 22;

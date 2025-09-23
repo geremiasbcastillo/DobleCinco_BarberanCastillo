@@ -41,16 +41,17 @@ namespace DobleCinco_BarberanCastillo
             using var conn = new SqlConnection(connectionString);
             // Selecciona solo las columnas que quieres mostrar y les pones alias para los headers
             string query = @"SELECT 
-                        id_usuario AS [ID], 
-                        nombre_usuario AS [Nombre], 
-                        apellido_usuario AS [Apellido], 
-                        correo_usuario AS [Correo], 
-                        telefono_usuario AS [Teléfono],
-                        dni_usuario AS [DNI],
-                        direccion_usuario AS [Dirección],
-                        id_perfil AS [Perfil],
-                        id_estado AS [Estado] 
-                     FROM Usuario";
+                        u.id_usuario AS [ID], 
+                        u.nombre_usuario AS [Nombre], 
+                        u.apellido_usuario AS [Apellido], 
+                        u.correo_usuario AS [Correo], 
+                        u.telefono_usuario AS [Teléfono],
+                        u.dni_usuario AS [DNI],
+                        u.direccion_usuario AS [Dirección],
+                        u.id_perfil AS [Perfil],
+                        e.estado_descripcion AS [Estado] 
+                     FROM Usuario u
+                     INNER JOIN Estado e ON u.id_estado = e.id_estado";
             var da = new SqlDataAdapter(query, conn);
             var dt = new DataTable();
             da.Fill(dt);
@@ -132,16 +133,34 @@ namespace DobleCinco_BarberanCastillo
         {
             if (idSeleccionado == 0) return;
 
+            int estadoUsuario = -1;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "DELETE FROM Usuario WHERE id_usuario=@Id";
+                string query = "SELECT id_estado FROM Usuario WHERE id_usuario=@Id";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Id", idSeleccionado);
+                conn.Open();
+                var result = cmd.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int estado))
+                {
+                    estadoUsuario = estado;
+                }
+                conn.Close();
+            }
 
+            int nuevoEstado = (estadoUsuario == 1) ? 0 : 1;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "UPDATE Usuario SET id_estado=@NuevoEstado WHERE id_usuario=@Id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@NuevoEstado", nuevoEstado);
+                cmd.Parameters.AddWithValue("@Id", idSeleccionado);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
+
             CargarDatos();
             LimpiarCampos();
         }

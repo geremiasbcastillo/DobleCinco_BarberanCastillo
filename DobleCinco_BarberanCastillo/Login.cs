@@ -35,7 +35,7 @@ namespace DobleCinco_BarberanCastillo
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Usuario WHERE dni_usuario = @Dni AND contraseña_usuario = @Contraseña";
+                string query = "SELECT * FROM Usuario WHERE dni_usuario = @Dni AND contraseña_usuario = @Contraseña AND id_estado=1";
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Dni", pDni);
                 cmd.Parameters.AddWithValue("@Contraseña", pContraseña);
