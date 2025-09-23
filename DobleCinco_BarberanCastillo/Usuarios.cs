@@ -14,7 +14,7 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost;Database=doble_cinco;Trusted_Connection=True;";
+        string connectionString = "Server=localhost\\SQLEXPRESS01;;Database=doble_cinco;Trusted_Connection=True;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
@@ -66,19 +66,65 @@ namespace DobleCinco_BarberanCastillo
             {
                 try
                 {
-                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
-                    cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                    cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
-                    cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
-                    cmd.Parameters.AddWithValue("@Dni", TDni.Text);
-                    cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
-                    cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
-                    cmd.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
-                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado.ToString());
+                    // 1. Verificar si el DNI o el correo ya existen
+                    string checkQuery = "SELECT COUNT(*) FROM Usuario WHERE dni_usuario = @Dni OR correo_usuario = @Correo";
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                    checkCmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                    checkCmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
+
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    int count = (int)checkCmd.ExecuteScalar();
+                    conn.Close();
+
+                    if (count > 0)
+                    {
+                        // Verificar cuál de los dos campos está duplicado
+                        string checkDni = "SELECT COUNT(*) FROM Usuario WHERE dni_usuario = @Dni";
+                        string checkCorreo = "SELECT COUNT(*) FROM Usuario WHERE correo_usuario = @Correo";
+                        SqlCommand cmdDni = new SqlCommand(checkDni, conn);
+                        SqlCommand cmdCorreo = new SqlCommand(checkCorreo, conn);
+                        cmdDni.Parameters.AddWithValue("@Dni", TDni.Text);
+                        cmdCorreo.Parameters.AddWithValue("@Correo", TCorreo.Text);
+
+                        conn.Open();
+                        int dniDuplicado = (int)cmdDni.ExecuteScalar();
+                        int correoDuplicado = (int)cmdCorreo.ExecuteScalar();
+                        conn.Close();
+
+                        if (dniDuplicado > 0 && correoDuplicado > 0)
+                        {
+                            MessageBox.Show("El DNI y el correo ingresados ya están registrados. Por favor, ingresa datos diferentes.", "Datos duplicados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else if (dniDuplicado > 0)
+                        {
+                            MessageBox.Show("El DNI ingresado ya está registrado. Por favor, ingresa uno diferente.", "DNI duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El correo ingresado ya está registrado. Por favor, ingresa uno diferente.", "Correo duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+
+                        TDni.Clear();
+                        TCorreo.Clear();
+                        TDni.Focus();
+                        return;
+                    }
+
+                    // 2. Insertar el usuario si no hay duplicados
+                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
+                    SqlCommand cmdInsert = new SqlCommand(query, conn);
+                    cmdInsert.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                    cmdInsert.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                    cmdInsert.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                    cmdInsert.Parameters.AddWithValue("@Telefono", TTelefono.Text);
+                    cmdInsert.Parameters.AddWithValue("@Dni", TDni.Text);
+                    cmdInsert.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                    cmdInsert.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                    cmdInsert.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
+                    cmdInsert.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado.ToString());
+
+                    conn.Open();
+                    cmdInsert.ExecuteNonQuery();
                     conn.Close();
                 }
                 catch (Exception ex)
