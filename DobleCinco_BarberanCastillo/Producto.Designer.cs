@@ -60,10 +60,20 @@
             CBCategoria = new ComboBox();
             PBproducto_imagen = new PictureBox();
             toolTip1 = new ToolTip(components);
+            BLimpiar = new Button();
+            button1 = new Button();
+            comboBox1 = new ComboBox();
+            label3 = new Label();
+            label4 = new Label();
+            textBox1 = new TextBox();
+            LBusqueda = new Label();
+            label2 = new Label();
+            numericUpDown1 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel5.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -184,7 +194,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, Nombre, producto_descripcion, producto_costo, producto_venta, producto_stock, producto_minimo, producto_categoria, dgvproducto_foto });
-            dataGridView1.Location = new Point(139, 381);
+            dataGridView1.Location = new Point(139, 495);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(945, 211);
             dataGridView1.TabIndex = 13;
@@ -266,6 +276,15 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(numericUpDown1);
+            panel1.Controls.Add(BLimpiar);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(LBusqueda);
             panel1.Controls.Add(BAgregarImagen);
             panel1.Controls.Add(BProducto_agregar);
             panel1.Controls.Add(CBCategoria);
@@ -334,6 +353,93 @@
             PBproducto_imagen.TabIndex = 18;
             PBproducto_imagen.TabStop = false;
             // 
+            // BLimpiar
+            // 
+            BLimpiar.Font = new Font("Segoe UI", 15F);
+            BLimpiar.ForeColor = SystemColors.ActiveCaptionText;
+            BLimpiar.Location = new Point(373, 445);
+            BLimpiar.Name = "BLimpiar";
+            BLimpiar.Size = new Size(163, 40);
+            BLimpiar.TabIndex = 46;
+            BLimpiar.Text = "Limpiar filtros";
+            BLimpiar.TextAlign = ContentAlignment.TopCenter;
+            BLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 15F);
+            button1.ForeColor = SystemColors.ActiveCaptionText;
+            button1.Location = new Point(761, 445);
+            button1.Name = "button1";
+            button1.Size = new Size(131, 40);
+            button1.TabIndex = 45;
+            button1.Text = "Buscar";
+            button1.TextAlign = ContentAlignment.TopCenter;
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Botines", "Camisetas", "Entrenamiento" });
+            comboBox1.Location = new Point(967, 382);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(135, 23);
+            comboBox1.TabIndex = 44;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F);
+            label3.Location = new Point(864, 378);
+            label3.Name = "label3";
+            label3.Size = new Size(97, 28);
+            label3.TabIndex = 43;
+            label3.Text = "Categoria";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 15F);
+            label4.Location = new Point(282, 378);
+            label4.Name = "label4";
+            label4.Size = new Size(85, 28);
+            label4.TabIndex = 40;
+            label4.Text = "Nombre";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(373, 382);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(229, 23);
+            textBox1.TabIndex = 39;
+            // 
+            // LBusqueda
+            // 
+            LBusqueda.AutoSize = true;
+            LBusqueda.Font = new Font("Segoe UI", 15F);
+            LBusqueda.Location = new Point(139, 377);
+            LBusqueda.Name = "LBusqueda";
+            LBusqueda.Size = new Size(108, 28);
+            LBusqueda.TabIndex = 38;
+            LBusqueda.Text = "Buscar por:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.Location = new Point(636, 378);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 28);
+            label2.TabIndex = 42;
+            label2.Text = "Stock";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(716, 382);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(107, 23);
+            numericUpDown1.TabIndex = 47;
+            // 
             // Producto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -351,6 +457,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -388,5 +495,14 @@
         private DataGridViewTextBoxColumn producto_minimo;
         private DataGridViewTextBoxColumn producto_categoria;
         private DataGridViewImageColumn dgvproducto_foto;
+        private Button BLimpiar;
+        private Button button1;
+        private ComboBox comboBox1;
+        private Label label3;
+        private Label label4;
+        private TextBox textBox1;
+        private Label LBusqueda;
+        private NumericUpDown numericUpDown1;
+        private Label label2;
     }
 }

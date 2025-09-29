@@ -49,12 +49,21 @@
             BAgregar = new Button();
             panel5 = new Panel();
             panel1 = new Panel();
+            button1 = new Button();
+            comboBox1 = new ComboBox();
+            label3 = new Label();
+            label2 = new Label();
+            textBox2 = new TextBox();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            LBusqueda = new Label();
             DTNacimiento = new DateTimePicker();
             LFechaNac = new Label();
             cuPerfil2 = new DobleCinco_BarberanCastillo.Controles.CUPerfil();
             LCategoria = new Label();
             BEliminar = new Button();
             BModificar = new Button();
+            BLimpiar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel5.SuspendLayout();
             panel1.SuspendLayout();
@@ -209,7 +218,7 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle1;
-            dgvUsuarios.Location = new Point(211, 382);
+            dgvUsuarios.Location = new Point(182, 485);
             dgvUsuarios.Name = "dgvUsuarios";
             dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.MenuHighlight;
@@ -224,7 +233,7 @@
             // 
             BAgregar.Font = new Font("Segoe UI", 12F);
             BAgregar.ForeColor = SystemColors.ActiveCaptionText;
-            BAgregar.Location = new Point(781, 309);
+            BAgregar.Location = new Point(790, 266);
             BAgregar.Name = "BAgregar";
             BAgregar.Size = new Size(171, 43);
             BAgregar.TabIndex = 20;
@@ -244,6 +253,15 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(BLimpiar);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(LBusqueda);
             panel1.Controls.Add(DTNacimiento);
             panel1.Controls.Add(LFechaNac);
             panel1.Controls.Add(cuPerfil2);
@@ -268,9 +286,84 @@
             panel1.Controls.Add(LNombre);
             panel1.Location = new Point(45, 98);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1213, 786);
+            panel1.Size = new Size(1210, 926);
             panel1.TabIndex = 23;
             panel1.Paint += panel1_Paint;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 15F);
+            button1.ForeColor = SystemColors.ActiveCaptionText;
+            button1.Location = new Point(682, 429);
+            button1.Name = "button1";
+            button1.Size = new Size(131, 40);
+            button1.TabIndex = 36;
+            button1.Text = "Buscar";
+            button1.TextAlign = ContentAlignment.TopCenter;
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Gerente", "Administrador", "Vendedor" });
+            comboBox1.Location = new Point(914, 366);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(135, 23);
+            comboBox1.TabIndex = 35;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F);
+            label3.Location = new Point(868, 362);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 28);
+            label3.TabIndex = 34;
+            label3.Text = "Rol";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.Location = new Point(564, 362);
+            label2.Name = "label2";
+            label2.Size = new Size(46, 28);
+            label2.TabIndex = 32;
+            label2.Text = "DNI";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(616, 366);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(229, 23);
+            textBox2.TabIndex = 31;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 15F);
+            label1.Location = new Point(203, 362);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 28);
+            label1.TabIndex = 30;
+            label1.Text = "Nombre";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(294, 366);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(229, 23);
+            textBox1.TabIndex = 29;
+            // 
+            // LBusqueda
+            // 
+            LBusqueda.AutoSize = true;
+            LBusqueda.Font = new Font("Segoe UI", 15F);
+            LBusqueda.Location = new Point(64, 361);
+            LBusqueda.Name = "LBusqueda";
+            LBusqueda.Size = new Size(108, 28);
+            LBusqueda.TabIndex = 28;
+            LBusqueda.Text = "Buscar por:";
             // 
             // DTNacimiento
             // 
@@ -313,7 +406,7 @@
             // 
             BEliminar.Font = new Font("Segoe UI", 10F);
             BEliminar.ForeColor = SystemColors.ActiveCaptionText;
-            BEliminar.Location = new Point(542, 309);
+            BEliminar.Location = new Point(540, 266);
             BEliminar.Name = "BEliminar";
             BEliminar.Size = new Size(169, 43);
             BEliminar.TabIndex = 23;
@@ -325,13 +418,25 @@
             // 
             BModificar.Font = new Font("Segoe UI", 12F);
             BModificar.ForeColor = SystemColors.ActiveCaptionText;
-            BModificar.Location = new Point(321, 308);
+            BModificar.Location = new Point(290, 265);
             BModificar.Name = "BModificar";
             BModificar.Size = new Size(157, 43);
             BModificar.TabIndex = 22;
             BModificar.Text = "Modificar";
             BModificar.UseVisualStyleBackColor = true;
             BModificar.Click += BModificar_Click;
+            // 
+            // BLimpiar
+            // 
+            BLimpiar.Font = new Font("Segoe UI", 15F);
+            BLimpiar.ForeColor = SystemColors.ActiveCaptionText;
+            BLimpiar.Location = new Point(294, 429);
+            BLimpiar.Name = "BLimpiar";
+            BLimpiar.Size = new Size(163, 40);
+            BLimpiar.TabIndex = 37;
+            BLimpiar.Text = "Limpiar filtros";
+            BLimpiar.TextAlign = ContentAlignment.TopCenter;
+            BLimpiar.UseVisualStyleBackColor = true;
             // 
             // Usuarios
             // 
@@ -383,5 +488,14 @@
         private Controles.CUPerfil cuPerfil1;
         private DateTimePicker DTNacimiento;
         private Label LFechaNac;
+        private Label LBusqueda;
+        private TextBox textBox1;
+        private Label label2;
+        private TextBox textBox2;
+        private Label label1;
+        private ComboBox comboBox1;
+        private Label label3;
+        private Button button1;
+        private Button BLimpiar;
     }
 }
