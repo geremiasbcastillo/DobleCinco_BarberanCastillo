@@ -14,7 +14,7 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS01;;Database=doble_cinco;Trusted_Connection=True;";
+        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
@@ -46,6 +46,7 @@ namespace DobleCinco_BarberanCastillo
                         u.apellido_usuario AS [Apellido], 
                         u.correo_usuario AS [Correo], 
                         u.telefono_usuario AS [Teléfono],
+                        u.contraseña_usuario AS [Contraseña],
                         u.dni_usuario AS [DNI],
                         u.direccion_usuario AS [Dirección],
                         u.id_perfil AS [Perfil],
@@ -290,6 +291,7 @@ namespace DobleCinco_BarberanCastillo
                 TApellido.Text = fila.Cells["Apellido"].Value.ToString();
                 TCorreo.Text = fila.Cells["Correo"].Value.ToString();
                 TTelefono.Text = fila.Cells["Teléfono"].Value.ToString();
+                TContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
                 TDni.Text = fila.Cells["DNI"].Value.ToString();
                 TDireccion.Text = fila.Cells["Dirección"].Value.ToString();
                 cuPerfil2.IdSeleccionado = Convert.ToInt32(fila.Cells["Perfil"].Value);

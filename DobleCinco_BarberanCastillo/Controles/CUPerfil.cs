@@ -27,7 +27,7 @@ namespace DobleCinco_BarberanCastillo.Controles
 
         private void CUPerfil_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection("Server=localhost\\SQLEXPRESS01;Database=doble_cinco;Trusted_Connection=True;");
+            SqlConnection sqlConnection = new SqlConnection("Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;");
             DataTable tb = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Perfil", sqlConnection);
             da.Fill(tb);
