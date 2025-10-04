@@ -72,5 +72,10 @@ namespace DobleCinco_BarberanCastillo
                 e.Handled = true; // Cancela el evento, evitando que el carácter se ingrese
             }
         }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            Application.Exit(); // Esto fuerza el cierre de toda la aplicación
+        }
     }
 }

@@ -67,6 +67,10 @@
             producto_costo = new DataGridViewTextBoxColumn();
             panel5 = new Panel();
             panel6 = new Panel();
+            button2 = new Button();
+            button3 = new Button();
+            label11 = new Label();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -120,6 +124,10 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(button3);
+            panel2.Controls.Add(button2);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(TBDomicilio);
             panel2.Controls.Add(label5);
@@ -131,8 +139,9 @@
             panel2.Controls.Add(TBNombre);
             panel2.Location = new Point(663, 15);
             panel2.Name = "panel2";
-            panel2.Size = new Size(535, 296);
+            panel2.Size = new Size(535, 373);
             panel2.TabIndex = 2;
+            panel2.Paint += panel2_Paint;
             // 
             // label6
             // 
@@ -271,7 +280,7 @@
             panel4.Controls.Add(LDesc);
             panel4.Controls.Add(TBProducto);
             panel4.Controls.Add(LProducto);
-            panel4.Location = new Point(18, 338);
+            panel4.Location = new Point(18, 407);
             panel4.Name = "panel4";
             panel4.Size = new Size(1180, 223);
             panel4.TabIndex = 4;
@@ -403,7 +412,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
-            dataGridView1.Location = new Point(18, 580);
+            dataGridView1.Location = new Point(18, 651);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(1180, 144);
             dataGridView1.TabIndex = 5;
@@ -449,16 +458,54 @@
             panel6.ForeColor = SystemColors.ControlLightLight;
             panel6.Location = new Point(12, 74);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1213, 749);
+            panel6.Size = new Size(1213, 833);
             panel6.TabIndex = 7;
             panel6.Paint += panel6_Paint;
+            // 
+            // button2
+            // 
+            button2.ForeColor = SystemColors.ActiveCaptionText;
+            button2.Location = new Point(230, 283);
+            button2.Name = "button2";
+            button2.Size = new Size(105, 23);
+            button2.TabIndex = 9;
+            button2.Text = "Agregar Cliente";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.ForeColor = SystemColors.ActiveCaptionText;
+            button3.Location = new Point(33, 327);
+            button3.Name = "button3";
+            button3.Size = new Size(105, 23);
+            button3.TabIndex = 10;
+            button3.Text = "Buscar Cliente";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 13F);
+            label11.Location = new Point(203, 325);
+            label11.Name = "label11";
+            label11.Size = new Size(47, 25);
+            label11.TabIndex = 12;
+            label11.Text = "DNI:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(290, 328);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(216, 23);
+            textBox1.TabIndex = 11;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 192);
-            ClientSize = new Size(1466, 853);
+            ClientSize = new Size(1464, 956);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Name = "Ventas";
@@ -520,5 +567,9 @@
         private DataGridViewTextBoxColumn producto_costo;
         private Panel panel5;
         private Panel panel6;
+        private Label label11;
+        private TextBox textBox1;
+        private Button button3;
+        private Button button2;
     }
 }

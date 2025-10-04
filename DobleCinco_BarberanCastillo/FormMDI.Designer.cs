@@ -38,6 +38,7 @@ namespace DobleCinco_BarberanCastillo
             ReportesToolStripMenuItem = new ToolStripMenuItem();
             RUsuarioToolStripMenuItem = new ToolStripMenuItem();
             RVentasToolStripMenuItem = new ToolStripMenuItem();
+            cerrarSesionToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,7 +46,7 @@ namespace DobleCinco_BarberanCastillo
             // 
             menuStrip1.BackColor = Color.LightGreen;
             menuStrip1.Dock = DockStyle.Left;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(134, 450);
@@ -56,10 +57,12 @@ namespace DobleCinco_BarberanCastillo
             // 
             usuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
             usuarioToolStripMenuItem.Image = Properties.Resources.history;
+            usuarioToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
             usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            usuarioToolStripMenuItem.Size = new Size(121, 40);
+            usuarioToolStripMenuItem.RightToLeft = RightToLeft.No;
+            usuarioToolStripMenuItem.Size = new Size(121, 24);
             usuarioToolStripMenuItem.Text = "Usuario";
-            usuarioToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
+            usuarioToolStripMenuItem.TextAlign = ContentAlignment.MiddleRight;
             usuarioToolStripMenuItem.Click += usuarioToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem
@@ -106,6 +109,17 @@ namespace DobleCinco_BarberanCastillo
             RVentasToolStripMenuItem.Text = "Reportes ventas";
             RVentasToolStripMenuItem.Click += RVentasToolStripMenuItem_Click;
             // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            cerrarSesionToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            cerrarSesionToolStripMenuItem.Font = new Font("Segoe UI", 11F);
+            cerrarSesionToolStripMenuItem.Image = Properties.Resources.salida;
+            cerrarSesionToolStripMenuItem.Margin = new Padding(0, 0, 0, 10);
+            cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            cerrarSesionToolStripMenuItem.Size = new Size(121, 24);
+            cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
+            cerrarSesionToolStripMenuItem.Click += cerrarSesionToolStripMenuItem_Click;
+            // 
             // FormMDI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -133,5 +147,6 @@ namespace DobleCinco_BarberanCastillo
         private ToolStripMenuItem ReportesToolStripMenuItem;
         private ToolStripMenuItem RUsuarioToolStripMenuItem;
         private ToolStripMenuItem RVentasToolStripMenuItem;
+        private ToolStripMenuItem cerrarSesionToolStripMenuItem;
     }
 }

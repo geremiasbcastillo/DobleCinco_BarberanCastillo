@@ -80,12 +80,12 @@ namespace DobleCinco_BarberanCastillo
 
         private void FormMDI_Load(object sender, EventArgs e)
         {
-            usuarioToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
-            productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
-            ventasToolStripMenuItem.Enabled = perfilUsuario == 1 || perfilUsuario == 2; // Habilita el menú si el perfil es 1 (administrador) o 2 (vendedor)
-            ReportesToolStripMenuItem.Enabled = perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
-            RUsuarioToolStripMenuItem.Enabled = perfilUsuario == 3; // Solo habilita el menú si el perfil es 1 (administrador)
-            RVentasToolStripMenuItem.Enabled = perfilUsuario == 1; // Habilita el menú si el perfil es 1 (administrador) o 2 (vendedor)
+            usuarioToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador) 
+            productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador)
+            ventasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
+            ReportesToolStripMenuItem.Enabled = perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente)
+            RUsuarioToolStripMenuItem.Enabled = perfilUsuario == 2; // Solo habilita el menú si el perfil es 2 (administrador)
+            RVentasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
         }
 
         private void ReportesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,6 +158,14 @@ namespace DobleCinco_BarberanCastillo
         {
             base.OnFormClosed(e);
             Application.Exit(); // Esto fuerza el cierre de toda la aplicación
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Login lgn = new Login();
+            lgn.Show();
+            this.Hide();
+
         }
     }
 }
