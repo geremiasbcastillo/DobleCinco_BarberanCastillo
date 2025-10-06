@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -109,6 +110,17 @@ namespace DobleCinco_BarberanCastillo
                         TCorreo.Clear();
                         TDni.Focus();
                         return;
+                    }
+                    // Validar formato de correo electrónico
+                    string correo = TCorreo.Text.Trim();
+
+                    string patronCorreo = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+                    if (!Regex.IsMatch(correo, patronCorreo))
+                    {
+                        MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
+                                        "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TCorreo.Focus(); // Vuelve a enfocar el campo
                     }
 
                     // 2. Insertar el usuario si no hay duplicados
