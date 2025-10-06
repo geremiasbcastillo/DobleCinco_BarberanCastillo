@@ -159,36 +159,49 @@ namespace DobleCinco_BarberanCastillo
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            // Validar formato de correo electrónico
+            string correo = TCorreo.Text.Trim();
+
+            string patronCorreo = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            if (!Regex.IsMatch(correo, patronCorreo))
             {
-                try
+                MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
+                                "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TCorreo.Focus(); // Vuelve a enfocar el campo
+            } else
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    try
+                    {
 
 
-                    string query = "UPDATE Usuario SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@Direccion, fecha_nacimiento_usuario=@Fecha, id_perfil=@Perfil WHERE id_usuario=@Id";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
-                    cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                    cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
-                    cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
-                    cmd.Parameters.AddWithValue("@Dni", TDni.Text);
-                    cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
-                    cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
-                    cmd.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
-                    cmd.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado);
-                    cmd.Parameters.AddWithValue("@Id", idSeleccionado);
+                        string query = "UPDATE Usuario SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@Direccion, fecha_nacimiento_usuario=@Fecha, id_perfil=@Perfil WHERE id_usuario=@Id";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                        cmd.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                        cmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                        cmd.Parameters.AddWithValue("@Telefono", TTelefono.Text);
+                        cmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                        cmd.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                        cmd.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                        cmd.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
+                        cmd.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado);
+                        cmd.Parameters.AddWithValue("@Id", idSeleccionado);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al modificar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al modificar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                LimpiarCampos();
             }
             CargarDatos();
-            LimpiarCampos();
         }
         private void BEliminar_Click(object sender, EventArgs e)
         {
