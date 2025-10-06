@@ -15,7 +15,7 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS01;Database=doble_cinco;User Id=sa;Password=12345678;";
+        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
@@ -121,34 +121,36 @@ namespace DobleCinco_BarberanCastillo
                         MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
                                         "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TCorreo.Focus(); // Vuelve a enfocar el campo
+                    } else
+                    {
+                        // 2. Insertar el usuario si no hay duplicados
+                        string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
+                        SqlCommand cmdInsert = new SqlCommand(query, conn);
+                        cmdInsert.Parameters.AddWithValue("@Nombre", TNombre.Text);
+                        cmdInsert.Parameters.AddWithValue("@Apellido", TApellido.Text);
+                        cmdInsert.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                        cmdInsert.Parameters.AddWithValue("@Telefono", TTelefono.Text);
+                        cmdInsert.Parameters.AddWithValue("@Dni", TDni.Text);
+                        cmdInsert.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
+                        cmdInsert.Parameters.AddWithValue("@Direccion", TDireccion.Text);
+                        cmdInsert.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
+                        cmdInsert.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado.ToString());
+                        conn.Open();
+                        cmdInsert.ExecuteNonQuery();
+                        conn.Close();
+                        LimpiarCampos();
                     }
-
-                    // 2. Insertar el usuario si no hay duplicados
-                    string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
-                    SqlCommand cmdInsert = new SqlCommand(query, conn);
-                    cmdInsert.Parameters.AddWithValue("@Nombre", TNombre.Text);
-                    cmdInsert.Parameters.AddWithValue("@Apellido", TApellido.Text);
-                    cmdInsert.Parameters.AddWithValue("@Correo", TCorreo.Text);
-                    cmdInsert.Parameters.AddWithValue("@Telefono", TTelefono.Text);
-                    cmdInsert.Parameters.AddWithValue("@Dni", TDni.Text);
-                    cmdInsert.Parameters.AddWithValue("@Contraseña", TContraseña.Text);
-                    cmdInsert.Parameters.AddWithValue("@Direccion", TDireccion.Text);
-                    cmdInsert.Parameters.AddWithValue("@Fecha", DTNacimiento.Value);
-                    cmdInsert.Parameters.AddWithValue("@Perfil", cuPerfil2.IdSeleccionado.ToString());
-
-                    conn.Open();
-                    cmdInsert.ExecuteNonQuery();
-                    conn.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al agregar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimpiarCampos();
                 }
             }
             CargarDatos();
-            LimpiarCampos();
         }
 
+        
         private void BModificar_Click(object sender, EventArgs e)
         {
             if (idSeleccionado == null || idSeleccionado == 0)
