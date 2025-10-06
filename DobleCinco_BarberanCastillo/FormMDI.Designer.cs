@@ -55,20 +55,27 @@ namespace DobleCinco_BarberanCastillo
             // 
             // usuarioToolStripMenuItem
             // 
+            usuarioToolStripMenuItem.BackColor = Color.LightGreen;
+            usuarioToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             usuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            usuarioToolStripMenuItem.Image = Properties.Resources.history;
-            usuarioToolStripMenuItem.ImageAlign = ContentAlignment.MiddleLeft;
+            usuarioToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            usuarioToolStripMenuItem.ImageAlign = ContentAlignment.TopRight;
+            usuarioToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            usuarioToolStripMenuItem.Margin = new Padding(0, 70, 0, 0);
+            usuarioToolStripMenuItem.MergeIndex = 0;
             usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            usuarioToolStripMenuItem.RightToLeft = RightToLeft.No;
+            usuarioToolStripMenuItem.Padding = new Padding(0);
             usuarioToolStripMenuItem.Size = new Size(121, 24);
             usuarioToolStripMenuItem.Text = "Usuario";
-            usuarioToolStripMenuItem.TextAlign = ContentAlignment.MiddleRight;
+            usuarioToolStripMenuItem.TextImageRelation = TextImageRelation.TextBeforeImage;
             usuarioToolStripMenuItem.Click += usuarioToolStripMenuItem_Click;
             // 
             // productosToolStripMenuItem
             // 
+            productosToolStripMenuItem.BackColor = Color.LightGreen;
             productosToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            productosToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
+            productosToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            productosToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
             productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             productosToolStripMenuItem.Size = new Size(121, 24);
             productosToolStripMenuItem.Text = "Productos";
@@ -76,7 +83,10 @@ namespace DobleCinco_BarberanCastillo
             // 
             // ventasToolStripMenuItem
             // 
+            ventasToolStripMenuItem.BackColor = Color.LightGreen;
             ventasToolStripMenuItem.Font = new Font("Segoe UI", 11F);
+            ventasToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            ventasToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
             ventasToolStripMenuItem.Name = "ventasToolStripMenuItem";
             ventasToolStripMenuItem.Size = new Size(121, 24);
             ventasToolStripMenuItem.Text = "Ventas";
@@ -84,8 +94,11 @@ namespace DobleCinco_BarberanCastillo
             // 
             // ReportesToolStripMenuItem
             // 
+            ReportesToolStripMenuItem.BackColor = Color.LightGreen;
             ReportesToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            ReportesToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
+            ReportesToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            ReportesToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
+            ReportesToolStripMenuItem.MergeAction = MergeAction.Remove;
             ReportesToolStripMenuItem.Name = "ReportesToolStripMenuItem";
             ReportesToolStripMenuItem.Size = new Size(121, 24);
             ReportesToolStripMenuItem.Text = "Reportes";
@@ -93,8 +106,10 @@ namespace DobleCinco_BarberanCastillo
             // 
             // RUsuarioToolStripMenuItem
             // 
+            RUsuarioToolStripMenuItem.BackColor = Color.LightGreen;
             RUsuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            RUsuarioToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
+            RUsuarioToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            RUsuarioToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
             RUsuarioToolStripMenuItem.Name = "RUsuarioToolStripMenuItem";
             RUsuarioToolStripMenuItem.Size = new Size(121, 24);
             RUsuarioToolStripMenuItem.Text = "Reporte Usuario";
@@ -102,11 +117,13 @@ namespace DobleCinco_BarberanCastillo
             // 
             // RVentasToolStripMenuItem
             // 
+            RVentasToolStripMenuItem.BackColor = Color.LightGreen;
             RVentasToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            RVentasToolStripMenuItem.Margin = new Padding(0, 15, 0, 15);
+            RVentasToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            RVentasToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
             RVentasToolStripMenuItem.Name = "RVentasToolStripMenuItem";
             RVentasToolStripMenuItem.Size = new Size(121, 24);
-            RVentasToolStripMenuItem.Text = "Reportes ventas";
+            RVentasToolStripMenuItem.Text = "Reporte ventas";
             RVentasToolStripMenuItem.Click += RVentasToolStripMenuItem_Click;
             // 
             // cerrarSesionToolStripMenuItem
