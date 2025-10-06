@@ -15,7 +15,7 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
+        string connectionString = "Server=localhost\\SQLEXPRESS01;Database=doble_cinco;User Id=sa;Password=12345678;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
