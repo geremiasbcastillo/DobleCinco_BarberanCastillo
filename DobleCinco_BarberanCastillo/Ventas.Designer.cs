@@ -33,6 +33,10 @@
             TBVendedor = new TextBox();
             LVentas = new Label();
             panel2 = new Panel();
+            label11 = new Label();
+            textBox1 = new TextBox();
+            button3 = new Button();
+            button2 = new Button();
             label6 = new Label();
             TBDomicilio = new TextBox();
             label5 = new Label();
@@ -48,13 +52,6 @@
             LFecha = new Label();
             panel4 = new Panel();
             button1 = new Button();
-            label10 = new Label();
-            TBVenta = new TextBox();
-            label9 = new Label();
-            TBCosto = new TextBox();
-            label8 = new Label();
-            TBStock = new TextBox();
-            LStockAgregar = new Label();
             LBuscar = new Button();
             TBDescripcion = new TextBox();
             LDesc = new Label();
@@ -67,10 +64,6 @@
             producto_costo = new DataGridViewTextBoxColumn();
             panel5 = new Panel();
             panel6 = new Panel();
-            button2 = new Button();
-            button3 = new Button();
-            label11 = new Label();
-            textBox1 = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -142,6 +135,44 @@
             panel2.Size = new Size(535, 373);
             panel2.TabIndex = 2;
             panel2.Paint += panel2_Paint;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 13F);
+            label11.Location = new Point(203, 325);
+            label11.Name = "label11";
+            label11.Size = new Size(47, 25);
+            label11.TabIndex = 12;
+            label11.Text = "DNI:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(290, 328);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(216, 23);
+            textBox1.TabIndex = 11;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // button3
+            // 
+            button3.ForeColor = SystemColors.ActiveCaptionText;
+            button3.Location = new Point(33, 327);
+            button3.Name = "button3";
+            button3.Size = new Size(105, 23);
+            button3.TabIndex = 10;
+            button3.Text = "Buscar Cliente";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.ForeColor = SystemColors.ActiveCaptionText;
+            button2.Location = new Point(230, 283);
+            button2.Name = "button2";
+            button2.Size = new Size(105, 23);
+            button2.TabIndex = 9;
+            button2.Text = "Agregar Cliente";
+            button2.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -268,13 +299,6 @@
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Controls.Add(button1);
-            panel4.Controls.Add(label10);
-            panel4.Controls.Add(TBVenta);
-            panel4.Controls.Add(label9);
-            panel4.Controls.Add(TBCosto);
-            panel4.Controls.Add(label8);
-            panel4.Controls.Add(TBStock);
-            panel4.Controls.Add(LStockAgregar);
             panel4.Controls.Add(LBuscar);
             panel4.Controls.Add(TBDescripcion);
             panel4.Controls.Add(LDesc);
@@ -282,84 +306,20 @@
             panel4.Controls.Add(LProducto);
             panel4.Location = new Point(18, 407);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1180, 223);
+            panel4.Size = new Size(1180, 157);
             panel4.TabIndex = 4;
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 13F);
             button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(560, 170);
+            button1.Location = new Point(558, 94);
             button1.Name = "button1";
             button1.Size = new Size(92, 37);
             button1.TabIndex = 12;
             button1.Text = "Agregar";
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 13F);
-            label10.Location = new Point(959, 115);
-            label10.Name = "label10";
-            label10.Size = new Size(87, 25);
-            label10.TabIndex = 11;
-            label10.Text = "Cantidad:";
-            // 
-            // TBVenta
-            // 
-            TBVenta.Location = new Point(779, 118);
-            TBVenta.Name = "TBVenta";
-            TBVenta.Size = new Size(138, 23);
-            TBVenta.TabIndex = 10;
-            TBVenta.KeyPress += TBVenta_KeyPress;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13F);
-            label9.Location = new Point(644, 115);
-            label9.Name = "label9";
-            label9.Size = new Size(118, 25);
-            label9.TabIndex = 9;
-            label9.Text = "Precio Venta: ";
-            // 
-            // TBCosto
-            // 
-            TBCosto.Location = new Point(465, 118);
-            TBCosto.Name = "TBCosto";
-            TBCosto.Size = new Size(138, 23);
-            TBCosto.TabIndex = 8;
-            TBCosto.KeyPress += TBCosto_KeyPress;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 13F);
-            label8.Location = new Point(333, 115);
-            label8.Name = "label8";
-            label8.Size = new Size(116, 25);
-            label8.TabIndex = 7;
-            label8.Text = "Precio Costo:";
-            // 
-            // TBStock
-            // 
-            TBStock.Location = new Point(143, 118);
-            TBStock.Name = "TBStock";
-            TBStock.Size = new Size(138, 23);
-            TBStock.TabIndex = 6;
-            TBStock.KeyPress += TBStock_KeyPress;
-            // 
-            // LStockAgregar
-            // 
-            LStockAgregar.AutoSize = true;
-            LStockAgregar.Font = new Font("Segoe UI", 13F);
-            LStockAgregar.Location = new Point(42, 115);
-            LStockAgregar.Name = "LStockAgregar";
-            LStockAgregar.Size = new Size(64, 25);
-            LStockAgregar.TabIndex = 5;
-            LStockAgregar.Text = "Stock: ";
             // 
             // LBuscar
             // 
@@ -412,7 +372,7 @@
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
-            dataGridView1.Location = new Point(18, 651);
+            dataGridView1.Location = new Point(18, 609);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(1180, 144);
             dataGridView1.TabIndex = 5;
@@ -461,44 +421,6 @@
             panel6.Size = new Size(1213, 833);
             panel6.TabIndex = 7;
             panel6.Paint += panel6_Paint;
-            // 
-            // button2
-            // 
-            button2.ForeColor = SystemColors.ActiveCaptionText;
-            button2.Location = new Point(230, 283);
-            button2.Name = "button2";
-            button2.Size = new Size(105, 23);
-            button2.TabIndex = 9;
-            button2.Text = "Agregar Cliente";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.ForeColor = SystemColors.ActiveCaptionText;
-            button3.Location = new Point(33, 327);
-            button3.Name = "button3";
-            button3.Size = new Size(105, 23);
-            button3.TabIndex = 10;
-            button3.Text = "Buscar Cliente";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 13F);
-            label11.Location = new Point(203, 325);
-            label11.Name = "label11";
-            label11.Size = new Size(47, 25);
-            label11.TabIndex = 12;
-            label11.Text = "DNI:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(290, 328);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(216, 23);
-            textBox1.TabIndex = 11;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // Ventas
             // 
@@ -553,13 +475,6 @@
         private TextBox TBDescripcion;
         private Label LDesc;
         private Button button1;
-        private Label label10;
-        private TextBox TBVenta;
-        private Label label9;
-        private TextBox TBCosto;
-        private Label label8;
-        private TextBox TBStock;
-        private Label LStockAgregar;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn id_producto;
         private DataGridViewTextBoxColumn producto_descripcion;

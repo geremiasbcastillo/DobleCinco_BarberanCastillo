@@ -15,7 +15,7 @@ namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
+        string connectionString = "Server=localhost\\SQLEXPRESS01;Database=doble_cinco;User Id=sa;Password=12345678;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
@@ -64,8 +64,31 @@ namespace DobleCinco_BarberanCastillo
 
         private void BAgregar_Click(object sender, EventArgs e)
         {
+            LimpiarCampos();
+            accionActual = "agregar";
+            TNombre.Enabled = true;
+            TApellido.Enabled = true;
+            TCorreo.Enabled = true;
+            TTelefono.Enabled = true;
+            TContraseña.Enabled = true;
+            TDni.Enabled = true;
+            TDireccion.Enabled = true;
+            cuPerfil2.Enabled = true;
+            DTNacimiento.Enabled = true;
+
+            BAgregar.Enabled = false;
+            BEliminar.Enabled = false;
+            BModificar.Enabled = false;
+            BAceptar.Enabled = true;
+            BCancelar.Enabled = true;
+            CargarDatos();
+        }
+
+        private void AgregarUsuario()
+        {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+
                 try
                 {
                     // 1. Verificar si el DNI o el correo ya existen
@@ -121,7 +144,8 @@ namespace DobleCinco_BarberanCastillo
                         MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
                                         "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TCorreo.Focus(); // Vuelve a enfocar el campo
-                    } else
+                    }
+                    else
                     {
                         // 2. Insertar el usuario si no hay duplicados
                         string query = "INSERT INTO Usuario (nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, dni_usuario, contraseña_usuario, direccion_usuario, id_perfil, id_estado, fecha_nacimiento_usuario) VALUES (@Nombre, @Apellido, @Correo, @Telefono, @Dni, @Contraseña, @Direccion, @Perfil, 1, @Fecha)";
@@ -139,6 +163,22 @@ namespace DobleCinco_BarberanCastillo
                         cmdInsert.ExecuteNonQuery();
                         conn.Close();
                         LimpiarCampos();
+                        accionActual = "";
+                        TNombre.Enabled = false;
+                        TApellido.Enabled = false;
+                        TCorreo.Enabled = false;
+                        TTelefono.Enabled = false;
+                        TContraseña.Enabled = false;
+                        TDni.Enabled = false;
+                        TDireccion.Enabled = false;
+                        cuPerfil2.Enabled = false;
+                        DTNacimiento.Enabled = false;
+
+                        BAgregar.Enabled = true;
+                        BEliminar.Enabled = true;
+                        BModificar.Enabled = true;
+                        BAceptar.Enabled = true;
+                        BCancelar.Enabled = true;
                     }
                 }
                 catch (Exception ex)
@@ -147,19 +187,10 @@ namespace DobleCinco_BarberanCastillo
                     LimpiarCampos();
                 }
             }
-            CargarDatos();
         }
 
-        
-        private void BModificar_Click(object sender, EventArgs e)
+        private void ModificarUsuario()
         {
-            if (idSeleccionado == null || idSeleccionado == 0)
-            {
-                MessageBox.Show("El control de perfil no está inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Validar formato de correo electrónico
             string correo = TCorreo.Text.Trim();
 
             string patronCorreo = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
@@ -169,7 +200,8 @@ namespace DobleCinco_BarberanCastillo
                 MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
                                 "Formato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 TCorreo.Focus(); // Vuelve a enfocar el campo
-            } else
+            }
+            else
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -193,6 +225,23 @@ namespace DobleCinco_BarberanCastillo
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
+                        LimpiarCampos();
+                        accionActual = "";
+                        TNombre.Enabled = false;
+                        TApellido.Enabled = false;
+                        TCorreo.Enabled = false;
+                        TTelefono.Enabled = false;
+                        TContraseña.Enabled = false;
+                        TDni.Enabled = false;
+                        TDireccion.Enabled = false;
+                        cuPerfil2.Enabled = false;
+                        DTNacimiento.Enabled = false;
+
+                        BAgregar.Enabled = true;
+                        BEliminar.Enabled = true;
+                        BModificar.Enabled = true;
+                        BAceptar.Enabled = true;
+                        BCancelar.Enabled = true;
                     }
                     catch (Exception ex)
                     {
@@ -201,12 +250,10 @@ namespace DobleCinco_BarberanCastillo
                 }
                 LimpiarCampos();
             }
-            CargarDatos();
         }
-        private void BEliminar_Click(object sender, EventArgs e)
-        {
-            if (idSeleccionado == 0) return;
 
+        private void EliminarUsuario()
+        {
             int estadoUsuario = -1;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -220,6 +267,7 @@ namespace DobleCinco_BarberanCastillo
                     estadoUsuario = estado;
                 }
                 conn.Close();
+
             }
 
             int nuevoEstado = (estadoUsuario == 1) ? 0 : 1;
@@ -233,10 +281,72 @@ namespace DobleCinco_BarberanCastillo
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                LimpiarCampos();
+                accionActual = "";
+                TNombre.Enabled = false;
+                TApellido.Enabled = false;
+                TCorreo.Enabled = false;
+                TTelefono.Enabled = false;
+                TContraseña.Enabled = false;
+                TDni.Enabled = false;
+                TDireccion.Enabled = false;
+                cuPerfil2.Enabled = false;
+                DTNacimiento.Enabled = false;
+
+                BAgregar.Enabled = true;
+                BEliminar.Enabled = true;
+                BModificar.Enabled = true;
+                BAceptar.Enabled = true;
+                BCancelar.Enabled = true;
+            }
+        }
+
+
+        private void BModificar_Click(object sender, EventArgs e)
+        {
+
+            if (idSeleccionado == null || idSeleccionado == 0)
+            {
+                MessageBox.Show("El control de perfil no está inicializado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
+            accionActual = "modificar";
+
+            TNombre.Enabled = true;
+            TApellido.Enabled = true;
+            TCorreo.Enabled = true;
+            TTelefono.Enabled = true;
+            TContraseña.Enabled = true;
+            TDni.Enabled = true;
+            TDireccion.Enabled = true;
+            cuPerfil2.Enabled = true;
+            DTNacimiento.Enabled = true;
+
+            BAgregar.Enabled = false;
+            BEliminar.Enabled = false;
+            BModificar.Enabled = false;
+            BAceptar.Enabled = true;
+            BCancelar.Enabled = true;
+
+            // Validar formato de correo electrónico
+
             CargarDatos();
-            LimpiarCampos();
+        }
+
+        private void BEliminar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado == 0)
+            {
+                MessageBox.Show("Seleccione un usuario para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            accionActual = "eliminar";
+
+
+
+            CargarDatos();
         }
 
 
@@ -330,6 +440,49 @@ namespace DobleCinco_BarberanCastillo
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BAceptar_Click(object sender, EventArgs e)
+        {
+            switch (accionActual)
+            {
+                case "agregar":
+                    AgregarUsuario();
+                    break;
+                case "modificar":
+                    ModificarUsuario();
+                    break;
+                case "eliminar":
+                    EliminarUsuario();
+                    break;
+                default:
+                    MessageBox.Show("No se ha seleccionado ninguna acción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+            CargarDatos();
+            
+        }
+        private string accionActual = ""; // "agregar", "modificar", "eliminar"
+
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            TNombre.Enabled = false;
+            TApellido.Enabled = false;
+            TCorreo.Enabled = false;
+            TTelefono.Enabled = false;
+            TContraseña.Enabled = false;
+            TDni.Enabled = false;
+            TDireccion.Enabled = false;
+            cuPerfil2.Enabled = false;
+            DTNacimiento.Enabled = false;
+
+            BAgregar.Enabled = true;
+            BEliminar.Enabled = true;
+            BModificar.Enabled = true;
+            BAceptar.Enabled = true;
+            BCancelar.Enabled = true;
+            LimpiarCampos();
+            accionActual = "";
         }
     }
 }

@@ -30,17 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             label1 = new Label();
-            LDescripcion = new Label();
-            TBDescripcion = new TextBox();
-            TBCosto = new TextBox();
-            LCosto = new Label();
-            TBVenta = new TextBox();
-            LVenta = new Label();
-            TBStock = new TextBox();
-            LStock = new Label();
-            TBStockMinimo = new TextBox();
-            LMinimo = new Label();
-            LCategoria = new Label();
             dataGridView1 = new DataGridView();
             id_producto = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
@@ -51,29 +40,40 @@
             producto_minimo = new DataGridViewTextBoxColumn();
             producto_categoria = new DataGridViewTextBoxColumn();
             dgvproducto_foto = new DataGridViewImageColumn();
-            TBNombre = new TextBox();
-            LNombre = new Label();
             panel5 = new Panel();
             panel1 = new Panel();
+            BLimpiar = new Button();
+            button1 = new Button();
+            toolTip1 = new ToolTip(components);
+            LBusqueda = new Label();
+            textBox1 = new TextBox();
+            label4 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            comboBox1 = new ComboBox();
+            numericUpDown1 = new NumericUpDown();
             BAgregarImagen = new Button();
             BProducto_agregar = new Button();
             CBCategoria = new ComboBox();
             PBproducto_imagen = new PictureBox();
-            toolTip1 = new ToolTip(components);
-            BLimpiar = new Button();
-            button1 = new Button();
-            comboBox1 = new ComboBox();
-            label3 = new Label();
-            label4 = new Label();
-            textBox1 = new TextBox();
-            LBusqueda = new Label();
-            label2 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            TBNombre = new TextBox();
+            LNombre = new Label();
+            LCategoria = new Label();
+            TBStockMinimo = new TextBox();
+            LMinimo = new Label();
+            TBStock = new TextBox();
+            LStock = new Label();
+            TBVenta = new TextBox();
+            LVenta = new Label();
+            TBCosto = new TextBox();
+            LCosto = new Label();
+            TBDescripcion = new TextBox();
+            LDescripcion = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel5.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -87,114 +87,11 @@
             label1.TabIndex = 0;
             label1.Text = "Productos";
             // 
-            // LDescripcion
-            // 
-            LDescripcion.AutoSize = true;
-            LDescripcion.Font = new Font("Segoe UI", 15F);
-            LDescripcion.Location = new Point(139, 80);
-            LDescripcion.Name = "LDescripcion";
-            LDescripcion.Size = new Size(114, 28);
-            LDescripcion.TabIndex = 2;
-            LDescripcion.Text = "Descripcion";
-            LDescripcion.Click += LDescripcion_Click;
-            // 
-            // TBDescripcion
-            // 
-            TBDescripcion.Location = new Point(336, 85);
-            TBDescripcion.Name = "TBDescripcion";
-            TBDescripcion.Size = new Size(254, 23);
-            TBDescripcion.TabIndex = 2;
-            // 
-            // TBCosto
-            // 
-            TBCosto.Location = new Point(336, 135);
-            TBCosto.Name = "TBCosto";
-            TBCosto.Size = new Size(254, 23);
-            TBCosto.TabIndex = 3;
-            TBCosto.KeyPress += TBCosto_KeyPress;
-            // 
-            // LCosto
-            // 
-            LCosto.AutoSize = true;
-            LCosto.Font = new Font("Segoe UI", 15F);
-            LCosto.Location = new Point(139, 130);
-            LCosto.Name = "LCosto";
-            LCosto.Size = new Size(122, 28);
-            LCosto.TabIndex = 3;
-            LCosto.Text = "Precio Costo";
-            // 
-            // TBVenta
-            // 
-            TBVenta.Location = new Point(336, 185);
-            TBVenta.Name = "TBVenta";
-            TBVenta.Size = new Size(254, 23);
-            TBVenta.TabIndex = 4;
-            TBVenta.KeyPress += TBVenta_KeyPress;
-            // 
-            // LVenta
-            // 
-            LVenta.AutoSize = true;
-            LVenta.Font = new Font("Segoe UI", 15F);
-            LVenta.Location = new Point(139, 180);
-            LVenta.Name = "LVenta";
-            LVenta.Size = new Size(119, 28);
-            LVenta.TabIndex = 4;
-            LVenta.Text = "Precio venta";
-            // 
-            // TBStock
-            // 
-            TBStock.Location = new Point(336, 235);
-            TBStock.Name = "TBStock";
-            TBStock.Size = new Size(254, 23);
-            TBStock.TabIndex = 5;
-            TBStock.KeyPress += TBStock_KeyPress;
-            // 
-            // LStock
-            // 
-            LStock.AutoSize = true;
-            LStock.Font = new Font("Segoe UI", 15F);
-            LStock.Location = new Point(139, 230);
-            LStock.Name = "LStock";
-            LStock.Size = new Size(60, 28);
-            LStock.TabIndex = 5;
-            LStock.Text = "Stock";
-            // 
-            // TBStockMinimo
-            // 
-            TBStockMinimo.Location = new Point(336, 285);
-            TBStockMinimo.Name = "TBStockMinimo";
-            TBStockMinimo.Size = new Size(254, 23);
-            TBStockMinimo.TabIndex = 6;
-            TBStockMinimo.TextChanged += TBStockMinimo_TextChanged;
-            TBStockMinimo.KeyPress += TBStockMinimo_KeyPress;
-            // 
-            // LMinimo
-            // 
-            LMinimo.AutoSize = true;
-            LMinimo.Font = new Font("Segoe UI", 15F);
-            LMinimo.Location = new Point(139, 280);
-            LMinimo.Name = "LMinimo";
-            LMinimo.Size = new Size(132, 28);
-            LMinimo.TabIndex = 6;
-            LMinimo.Text = "Stock mínimo";
-            LMinimo.Click += LMinimo_Click;
-            // 
-            // LCategoria
-            // 
-            LCategoria.AutoSize = true;
-            LCategoria.Font = new Font("Segoe UI", 15F);
-            LCategoria.Location = new Point(139, 330);
-            LCategoria.Name = "LCategoria";
-            LCategoria.Size = new Size(97, 28);
-            LCategoria.TabIndex = 7;
-            LCategoria.Text = "Categoria";
-            LCategoria.Click += LCategoria_Click;
-            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, Nombre, producto_descripcion, producto_costo, producto_venta, producto_stock, producto_minimo, producto_categoria, dgvproducto_foto });
-            dataGridView1.Location = new Point(139, 495);
+            dataGridView1.Location = new Point(119, 132);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(945, 211);
             dataGridView1.TabIndex = 13;
@@ -244,25 +141,6 @@
             dgvproducto_foto.HeaderText = "Imagen";
             dgvproducto_foto.Name = "dgvproducto_foto";
             // 
-            // TBNombre
-            // 
-            TBNombre.Location = new Point(336, 35);
-            TBNombre.Name = "TBNombre";
-            TBNombre.Size = new Size(254, 23);
-            TBNombre.TabIndex = 1;
-            TBNombre.TextChanged += TBNombre_TextChanged;
-            // 
-            // LNombre
-            // 
-            LNombre.AutoSize = true;
-            LNombre.Font = new Font("Segoe UI", 15F);
-            LNombre.Location = new Point(139, 30);
-            LNombre.Name = "LNombre";
-            LNombre.Size = new Size(85, 28);
-            LNombre.TabIndex = 1;
-            LNombre.Text = "Nombre";
-            LNombre.Click += LNombre_Click;
-            // 
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(0, 64, 0);
@@ -276,22 +154,12 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(0, 192, 0);
-            panel1.Controls.Add(numericUpDown1);
-            panel1.Controls.Add(BLimpiar);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(comboBox1);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(LBusqueda);
             panel1.Controls.Add(BAgregarImagen);
             panel1.Controls.Add(BProducto_agregar);
             panel1.Controls.Add(CBCategoria);
             panel1.Controls.Add(PBproducto_imagen);
             panel1.Controls.Add(TBNombre);
             panel1.Controls.Add(LNombre);
-            panel1.Controls.Add(dataGridView1);
             panel1.Controls.Add(LCategoria);
             panel1.Controls.Add(TBStockMinimo);
             panel1.Controls.Add(LMinimo);
@@ -303,6 +171,16 @@
             panel1.Controls.Add(LCosto);
             panel1.Controls.Add(TBDescripcion);
             panel1.Controls.Add(LDescripcion);
+            panel1.Controls.Add(numericUpDown1);
+            panel1.Controls.Add(BLimpiar);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(LBusqueda);
+            panel1.Controls.Add(dataGridView1);
             panel1.ForeColor = SystemColors.ControlLightLight;
             panel1.Location = new Point(33, 95);
             panel1.Name = "panel1";
@@ -310,54 +188,11 @@
             panel1.TabIndex = 17;
             panel1.Paint += panel1_Paint;
             // 
-            // BAgregarImagen
-            // 
-            BAgregarImagen.Font = new Font("Segoe UI", 12F);
-            BAgregarImagen.ForeColor = SystemColors.ActiveCaptionText;
-            BAgregarImagen.Location = new Point(632, 92);
-            BAgregarImagen.Name = "BAgregarImagen";
-            BAgregarImagen.Size = new Size(113, 43);
-            BAgregarImagen.TabIndex = 21;
-            BAgregarImagen.Text = "Imagen";
-            BAgregarImagen.UseVisualStyleBackColor = true;
-            BAgregarImagen.Click += BAgregarImagen_Click;
-            // 
-            // BProducto_agregar
-            // 
-            BProducto_agregar.Font = new Font("Segoe UI", 12F);
-            BProducto_agregar.ForeColor = SystemColors.ActiveCaptionText;
-            BProducto_agregar.Location = new Point(776, 312);
-            BProducto_agregar.Name = "BProducto_agregar";
-            BProducto_agregar.Size = new Size(206, 41);
-            BProducto_agregar.TabIndex = 20;
-            BProducto_agregar.Text = "Agregar producto";
-            BProducto_agregar.UseVisualStyleBackColor = true;
-            // 
-            // CBCategoria
-            // 
-            CBCategoria.FormattingEnabled = true;
-            CBCategoria.Items.AddRange(new object[] { "Botines", "Camisetas", "Entrenamiento" });
-            CBCategoria.Location = new Point(336, 330);
-            CBCategoria.Name = "CBCategoria";
-            CBCategoria.Size = new Size(254, 23);
-            CBCategoria.TabIndex = 7;
-            // 
-            // PBproducto_imagen
-            // 
-            PBproducto_imagen.Image = Properties.Resources.shopping_bag_add__1_;
-            PBproducto_imagen.InitialImage = Properties.Resources.shopping_bag_add__1_;
-            PBproducto_imagen.Location = new Point(763, 35);
-            PBproducto_imagen.Name = "PBproducto_imagen";
-            PBproducto_imagen.Size = new Size(301, 146);
-            PBproducto_imagen.SizeMode = PictureBoxSizeMode.CenterImage;
-            PBproducto_imagen.TabIndex = 18;
-            PBproducto_imagen.TabStop = false;
-            // 
             // BLimpiar
             // 
             BLimpiar.Font = new Font("Segoe UI", 15F);
             BLimpiar.ForeColor = SystemColors.ActiveCaptionText;
-            BLimpiar.Location = new Point(373, 445);
+            BLimpiar.Location = new Point(328, 71);
             BLimpiar.Name = "BLimpiar";
             BLimpiar.Size = new Size(163, 40);
             BLimpiar.TabIndex = 46;
@@ -369,7 +204,7 @@
             // 
             button1.Font = new Font("Segoe UI", 15F);
             button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(761, 445);
+            button1.Location = new Point(716, 71);
             button1.Name = "button1";
             button1.Size = new Size(131, 40);
             button1.TabIndex = 45;
@@ -377,68 +212,222 @@
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Botines", "Camisetas", "Entrenamiento" });
-            comboBox1.Location = new Point(967, 382);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(135, 23);
-            comboBox1.TabIndex = 44;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(864, 378);
-            label3.Name = "label3";
-            label3.Size = new Size(97, 28);
-            label3.TabIndex = 43;
-            label3.Text = "Categoria";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(282, 378);
-            label4.Name = "label4";
-            label4.Size = new Size(85, 28);
-            label4.TabIndex = 40;
-            label4.Text = "Nombre";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(373, 382);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(229, 23);
-            textBox1.TabIndex = 39;
-            // 
             // LBusqueda
             // 
             LBusqueda.AutoSize = true;
             LBusqueda.Font = new Font("Segoe UI", 15F);
-            LBusqueda.Location = new Point(139, 377);
+            LBusqueda.Location = new Point(119, 14);
             LBusqueda.Name = "LBusqueda";
             LBusqueda.Size = new Size(108, 28);
             LBusqueda.TabIndex = 38;
             LBusqueda.Text = "Buscar por:";
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(353, 19);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(229, 23);
+            textBox1.TabIndex = 39;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 15F);
+            label4.Location = new Point(262, 15);
+            label4.Name = "label4";
+            label4.Size = new Size(85, 28);
+            label4.TabIndex = 40;
+            label4.Text = "Nombre";
+            // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(636, 378);
+            label2.Location = new Point(616, 15);
             label2.Name = "label2";
             label2.Size = new Size(60, 28);
             label2.TabIndex = 42;
             label2.Text = "Stock";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F);
+            label3.Location = new Point(844, 15);
+            label3.Name = "label3";
+            label3.Size = new Size(97, 28);
+            label3.TabIndex = 43;
+            label3.Text = "Categoria";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Botines", "Camisetas", "Entrenamiento" });
+            comboBox1.Location = new Point(947, 19);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(135, 23);
+            comboBox1.TabIndex = 44;
+            // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(716, 382);
+            numericUpDown1.Location = new Point(696, 19);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(107, 23);
             numericUpDown1.TabIndex = 47;
+            // 
+            // BAgregarImagen
+            // 
+            BAgregarImagen.Font = new Font("Segoe UI", 12F);
+            BAgregarImagen.ForeColor = SystemColors.ActiveCaptionText;
+            BAgregarImagen.Location = new Point(624, 426);
+            BAgregarImagen.Name = "BAgregarImagen";
+            BAgregarImagen.Size = new Size(113, 43);
+            BAgregarImagen.TabIndex = 64;
+            BAgregarImagen.Text = "Imagen";
+            BAgregarImagen.UseVisualStyleBackColor = true;
+            // 
+            // BProducto_agregar
+            // 
+            BProducto_agregar.Font = new Font("Segoe UI", 12F);
+            BProducto_agregar.ForeColor = SystemColors.ActiveCaptionText;
+            BProducto_agregar.Location = new Point(768, 646);
+            BProducto_agregar.Name = "BProducto_agregar";
+            BProducto_agregar.Size = new Size(206, 41);
+            BProducto_agregar.TabIndex = 63;
+            BProducto_agregar.Text = "Agregar producto";
+            BProducto_agregar.UseVisualStyleBackColor = true;
+            // 
+            // CBCategoria
+            // 
+            CBCategoria.FormattingEnabled = true;
+            CBCategoria.Items.AddRange(new object[] { "Botines", "Camisetas", "Entrenamiento" });
+            CBCategoria.Location = new Point(328, 664);
+            CBCategoria.Name = "CBCategoria";
+            CBCategoria.Size = new Size(254, 23);
+            CBCategoria.TabIndex = 61;
+            // 
+            // PBproducto_imagen
+            // 
+            PBproducto_imagen.Image = Properties.Resources.shopping_bag_add__1_;
+            PBproducto_imagen.InitialImage = Properties.Resources.shopping_bag_add__1_;
+            PBproducto_imagen.Location = new Point(755, 369);
+            PBproducto_imagen.Name = "PBproducto_imagen";
+            PBproducto_imagen.Size = new Size(301, 146);
+            PBproducto_imagen.SizeMode = PictureBoxSizeMode.CenterImage;
+            PBproducto_imagen.TabIndex = 62;
+            PBproducto_imagen.TabStop = false;
+            // 
+            // TBNombre
+            // 
+            TBNombre.Location = new Point(328, 369);
+            TBNombre.Name = "TBNombre";
+            TBNombre.Size = new Size(254, 23);
+            TBNombre.TabIndex = 48;
+            // 
+            // LNombre
+            // 
+            LNombre.AutoSize = true;
+            LNombre.Font = new Font("Segoe UI", 15F);
+            LNombre.Location = new Point(131, 364);
+            LNombre.Name = "LNombre";
+            LNombre.Size = new Size(85, 28);
+            LNombre.TabIndex = 49;
+            LNombre.Text = "Nombre";
+            // 
+            // LCategoria
+            // 
+            LCategoria.AutoSize = true;
+            LCategoria.Font = new Font("Segoe UI", 15F);
+            LCategoria.Location = new Point(131, 664);
+            LCategoria.Name = "LCategoria";
+            LCategoria.Size = new Size(97, 28);
+            LCategoria.TabIndex = 60;
+            LCategoria.Text = "Categoria";
+            // 
+            // TBStockMinimo
+            // 
+            TBStockMinimo.Location = new Point(328, 619);
+            TBStockMinimo.Name = "TBStockMinimo";
+            TBStockMinimo.Size = new Size(254, 23);
+            TBStockMinimo.TabIndex = 59;
+            // 
+            // LMinimo
+            // 
+            LMinimo.AutoSize = true;
+            LMinimo.Font = new Font("Segoe UI", 15F);
+            LMinimo.Location = new Point(131, 614);
+            LMinimo.Name = "LMinimo";
+            LMinimo.Size = new Size(132, 28);
+            LMinimo.TabIndex = 58;
+            LMinimo.Text = "Stock mínimo";
+            // 
+            // TBStock
+            // 
+            TBStock.Location = new Point(328, 569);
+            TBStock.Name = "TBStock";
+            TBStock.Size = new Size(254, 23);
+            TBStock.TabIndex = 57;
+            // 
+            // LStock
+            // 
+            LStock.AutoSize = true;
+            LStock.Font = new Font("Segoe UI", 15F);
+            LStock.Location = new Point(131, 564);
+            LStock.Name = "LStock";
+            LStock.Size = new Size(60, 28);
+            LStock.TabIndex = 56;
+            LStock.Text = "Stock";
+            // 
+            // TBVenta
+            // 
+            TBVenta.Location = new Point(328, 519);
+            TBVenta.Name = "TBVenta";
+            TBVenta.Size = new Size(254, 23);
+            TBVenta.TabIndex = 55;
+            // 
+            // LVenta
+            // 
+            LVenta.AutoSize = true;
+            LVenta.Font = new Font("Segoe UI", 15F);
+            LVenta.Location = new Point(131, 514);
+            LVenta.Name = "LVenta";
+            LVenta.Size = new Size(119, 28);
+            LVenta.TabIndex = 54;
+            LVenta.Text = "Precio venta";
+            // 
+            // TBCosto
+            // 
+            TBCosto.Location = new Point(328, 469);
+            TBCosto.Name = "TBCosto";
+            TBCosto.Size = new Size(254, 23);
+            TBCosto.TabIndex = 53;
+            // 
+            // LCosto
+            // 
+            LCosto.AutoSize = true;
+            LCosto.Font = new Font("Segoe UI", 15F);
+            LCosto.Location = new Point(131, 464);
+            LCosto.Name = "LCosto";
+            LCosto.Size = new Size(122, 28);
+            LCosto.TabIndex = 52;
+            LCosto.Text = "Precio Costo";
+            // 
+            // TBDescripcion
+            // 
+            TBDescripcion.Location = new Point(328, 419);
+            TBDescripcion.Name = "TBDescripcion";
+            TBDescripcion.Size = new Size(254, 23);
+            TBDescripcion.TabIndex = 51;
+            // 
+            // LDescripcion
+            // 
+            LDescripcion.AutoSize = true;
+            LDescripcion.Font = new Font("Segoe UI", 15F);
+            LDescripcion.Location = new Point(131, 414);
+            LDescripcion.Name = "LDescripcion";
+            LDescripcion.Size = new Size(114, 28);
+            LDescripcion.TabIndex = 50;
+            LDescripcion.Text = "Descripcion";
             // 
             // Producto
             // 
@@ -456,8 +445,8 @@
             panel5.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PBproducto_imagen).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -465,27 +454,10 @@
         #endregion
 
         private Label label1;
-        private Label LDescripcion;
-        private TextBox TBDescripcion;
-        private TextBox TBCosto;
-        private Label LCosto;
-        private TextBox TBVenta;
-        private Label LVenta;
-        private TextBox TBStock;
-        private Label LStock;
-        private TextBox TBStockMinimo;
-        private Label LMinimo;
-        private Label LCategoria;
         private DataGridView dataGridView1;
-        private TextBox TBNombre;
-        private Label LNombre;
         private Panel panel5;
         private Panel panel1;
-        private PictureBox PBproducto_imagen;
-        private ComboBox CBCategoria;
         private ToolTip toolTip1;
-        private Button BProducto_agregar;
-        private Button BAgregarImagen;
         private DataGridViewTextBoxColumn id_producto;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn producto_descripcion;
@@ -497,12 +469,29 @@
         private DataGridViewImageColumn dgvproducto_foto;
         private Button BLimpiar;
         private Button button1;
+        private Button BAgregarImagen;
+        private Button BProducto_agregar;
+        private ComboBox CBCategoria;
+        private PictureBox PBproducto_imagen;
+        private TextBox TBNombre;
+        private Label LNombre;
+        private Label LCategoria;
+        private TextBox TBStockMinimo;
+        private Label LMinimo;
+        private TextBox TBStock;
+        private Label LStock;
+        private TextBox TBVenta;
+        private Label LVenta;
+        private TextBox TBCosto;
+        private Label LCosto;
+        private TextBox TBDescripcion;
+        private Label LDescripcion;
+        private NumericUpDown numericUpDown1;
         private ComboBox comboBox1;
         private Label label3;
+        private Label label2;
         private Label label4;
         private TextBox textBox1;
         private Label LBusqueda;
-        private NumericUpDown numericUpDown1;
-        private Label label2;
     }
 }
