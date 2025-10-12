@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DobleCinco_BarberanCastillo.Controles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,12 +11,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DobleCinco_BarberanCastillo
 {
     public partial class Usuarios : Form
     {
-        string connectionString = "Server=localhost\\SQLEXPRESS01;Database=doble_cinco;User Id=sa;Password=12345678;";
+        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
         public static Usuarios VentanaUnica()
@@ -54,7 +56,39 @@ namespace DobleCinco_BarberanCastillo
                         e.estado_descripcion AS [Estado] 
                      FROM Usuario u
                      INNER JOIN Estado e ON u.id_estado = e.id_estado";
+
+            var parametros = new List<SqlParameter>();
+            var condiciones = new List<string>();
+
+            // 1. Filtrar por Nombre (si se proporcionó)
+            if (!string.IsNullOrWhiteSpace(TBNombreSearch.Text))
+            {
+                condiciones.Add("u.nombre_usuario LIKE @Nombre");
+                parametros.Add(new SqlParameter("@Nombre", "%" + TBNombreSearch.Text + "%"));
+            }
+
+            // 2. Filtrar por DNI (si se proporcionó)
+            if (!string.IsNullOrWhiteSpace(TBDniSearch.Text))
+            {
+                condiciones.Add("u.dni_usuario LIKE @Dni");
+                parametros.Add(new SqlParameter("@Dni", "%" + TBDniSearch.Text + "%"));
+            }
+
+            // 3. Filtrar por Rol/Perfil (si se seleccionó uno válido)
+            if (CBRolSearch.SelectedIndex > 0)
+            {
+                condiciones.Add("u.id_perfil = @IdPerfil");
+                parametros.Add(new SqlParameter("@IdPerfil", CBRolSearch.SelectedIndex));
+            }
+
+            // Si hay alguna condición, se agrega el WHERE a la consulta
+            if (condiciones.Any())
+            {
+                query += " WHERE " + string.Join(" AND ", condiciones);
+            }
+
             var da = new SqlDataAdapter(query, conn);
+            da.SelectCommand.Parameters.AddRange(parametros.ToArray());
             var dt = new DataTable();
             da.Fill(dt);
             dgvUsuarios.DataSource = null;
@@ -195,6 +229,7 @@ namespace DobleCinco_BarberanCastillo
 
             string patronCorreo = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
+
             if (!Regex.IsMatch(correo, patronCorreo))
             {
                 MessageBox.Show("Ingrese un correo electrónico válido (ejemplo: usuario@dominio.com)",
@@ -208,6 +243,54 @@ namespace DobleCinco_BarberanCastillo
                     try
                     {
 
+                        string checkQuery = "SELECT COUNT(*) FROM Usuario WHERE (dni_usuario = @Dni OR correo_usuario = @Correo) AND id_usuario != @IdUsuario";
+                        SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                        checkCmd.Parameters.AddWithValue("@Dni", TDni.Text);
+                        checkCmd.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                        checkCmd.Parameters.AddWithValue("@IdUsuario", idSeleccionado); // Aquí se pasa el ID
+
+                        conn.Open();
+                        int count = (int)checkCmd.ExecuteScalar();
+                        conn.Close();
+
+                        if (count > 0)
+                        {
+                            // Verificar cuál de los dos campos está duplicado
+                            string checkDni = "SELECT COUNT(*) FROM Usuario WHERE dni_usuario = @Dni AND id_usuario != @IdUsuario";
+                            string checkCorreo = "SELECT COUNT(*) FROM Usuario WHERE correo_usuario = @Correo AND id_usuario != @IdUsuario";
+                            SqlCommand cmdDni = new SqlCommand(checkDni, conn);
+                            SqlCommand cmdCorreo = new SqlCommand(checkCorreo, conn);
+                            cmdDni.Parameters.AddWithValue("@Dni", TDni.Text);
+                            cmdCorreo.Parameters.AddWithValue("@Correo", TCorreo.Text);
+                            cmdDni.Parameters.AddWithValue("@IdUsuario", idSeleccionado);
+                            cmdCorreo.Parameters.AddWithValue("@IdUsuario", idSeleccionado);
+
+                            conn.Open();
+                            int dniDuplicado = (int)cmdDni.ExecuteScalar();
+                            int correoDuplicado = (int)cmdCorreo.ExecuteScalar();
+                            conn.Close();
+
+                            if (dniDuplicado > 0 && correoDuplicado > 0)
+                            {
+                                MessageBox.Show("El DNI y el correo ingresados ya están registrados. Por favor, ingresa datos diferentes.", "Datos duplicados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                TDni.Clear();
+                                TCorreo.Clear();
+                                TDni.Focus();
+                            }
+                            else if (dniDuplicado > 0)
+                            {
+                                MessageBox.Show("El DNI ingresado ya está registrado. Por favor, ingresa uno diferente.", "DNI duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                TDni.Clear();
+                                TDni.Focus();
+                            }
+                            else
+                            {
+                                MessageBox.Show("El correo ingresado ya está registrado. Por favor, ingresa uno diferente.", "Correo duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                TCorreo.Clear();
+                                TCorreo.Focus();
+                            }
+                            return;
+                        }
 
                         string query = "UPDATE Usuario SET nombre_usuario=@Nombre, apellido_usuario=@Apellido, correo_usuario=@Correo, telefono_usuario=@Telefono, dni_usuario=@Dni,contraseña_usuario=@Contraseña, direccion_usuario=@Direccion, fecha_nacimiento_usuario=@Fecha, id_perfil=@Perfil WHERE id_usuario=@Id";
                         SqlCommand cmd = new SqlCommand(query, conn);
@@ -460,7 +543,7 @@ namespace DobleCinco_BarberanCastillo
                     return;
             }
             CargarDatos();
-            
+
         }
         private string accionActual = ""; // "agregar", "modificar", "eliminar"
 
@@ -483,6 +566,42 @@ namespace DobleCinco_BarberanCastillo
             BCancelar.Enabled = true;
             LimpiarCampos();
             accionActual = "";
+        }
+
+        //FILTROS
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nombreFiltro = TBNombreSearch.Text.Trim();
+                string dniFiltro = TBDniSearch.Text.Trim();
+                int perfilFiltro = Convert.ToInt32(CBRolSearch.SelectedValue);
+
+                // Llamar a CargarDatos con los filtros
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Evento para el botón "Limpiar Filtros"
+        private void BLimpiar_Click(object sender, EventArgs e)
+        {
+            // Limpiar los controles de búsqueda
+            TBNombreSearch.Clear();
+            TBDniSearch.Clear();
+            CBRolSearch.SelectedIndex = 0; // Vuelve a "[Todos los roles]"
+
+            // Recargar la grilla con todos los datos
+            CargarDatos();
+            LimpiarCampos(); // Llama a tu método para limpiar los campos de datos inferiores
+        }
+
+        private void TBDniSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

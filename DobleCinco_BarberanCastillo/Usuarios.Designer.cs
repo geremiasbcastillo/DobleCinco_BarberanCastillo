@@ -58,13 +58,13 @@
             TNombre = new TextBox();
             LNombre = new Label();
             BLimpiar = new Button();
-            button1 = new Button();
-            comboBox1 = new ComboBox();
+            BBuscar = new Button();
+            CBRolSearch = new ComboBox();
             label3 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            TBDniSearch = new TextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
+            TBNombreSearch = new TextBox();
             LBusqueda = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             panel5.SuspendLayout();
@@ -142,13 +142,13 @@
             panel1.Controls.Add(TNombre);
             panel1.Controls.Add(LNombre);
             panel1.Controls.Add(BLimpiar);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(BBuscar);
+            panel1.Controls.Add(CBRolSearch);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(TBDniSearch);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(TBNombreSearch);
             panel1.Controls.Add(LBusqueda);
             panel1.Controls.Add(dgvUsuarios);
             panel1.Location = new Point(45, 98);
@@ -392,27 +392,29 @@
             BLimpiar.Text = "Limpiar filtros";
             BLimpiar.TextAlign = ContentAlignment.TopCenter;
             BLimpiar.UseVisualStyleBackColor = true;
+            BLimpiar.Click += BLimpiar_Click;
             // 
-            // button1
+            // BBuscar
             // 
-            button1.Font = new Font("Segoe UI", 15F);
-            button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(709, 99);
-            button1.Name = "button1";
-            button1.Size = new Size(131, 40);
-            button1.TabIndex = 36;
-            button1.Text = "Buscar";
-            button1.TextAlign = ContentAlignment.TopCenter;
-            button1.UseVisualStyleBackColor = true;
+            BBuscar.Font = new Font("Segoe UI", 15F);
+            BBuscar.ForeColor = SystemColors.ActiveCaptionText;
+            BBuscar.Location = new Point(709, 99);
+            BBuscar.Name = "BBuscar";
+            BBuscar.Size = new Size(131, 40);
+            BBuscar.TabIndex = 36;
+            BBuscar.Text = "Buscar";
+            BBuscar.TextAlign = ContentAlignment.TopCenter;
+            BBuscar.UseVisualStyleBackColor = true;
+            BBuscar.Click += BBuscar_Click;
             // 
-            // comboBox1
+            // CBRolSearch
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Gerente", "Administrador", "Vendedor" });
-            comboBox1.Location = new Point(941, 36);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(135, 23);
-            comboBox1.TabIndex = 35;
+            CBRolSearch.FormattingEnabled = true;
+            CBRolSearch.Items.AddRange(new object[] { "Gerente", "Administrador", "Vendedor" });
+            CBRolSearch.Location = new Point(941, 36);
+            CBRolSearch.Name = "CBRolSearch";
+            CBRolSearch.Size = new Size(135, 23);
+            CBRolSearch.TabIndex = 35;
             // 
             // label3
             // 
@@ -434,12 +436,13 @@
             label2.TabIndex = 32;
             label2.Text = "DNI";
             // 
-            // textBox2
+            // TBDniSearch
             // 
-            textBox2.Location = new Point(643, 36);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(229, 23);
-            textBox2.TabIndex = 31;
+            TBDniSearch.Location = new Point(643, 36);
+            TBDniSearch.Name = "TBDniSearch";
+            TBDniSearch.Size = new Size(229, 23);
+            TBDniSearch.TabIndex = 31;
+            TBDniSearch.Click += TBDniSearch_Click;
             // 
             // label1
             // 
@@ -451,12 +454,12 @@
             label1.TabIndex = 30;
             label1.Text = "Nombre";
             // 
-            // textBox1
+            // TBNombreSearch
             // 
-            textBox1.Location = new Point(321, 36);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(229, 23);
-            textBox1.TabIndex = 29;
+            TBNombreSearch.Location = new Point(321, 36);
+            TBNombreSearch.Name = "TBNombreSearch";
+            TBNombreSearch.Size = new Size(229, 23);
+            TBNombreSearch.TabIndex = 29;
             // 
             // LBusqueda
             // 
@@ -498,13 +501,13 @@
         private Panel panel1;
         private Controles.CUPerfil cuPerfil1;
         private Label LBusqueda;
-        private TextBox textBox1;
+        private TextBox TBNombreSearch;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox TBDniSearch;
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox CBRolSearch;
         private Label label3;
-        private Button button1;
+        private Button BBuscar;
         private Button BLimpiar;
         private DateTimePicker DTNacimiento;
         private Label LFechaNac;
