@@ -9,11 +9,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Configuration;
+
 namespace DobleCinco_BarberanCastillo
 {
     public partial class Login : Form
     {
-        string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
+        // string connectionString = "Server=localhost\\SQLEXPRESS;Database=doble_cinco;integrated security = true;";
+
+
+
+        // Accessing an appSetting
+
+
+        // Accessing a connection string
+        string connectionString = ConfigurationManager.ConnectionStrings["doble_cinco"].ConnectionString;
+
         SqlCommand cmd;
         SqlDataReader dr;
 

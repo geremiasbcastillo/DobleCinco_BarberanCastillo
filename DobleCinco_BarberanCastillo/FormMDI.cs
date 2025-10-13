@@ -80,7 +80,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void FormMDI_Load(object sender, EventArgs e)
         {
-            usuarioToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador) 
+            usuarioToolStripMenuItem.Enabled = perfilUsuario == 1 || perfilUsuario == 2;
             productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador)
             ventasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
             ReportesToolStripMenuItem.Enabled = perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente)
