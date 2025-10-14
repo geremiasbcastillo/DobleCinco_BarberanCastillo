@@ -122,5 +122,35 @@ namespace DobleCinco_BarberanCastillo
         {
 
         }
+
+        private void BBuscarProducto_Click(object sender, EventArgs e)
+        {
+            // 1. Obtenemos el texto del campo de descripción para usarlo como filtro
+            string filtro = TBDescripcion.Text.Trim();
+
+            // 2. Creamos una instancia del formulario de búsqueda y le pasamos el filtro
+            using (var formBusqueda = new BuscarProducto(filtro))
+            {
+                // 3. Mostramos el formulario como un diálogo. El código aquí se detiene hasta que el pop-up se cierre.
+                var resultado = formBusqueda.ShowDialog();
+
+                // 4. Verificamos si el usuario presionó "Seleccionar"
+                if (resultado == DialogResult.OK)
+                {
+                    // 5. Obtenemos los datos del producto desde las propiedades públicas del formulario de búsqueda
+                    int id = formBusqueda.IdProductoSeleccionado;
+                    string descripcion = formBusqueda.DescripcionProducto;
+                    decimal precio = formBusqueda.PrecioCostoProducto; // Obtenemos la cantidad del NumericUpDown
+
+                    // 6. Agregamos el producto al DataGridView de la venta
+                    dgvDetalleVenta.Rows.Add(id, descripcion, precio);
+
+                    // Limpiamos los campos para la siguiente búsqueda
+                    TBDescripcion.Clear();
+                    TBDescripcion.Focus();
+                }
+            }
+        }
     }
 }
+

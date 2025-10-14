@@ -14,14 +14,18 @@ namespace DobleCinco_BarberanCastillo
     public partial class BuscarProducto : Form
     {
         // Propiedades públicas para devolver los datos del producto seleccionado
-        public int IdProductoSeleccionado { get; private set; }
-        public string DescripcionProducto { get; private set; }
-        public decimal PrecioCostoProducto { get; private set; }
+        public int IdProductoSeleccionado;
+        public string DescripcionProducto;
+        public decimal PrecioCostoProducto;
 
         private string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
         private string filtroBusqueda;
 
-       
+        public BuscarProducto(string filtro)
+        {
+            InitializeComponent();
+            this.filtroBusqueda = filtro;
+        }
 
         private void BuscarProducto_Load(object sender, EventArgs e)
         {

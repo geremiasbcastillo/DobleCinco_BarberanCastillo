@@ -50,6 +50,7 @@
             BAceptar.TabIndex = 1;
             BAceptar.Text = "Aceptar";
             BAceptar.UseVisualStyleBackColor = true;
+            BAceptar.Click += BAceptar_Click;
             // 
             // BCancelar
             // 
@@ -59,6 +60,7 @@
             BCancelar.TabIndex = 2;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
+            BCancelar.Click += BCancelar_Click;
             // 
             // BuscarProducto
             // 

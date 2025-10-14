@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button1 = new Button();
             label1 = new Label();
             TBVendedor = new TextBox();
             LVentas = new Label();
             panel2 = new Panel();
+            BCancelar = new Button();
+            BAceptar = new Button();
             label11 = new Label();
             textBox1 = new TextBox();
             button3 = new Button();
@@ -52,27 +55,24 @@
             LFecha = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            dataGridView1 = new DataGridView();
+            BVenta = new Button();
+            dgvDetalleVenta = new DataGridView();
             id_producto = new DataGridViewTextBoxColumn();
             producto_descripcion = new DataGridViewTextBoxColumn();
             producto_cantidad = new DataGridViewTextBoxColumn();
             producto_costo = new DataGridViewTextBoxColumn();
             panel4 = new Panel();
-            LBuscar = new Button();
+            BBuscarProducto = new Button();
             TBDescripcion = new TextBox();
             LDesc = new Label();
             TBProducto = new TextBox();
             LProducto = new Label();
-            BAceptar = new Button();
-            BCancelar = new Button();
-            button1 = new Button();
-            BVenta = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).BeginInit();
             panel4.SuspendLayout();
             SuspendLayout();
             // 
@@ -86,6 +86,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(550, 102);
             panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.ForeColor = SystemColors.ActiveCaptionText;
+            button1.Location = new Point(427, 43);
+            button1.Name = "button1";
+            button1.Size = new Size(82, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Buscar";
+            button1.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -141,6 +151,26 @@
             panel2.Size = new Size(651, 406);
             panel2.TabIndex = 2;
             panel2.Paint += panel2_Paint;
+            // 
+            // BCancelar
+            // 
+            BCancelar.ForeColor = SystemColors.ActiveCaptionText;
+            BCancelar.Location = new Point(357, 293);
+            BCancelar.Name = "BCancelar";
+            BCancelar.Size = new Size(98, 23);
+            BCancelar.TabIndex = 14;
+            BCancelar.Text = "Cancelar";
+            BCancelar.UseVisualStyleBackColor = true;
+            // 
+            // BAceptar
+            // 
+            BAceptar.ForeColor = SystemColors.ActiveCaptionText;
+            BAceptar.Location = new Point(137, 293);
+            BAceptar.Name = "BAceptar";
+            BAceptar.Size = new Size(98, 23);
+            BAceptar.TabIndex = 13;
+            BAceptar.Text = "Aceptar";
+            BAceptar.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -315,7 +345,7 @@
             // 
             panel6.BackColor = Color.FromArgb(0, 192, 0);
             panel6.Controls.Add(BVenta);
-            panel6.Controls.Add(dataGridView1);
+            panel6.Controls.Add(dgvDetalleVenta);
             panel6.Controls.Add(panel4);
             panel6.Controls.Add(panel3);
             panel6.Controls.Add(panel2);
@@ -327,14 +357,24 @@
             panel6.TabIndex = 7;
             panel6.Paint += panel6_Paint;
             // 
-            // dataGridView1
+            // BVenta
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
-            dataGridView1.Location = new Point(949, 20);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(444, 122);
-            dataGridView1.TabIndex = 7;
+            BVenta.ForeColor = SystemColors.ActiveCaptionText;
+            BVenta.Location = new Point(622, 676);
+            BVenta.Name = "BVenta";
+            BVenta.Size = new Size(111, 29);
+            BVenta.TabIndex = 8;
+            BVenta.Text = "Realizar venta";
+            BVenta.UseVisualStyleBackColor = true;
+            // 
+            // dgvDetalleVenta
+            // 
+            dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
+            dgvDetalleVenta.Location = new Point(949, 20);
+            dgvDetalleVenta.Name = "dgvDetalleVenta";
+            dgvDetalleVenta.Size = new Size(444, 122);
+            dgvDetalleVenta.TabIndex = 7;
             // 
             // id_producto
             // 
@@ -359,7 +399,7 @@
             // panel4
             // 
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(LBuscar);
+            panel4.Controls.Add(BBuscarProducto);
             panel4.Controls.Add(TBDescripcion);
             panel4.Controls.Add(LDesc);
             panel4.Controls.Add(TBProducto);
@@ -369,17 +409,18 @@
             panel4.Size = new Size(893, 122);
             panel4.TabIndex = 6;
             // 
-            // LBuscar
+            // BBuscarProducto
             // 
-            LBuscar.Font = new Font("Segoe UI", 13F);
-            LBuscar.ForeColor = SystemColors.ActiveCaptionText;
-            LBuscar.Location = new Point(761, 31);
-            LBuscar.Name = "LBuscar";
-            LBuscar.Size = new Size(92, 35);
-            LBuscar.TabIndex = 4;
-            LBuscar.Text = "Buscar";
-            LBuscar.TextAlign = ContentAlignment.TopCenter;
-            LBuscar.UseVisualStyleBackColor = true;
+            BBuscarProducto.Font = new Font("Segoe UI", 13F);
+            BBuscarProducto.ForeColor = SystemColors.ActiveCaptionText;
+            BBuscarProducto.Location = new Point(761, 31);
+            BBuscarProducto.Name = "BBuscarProducto";
+            BBuscarProducto.Size = new Size(92, 35);
+            BBuscarProducto.TabIndex = 4;
+            BBuscarProducto.Text = "Buscar";
+            BBuscarProducto.TextAlign = ContentAlignment.TopCenter;
+            BBuscarProducto.UseVisualStyleBackColor = true;
+            BBuscarProducto.Click += BBuscarProducto_Click;
             // 
             // TBDescripcion
             // 
@@ -415,46 +456,6 @@
             LProducto.TabIndex = 0;
             LProducto.Text = "Producto: ";
             // 
-            // BAceptar
-            // 
-            BAceptar.ForeColor = SystemColors.ActiveCaptionText;
-            BAceptar.Location = new Point(137, 293);
-            BAceptar.Name = "BAceptar";
-            BAceptar.Size = new Size(98, 23);
-            BAceptar.TabIndex = 13;
-            BAceptar.Text = "Aceptar";
-            BAceptar.UseVisualStyleBackColor = true;
-            // 
-            // BCancelar
-            // 
-            BCancelar.ForeColor = SystemColors.ActiveCaptionText;
-            BCancelar.Location = new Point(357, 293);
-            BCancelar.Name = "BCancelar";
-            BCancelar.Size = new Size(98, 23);
-            BCancelar.TabIndex = 14;
-            BCancelar.Text = "Cancelar";
-            BCancelar.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(427, 43);
-            button1.Name = "button1";
-            button1.Size = new Size(82, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Buscar";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // BVenta
-            // 
-            BVenta.ForeColor = SystemColors.ActiveCaptionText;
-            BVenta.Location = new Point(622, 676);
-            BVenta.Name = "BVenta";
-            BVenta.Size = new Size(111, 29);
-            BVenta.TabIndex = 8;
-            BVenta.Text = "Realizar venta";
-            BVenta.UseVisualStyleBackColor = true;
-            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -475,7 +476,7 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ResumeLayout(false);
@@ -509,13 +510,13 @@
         private Button button2;
         private Button BCancelar;
         private Button BAceptar;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDetalleVenta;
         private DataGridViewTextBoxColumn id_producto;
         private DataGridViewTextBoxColumn producto_descripcion;
         private DataGridViewTextBoxColumn producto_cantidad;
         private DataGridViewTextBoxColumn producto_costo;
         private Panel panel4;
-        private Button LBuscar;
+        private Button BBuscarProducto;
         private TextBox TBDescripcion;
         private Label LDesc;
         private TextBox TBProducto;
