@@ -56,11 +56,10 @@ namespace DobleCinco_BarberanCastillo
                         u.dni_usuario AS [DNI],
                         u.direccion_usuario AS [Dirección],
                         u.id_perfil AS [Perfil],
-                        e.estado_descripcion AS [Estado] 
-                     FROM Usuario u
-                     INNER JOIN Estado e ON u.id_estado = e.id_estado";
+                        u.id_estado AS [Estado]
+                     FROM Usuario u";
 
-            var parametros = new List<SqlParameter>();
+            /*var parametros = new List<SqlParameter>();
             var condiciones = new List<string>();
 
             // 1. Filtrar por Nombre (si se proporcionó)
@@ -96,14 +95,19 @@ namespace DobleCinco_BarberanCastillo
             {
                 query += " WHERE " + string.Join(" AND ", condiciones);
             }
-
+            */
             var da = new SqlDataAdapter(query, conn);
-            da.SelectCommand.Parameters.AddRange(parametros.ToArray());
+            /*da.SelectCommand.Parameters.AddRange(parametros.ToArray());
+            */
             var dt = new DataTable();
             da.Fill(dt);
             dgvUsuarios.DataSource = null;
             dgvUsuarios.DataSource = dt;
             dgvUsuarios.Refresh();
+
+            // Oculta la columna id_estado
+            if (dgvUsuarios.Columns.Contains("Estado"))
+                dgvUsuarios.Columns["Estado"].Visible = false;
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
@@ -579,7 +583,7 @@ namespace DobleCinco_BarberanCastillo
         }
 
         //FILTROS
-        private void BBuscar_Click(object sender, EventArgs e)
+        /*private void BBuscar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -590,6 +594,74 @@ namespace DobleCinco_BarberanCastillo
 
                 // Llamar a CargarDatos con los filtros
                 CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        */
+        private void BBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // --- 1. Recolectar valores de los filtros ---
+                string nombreFiltro = TBNombreSearch.Text.Trim();
+                string dniFiltro = TBDniSearch.Text.Trim();
+                int perfilFiltro = Convert.ToInt32(CBRolSearch.SelectedValue);
+                int estadoFiltro = 0; 
+                if (CBEstadoSearch.SelectedIndex == 1) estadoFiltro = 1; // Activo
+                else if (CBEstadoSearch.SelectedIndex == 2) estadoFiltro = 0; // Inactivo
+
+                // --- 2. Construir la consulta dinámica ---
+                string query = @"SELECT 
+                        u.id_usuario AS [ID], 
+                        u.nombre_usuario AS [Nombre], 
+                        u.apellido_usuario AS [Apellido], 
+                        u.correo_usuario AS [Correo], 
+                        u.telefono_usuario AS [Teléfono],
+                        u.contraseña_usuario AS [Contraseña],
+                        u.dni_usuario AS [DNI],
+                        u.direccion_usuario AS [Dirección],
+                        u.id_perfil AS [Perfil],
+                        e.estado_descripcion AS [Estado] 
+                     FROM Usuario u
+                     INNER JOIN Estado e ON u.id_estado = e.id_estado"; 
+
+                SqlCommand cmd = new SqlCommand();
+
+                if (!string.IsNullOrEmpty(nombreFiltro))
+                {
+                    query += " AND U.nombre_usuario LIKE @Nombre";
+                    cmd.Parameters.AddWithValue("@Nombre", "%" + nombreFiltro + "%");
+                }
+                if (!string.IsNullOrEmpty(dniFiltro))
+                {
+                    query += " AND U.dni_usuario LIKE @Dni";
+                    cmd.Parameters.AddWithValue("@Dni", "%" + dniFiltro + "%");
+                }
+                if (perfilFiltro > 0)
+                {
+                    query += " AND U.id_perfil = @Perfil";
+                    cmd.Parameters.AddWithValue("@Perfil", perfilFiltro);
+                }
+                if (estadoFiltro > -1)
+                {
+                    query += " AND U.id_estado = @Estado";
+                    cmd.Parameters.AddWithValue("@Estado", estadoFiltro);
+                }
+
+                cmd.CommandText = query;
+
+                // --- 3. Ejecutar la consulta y mostrar resultados ---
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    cmd.Connection = conn;
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dgvUsuarios.DataSource = dt;
+                }
             }
             catch (Exception ex)
             {
@@ -624,15 +696,14 @@ namespace DobleCinco_BarberanCastillo
         private void dgvUsuarios_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             var dgv = dgvUsuarios;
-            if (dgv.Rows[e.RowIndex].Cells["Estado"].Value != null)
+            if (dgv.Rows[e.RowIndex].Cells["id_estado"].Value != null)
             {
-                string estado = dgv.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
-                if (estado.Equals("INACTIVO", StringComparison.OrdinalIgnoreCase))
+                if (int.TryParse(dgv.Rows[e.RowIndex].Cells["id_estado"].Value.ToString(), out int estado) && estado == 0)
                 {
                     dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
                     dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
                 }
             }
         }
+        }
     }
-}
