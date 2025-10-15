@@ -125,31 +125,21 @@ namespace DobleCinco_BarberanCastillo
 
         private void BBuscarProducto_Click(object sender, EventArgs e)
         {
-            // 1. Obtenemos el texto del campo de descripción para usarlo como filtro
+            BBuscarProducto.Enabled = false;
             string filtro = TBDescripcion.Text.Trim();
+            var formBusqueda = new BuscarProducto(filtro);
 
-            // 2. Creamos una instancia del formulario de búsqueda y le pasamos el filtro
-            using (var formBusqueda = new BuscarProducto(filtro))
+            formBusqueda.ProductoSeleccionado += (id, descripcion, precio) =>
             {
-                // 3. Mostramos el formulario como un diálogo. El código aquí se detiene hasta que el pop-up se cierre.
-                var resultado = formBusqueda.ShowDialog();
+                dgvDetalleVenta.Rows.Add(id, descripcion, 1, precio);
+                TBDescripcion.Clear();
+                TBDescripcion.Focus();
+                BBuscarProducto.Enabled = true;
+            };
 
-                // 4. Verificamos si el usuario presionó "Seleccionar"
-                if (resultado == DialogResult.OK)
-                {
-                    // 5. Obtenemos los datos del producto desde las propiedades públicas del formulario de búsqueda
-                    int id = formBusqueda.IdProductoSeleccionado;
-                    string descripcion = formBusqueda.DescripcionProducto;
-                    decimal precio = formBusqueda.PrecioCostoProducto; // Obtenemos la cantidad del NumericUpDown
+            formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
 
-                    // 6. Agregamos el producto al DataGridView de la venta
-                    dgvDetalleVenta.Rows.Add(id, descripcion, precio);
-
-                    // Limpiamos los campos para la siguiente búsqueda
-                    TBDescripcion.Clear();
-                    TBDescripcion.Focus();
-                }
-            }
+            formBusqueda.Show();
         }
     }
 }

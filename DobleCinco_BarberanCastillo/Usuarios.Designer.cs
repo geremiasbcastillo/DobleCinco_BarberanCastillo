@@ -34,6 +34,8 @@
             dgvUsuarios = new DataGridView();
             panel5 = new Panel();
             panel1 = new Panel();
+            CBEstadoSearch = new ComboBox();
+            LEstado = new Label();
             BCancelar = new Button();
             BAceptar = new Button();
             DTNacimiento = new DateTimePicker();
@@ -105,6 +107,8 @@
             dgvUsuarios.Size = new Size(1156, 366);
             dgvUsuarios.TabIndex = 19;
             dgvUsuarios.CellClick += dgvUsuarios_CellClick;
+            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
+            dgvUsuarios.RowPrePaint += dgvUsuarios_RowPrePaint;
             // 
             // panel5
             // 
@@ -118,6 +122,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(0, 192, 0);
+            panel1.Controls.Add(CBEstadoSearch);
+            panel1.Controls.Add(LEstado);
             panel1.Controls.Add(BCancelar);
             panel1.Controls.Add(BAceptar);
             panel1.Controls.Add(DTNacimiento);
@@ -156,6 +162,25 @@
             panel1.Size = new Size(1267, 926);
             panel1.TabIndex = 23;
             panel1.Paint += panel1_Paint;
+            // 
+            // CBEstadoSearch
+            // 
+            CBEstadoSearch.FormattingEnabled = true;
+            CBEstadoSearch.Items.AddRange(new object[] { "Inactivo", "Activo" });
+            CBEstadoSearch.Location = new Point(987, 35);
+            CBEstadoSearch.Name = "CBEstadoSearch";
+            CBEstadoSearch.Size = new Size(135, 23);
+            CBEstadoSearch.TabIndex = 62;
+            // 
+            // LEstado
+            // 
+            LEstado.AutoSize = true;
+            LEstado.Font = new Font("Segoe UI", 15F);
+            LEstado.Location = new Point(910, 31);
+            LEstado.Name = "LEstado";
+            LEstado.Size = new Size(71, 28);
+            LEstado.TabIndex = 61;
+            LEstado.Text = "Estado";
             // 
             // BCancelar
             // 
@@ -411,7 +436,7 @@
             // 
             CBRolSearch.FormattingEnabled = true;
             CBRolSearch.Items.AddRange(new object[] { "Gerente", "Administrador", "Vendedor" });
-            CBRolSearch.Location = new Point(941, 36);
+            CBRolSearch.Location = new Point(738, 35);
             CBRolSearch.Name = "CBRolSearch";
             CBRolSearch.Size = new Size(135, 23);
             CBRolSearch.TabIndex = 35;
@@ -420,7 +445,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(895, 32);
+            label3.Location = new Point(692, 31);
             label3.Name = "label3";
             label3.Size = new Size(40, 28);
             label3.TabIndex = 34;
@@ -430,7 +455,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(591, 32);
+            label2.Location = new Point(467, 31);
             label2.Name = "label2";
             label2.Size = new Size(46, 28);
             label2.TabIndex = 32;
@@ -438,9 +463,9 @@
             // 
             // TBDniSearch
             // 
-            TBDniSearch.Location = new Point(643, 36);
+            TBDniSearch.Location = new Point(519, 35);
             TBDniSearch.Name = "TBDniSearch";
-            TBDniSearch.Size = new Size(229, 23);
+            TBDniSearch.Size = new Size(139, 23);
             TBDniSearch.TabIndex = 31;
             TBDniSearch.Click += TBDniSearch_Click;
             // 
@@ -448,7 +473,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(230, 32);
+            label1.Location = new Point(178, 31);
             label1.Name = "label1";
             label1.Size = new Size(85, 28);
             label1.TabIndex = 30;
@@ -456,16 +481,16 @@
             // 
             // TBNombreSearch
             // 
-            TBNombreSearch.Location = new Point(321, 36);
+            TBNombreSearch.Location = new Point(269, 35);
             TBNombreSearch.Name = "TBNombreSearch";
-            TBNombreSearch.Size = new Size(229, 23);
+            TBNombreSearch.Size = new Size(167, 23);
             TBNombreSearch.TabIndex = 29;
             // 
             // LBusqueda
             // 
             LBusqueda.AutoSize = true;
             LBusqueda.Font = new Font("Segoe UI", 15F);
-            LBusqueda.Location = new Point(91, 31);
+            LBusqueda.Location = new Point(39, 30);
             LBusqueda.Name = "LBusqueda";
             LBusqueda.Size = new Size(108, 28);
             LBusqueda.TabIndex = 28;
@@ -532,5 +557,7 @@
         private Label LNombre;
         private Button BAceptar;
         private Button BCancelar;
+        private ComboBox CBEstadoSearch;
+        private Label LEstado;
     }
 }

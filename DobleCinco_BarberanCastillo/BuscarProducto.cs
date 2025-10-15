@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -18,7 +19,7 @@ namespace DobleCinco_BarberanCastillo
         public string DescripcionProducto;
         public decimal PrecioCostoProducto;
 
-        private string connectionString = "Server=localhost;Database=doble_cinco;User Id=sa;Password=12345678;";
+        string connectionString = ConfigurationManager.ConnectionStrings["doble_cinco"].ConnectionString;
         private string filtroBusqueda;
 
         public BuscarProducto(string filtro)
@@ -40,12 +41,11 @@ namespace DobleCinco_BarberanCastillo
         {
             using (var conn = new SqlConnection(connectionString))
             {
-                // Asumo que tu tabla se llama 'Producto' y tiene estas columnas
                 string query = @"SELECT id_producto AS ID, 
-                                        descripcion AS Descripción, 
-                                        precio_costo AS 'Precio Costo' 
+                                        descripcion_producto AS Descripción, 
+                                        precio_producto AS 'Precio Costo' 
                                  FROM Producto 
-                                 WHERE descripcion LIKE @filtro OR id_producto_texto LIKE @filtro"; // Buscamos por descripción o por un ID de texto si lo tuvieras
+                                 WHERE descripcion_producto LIKE @filtro OR nombre_producto LIKE @filtro"; // Buscamos por descripción o por un ID de texto si lo tuvieras
 
                 try
                 {
@@ -65,19 +65,20 @@ namespace DobleCinco_BarberanCastillo
             }
         }
 
+        public event Action<int, string, decimal> ProductoSeleccionado;
+
         private void BAceptar_Click(object sender, EventArgs e)
         {
-            // Verificamos si hay una fila seleccionada
             if (dgvProductos.CurrentRow != null)
             {
-                // Guardamos los datos de la fila seleccionada en las propiedades públicas
                 var fila = dgvProductos.CurrentRow;
                 IdProductoSeleccionado = Convert.ToInt32(fila.Cells["ID"].Value);
                 DescripcionProducto = fila.Cells["Descripción"].Value.ToString();
                 PrecioCostoProducto = Convert.ToDecimal(fila.Cells["Precio Costo"].Value);
 
-                // Establecemos el resultado del diálogo como OK y cerramos el formulario
-                this.DialogResult = DialogResult.OK;
+                // Dispara el evento
+                ProductoSeleccionado?.Invoke(IdProductoSeleccionado, DescripcionProducto, PrecioCostoProducto);
+
                 this.Close();
             }
             else

@@ -16,11 +16,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DobleCinco_BarberanCastillo
 {
+
     public partial class Usuarios : Form
     {
         string connectionString = ConfigurationManager.ConnectionStrings["doble_cinco"].ConnectionString;
         int idSeleccionado = 0;
         private static Usuarios instancia = null;
+        int estadoFiltro = 0;
         public static Usuarios VentanaUnica()
         {
             if (instancia == null || instancia.IsDisposed)
@@ -80,6 +82,13 @@ namespace DobleCinco_BarberanCastillo
             {
                 condiciones.Add("u.id_perfil = @IdPerfil");
                 parametros.Add(new SqlParameter("@IdPerfil", CBRolSearch.SelectedIndex));
+            }
+
+            // 3. Filtrar por Estado (si se seleccionó uno válido)
+            if (CBEstadoSearch.SelectedIndex > -1)
+            {
+                condiciones.Add("u.id_estado = @EstadoUsuario");
+                parametros.Add(new SqlParameter("@EstadoUsuario", CBEstadoSearch.SelectedIndex));
             }
 
             // Si hay alguna condición, se agrega el WHERE a la consulta
@@ -577,6 +586,7 @@ namespace DobleCinco_BarberanCastillo
                 string nombreFiltro = TBNombreSearch.Text.Trim();
                 string dniFiltro = TBDniSearch.Text.Trim();
                 int perfilFiltro = Convert.ToInt32(CBRolSearch.SelectedValue);
+                int estadoFiltro = CBEstadoSearch.SelectedIndex; // 0: Todos, 1: Activo, 2: Inactivo
 
                 // Llamar a CargarDatos con los filtros
                 CargarDatos();
@@ -594,6 +604,7 @@ namespace DobleCinco_BarberanCastillo
             TBNombreSearch.Clear();
             TBDniSearch.Clear();
             CBRolSearch.SelectedIndex = 0; // Vuelve a "[Todos los roles]"
+            CBEstadoSearch.SelectedIndex = -1; // Vuelve a "[Todos los estados]"
 
             // Recargar la grilla con todos los datos
             CargarDatos();
@@ -603,6 +614,25 @@ namespace DobleCinco_BarberanCastillo
         private void TBDniSearch_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvUsuarios_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var dgv = dgvUsuarios;
+            if (dgv.Rows[e.RowIndex].Cells["Estado"].Value != null)
+            {
+                string estado = dgv.Rows[e.RowIndex].Cells["Estado"].Value.ToString();
+                if (estado.Equals("INACTIVO", StringComparison.OrdinalIgnoreCase))
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                }
+            }
         }
     }
 }
