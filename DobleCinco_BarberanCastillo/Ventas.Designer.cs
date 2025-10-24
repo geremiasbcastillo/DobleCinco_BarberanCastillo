@@ -28,31 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             LVentas = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            BVenta = new Button();
-            dgvDetalleVenta = new DataGridView();
-            id_producto = new DataGridViewTextBoxColumn();
-            producto_descripcion = new DataGridViewTextBoxColumn();
-            producto_cantidad = new DataGridViewTextBoxColumn();
-            producto_costo = new DataGridViewTextBoxColumn();
-            panel4 = new Panel();
-            BBuscarProducto = new Button();
-            TBDescripcion = new TextBox();
-            LDesc = new Label();
-            TBProducto = new TextBox();
-            LProducto = new Label();
             panel3 = new Panel();
             label7 = new Label();
             DTPFecha = new DateTimePicker();
             LFecha = new Label();
             panel2 = new Panel();
+            LTelefono = new Label();
+            TBTelefono = new TextBox();
             BCancelar = new Button();
             BAceptar = new Button();
             label11 = new Label();
-            textBox1 = new TextBox();
-            button3 = new Button();
+            TBDniSearch = new TextBox();
+            BBuscarCliente = new Button();
             button2 = new Button();
             label6 = new Label();
             TBDomicilio = new TextBox();
@@ -63,12 +54,24 @@
             label3 = new Label();
             label2 = new Label();
             TBNombre = new TextBox();
+            BVenta = new Button();
+            dgvDetalleVenta = new DataGridView();
+            id_producto = new DataGridViewTextBoxColumn();
+            producto_descripcion = new DataGridViewTextBoxColumn();
+            producto_cantidad = new DataGridViewTextBoxColumn();
+            producto_precio = new DataGridViewTextBoxColumn();
+            panel4 = new Panel();
+            BBuscarProducto = new Button();
+            TBDescripcion = new TextBox();
+            LDesc = new Label();
+            TBProducto = new TextBox();
+            LProducto = new Label();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).BeginInit();
-            panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).BeginInit();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // LVentas
@@ -81,7 +84,6 @@
             LVentas.Size = new Size(119, 46);
             LVentas.TabIndex = 1;
             LVentas.Text = "Ventas";
-            LVentas.Click += LVentas_Click;
             // 
             // panel5
             // 
@@ -91,7 +93,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(1440, 86);
             panel5.TabIndex = 6;
-            panel5.Paint += panel5_Paint;
             // 
             // panel6
             // 
@@ -106,7 +107,228 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(1440, 833);
             panel6.TabIndex = 7;
-            panel6.Paint += panel6_Paint;
+            // 
+            // panel3
+            // 
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label7);
+            panel3.Controls.Add(DTPFecha);
+            panel3.Controls.Add(LFecha);
+            panel3.Location = new Point(51, 35);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(550, 133);
+            panel3.TabIndex = 10;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 13F);
+            label7.Location = new Point(42, 75);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 25);
+            label7.TabIndex = 2;
+            label7.Text = "Factura:";
+            // 
+            // DTPFecha
+            // 
+            DTPFecha.Format = DateTimePickerFormat.Short;
+            DTPFecha.Location = new Point(268, 26);
+            DTPFecha.Name = "DTPFecha";
+            DTPFecha.Size = new Size(200, 23);
+            DTPFecha.TabIndex = 1;
+            // 
+            // LFecha
+            // 
+            LFecha.AutoSize = true;
+            LFecha.Font = new Font("Segoe UI", 13F);
+            LFecha.Location = new Point(42, 24);
+            LFecha.Name = "LFecha";
+            LFecha.Size = new Size(61, 25);
+            LFecha.TabIndex = 0;
+            LFecha.Text = "Fecha:";
+            // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(LTelefono);
+            panel2.Controls.Add(TBTelefono);
+            panel2.Controls.Add(BCancelar);
+            panel2.Controls.Add(BAceptar);
+            panel2.Controls.Add(label11);
+            panel2.Controls.Add(TBDniSearch);
+            panel2.Controls.Add(BBuscarCliente);
+            panel2.Controls.Add(button2);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(TBDomicilio);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(TBDni);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(TBApellido);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(TBNombre);
+            panel2.Location = new Point(695, 20);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(651, 462);
+            panel2.TabIndex = 9;
+            // 
+            // LTelefono
+            // 
+            LTelefono.AutoSize = true;
+            LTelefono.Font = new Font("Segoe UI", 13F);
+            LTelefono.Location = new Point(33, 289);
+            LTelefono.Name = "LTelefono";
+            LTelefono.Size = new Size(83, 25);
+            LTelefono.TabIndex = 16;
+            LTelefono.Text = "Telefono:";
+            // 
+            // TBTelefono
+            // 
+            TBTelefono.Enabled = false;
+            TBTelefono.Location = new Point(193, 292);
+            TBTelefono.Name = "TBTelefono";
+            TBTelefono.Size = new Size(313, 23);
+            TBTelefono.TabIndex = 15;
+            // 
+            // BCancelar
+            // 
+            BCancelar.ForeColor = SystemColors.ActiveCaptionText;
+            BCancelar.Location = new Point(357, 346);
+            BCancelar.Name = "BCancelar";
+            BCancelar.Size = new Size(98, 23);
+            BCancelar.TabIndex = 14;
+            BCancelar.Text = "Cancelar";
+            BCancelar.UseVisualStyleBackColor = true;
+            // 
+            // BAceptar
+            // 
+            BAceptar.ForeColor = SystemColors.ActiveCaptionText;
+            BAceptar.Location = new Point(137, 346);
+            BAceptar.Name = "BAceptar";
+            BAceptar.Size = new Size(98, 23);
+            BAceptar.TabIndex = 13;
+            BAceptar.Text = "Aceptar";
+            BAceptar.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 13F);
+            label11.Location = new Point(203, 410);
+            label11.Name = "label11";
+            label11.Size = new Size(47, 25);
+            label11.TabIndex = 12;
+            label11.Text = "DNI:";
+            // 
+            // TBDniSearch
+            // 
+            TBDniSearch.Location = new Point(290, 413);
+            TBDniSearch.Name = "TBDniSearch";
+            TBDniSearch.Size = new Size(216, 23);
+            TBDniSearch.TabIndex = 11;
+            // 
+            // BBuscarCliente
+            // 
+            BBuscarCliente.ForeColor = SystemColors.ActiveCaptionText;
+            BBuscarCliente.Location = new Point(48, 413);
+            BBuscarCliente.Name = "BBuscarCliente";
+            BBuscarCliente.Size = new Size(105, 23);
+            BBuscarCliente.TabIndex = 10;
+            BBuscarCliente.Text = "Buscar Cliente";
+            BBuscarCliente.UseVisualStyleBackColor = true;
+            BBuscarCliente.Click += BBuscarCliente_Click;
+            // 
+            // button2
+            // 
+            button2.ForeColor = SystemColors.ActiveCaptionText;
+            button2.Location = new Point(538, 156);
+            button2.Name = "button2";
+            button2.Size = new Size(105, 25);
+            button2.TabIndex = 9;
+            button2.Text = "Agregar Cliente";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 13F);
+            label6.Location = new Point(33, 238);
+            label6.Name = "label6";
+            label6.Size = new Size(91, 25);
+            label6.TabIndex = 8;
+            label6.Text = "Domicilio:";
+            // 
+            // TBDomicilio
+            // 
+            TBDomicilio.Enabled = false;
+            TBDomicilio.Location = new Point(193, 241);
+            TBDomicilio.Name = "TBDomicilio";
+            TBDomicilio.Size = new Size(313, 23);
+            TBDomicilio.TabIndex = 7;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 13F);
+            label5.Location = new Point(33, 184);
+            label5.Name = "label5";
+            label5.Size = new Size(47, 25);
+            label5.TabIndex = 6;
+            label5.Text = "DNI:";
+            // 
+            // TBDni
+            // 
+            TBDni.Enabled = false;
+            TBDni.Location = new Point(193, 187);
+            TBDni.Name = "TBDni";
+            TBDni.Size = new Size(313, 23);
+            TBDni.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 13F);
+            label4.Location = new Point(33, 134);
+            label4.Name = "label4";
+            label4.Size = new Size(87, 25);
+            label4.TabIndex = 4;
+            label4.Text = "Apellido: ";
+            // 
+            // TBApellido
+            // 
+            TBApellido.Enabled = false;
+            TBApellido.Location = new Point(193, 137);
+            TBApellido.Name = "TBApellido";
+            TBApellido.Size = new Size(313, 23);
+            TBApellido.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13F);
+            label3.Location = new Point(33, 76);
+            label3.Name = "label3";
+            label3.Size = new Size(87, 25);
+            label3.TabIndex = 2;
+            label3.Text = "Nombre: ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15F);
+            label2.Location = new Point(203, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(157, 28);
+            label2.TabIndex = 0;
+            label2.Text = "Datos del cliente";
+            // 
+            // TBNombre
+            // 
+            TBNombre.Enabled = false;
+            TBNombre.Location = new Point(193, 78);
+            TBNombre.Name = "TBNombre";
+            TBNombre.Size = new Size(313, 23);
+            TBNombre.TabIndex = 1;
             // 
             // BVenta
             // 
@@ -117,13 +339,22 @@
             BVenta.TabIndex = 8;
             BVenta.Text = "Realizar venta";
             BVenta.UseVisualStyleBackColor = true;
+            BVenta.Click += BVenta_Click;
             // 
             // dgvDetalleVenta
             // 
             dgvDetalleVenta.AllowUserToAddRows = false;
             dgvDetalleVenta.AllowUserToDeleteRows = false;
             dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_costo });
+            dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_precio });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvDetalleVenta.DefaultCellStyle = dataGridViewCellStyle2;
             dgvDetalleVenta.Location = new Point(944, 481);
             dgvDetalleVenta.Name = "dgvDetalleVenta";
             dgvDetalleVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -145,10 +376,10 @@
             producto_cantidad.HeaderText = "Cantidad";
             producto_cantidad.Name = "producto_cantidad";
             // 
-            // producto_costo
+            // producto_precio
             // 
-            producto_costo.HeaderText = "Precio Costo";
-            producto_costo.Name = "producto_costo";
+            producto_precio.HeaderText = "Precio";
+            producto_precio.Name = "producto_precio";
             // 
             // panel4
             // 
@@ -210,203 +441,6 @@
             LProducto.TabIndex = 0;
             LProducto.Text = "Producto: ";
             // 
-            // panel3
-            // 
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(label7);
-            panel3.Controls.Add(DTPFecha);
-            panel3.Controls.Add(LFecha);
-            panel3.Location = new Point(51, 35);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(550, 133);
-            panel3.TabIndex = 10;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 13F);
-            label7.Location = new Point(42, 75);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 25);
-            label7.TabIndex = 2;
-            label7.Text = "Factura:";
-            // 
-            // DTPFecha
-            // 
-            DTPFecha.Format = DateTimePickerFormat.Short;
-            DTPFecha.Location = new Point(268, 26);
-            DTPFecha.Name = "DTPFecha";
-            DTPFecha.Size = new Size(200, 23);
-            DTPFecha.TabIndex = 1;
-            // 
-            // LFecha
-            // 
-            LFecha.AutoSize = true;
-            LFecha.Font = new Font("Segoe UI", 13F);
-            LFecha.Location = new Point(42, 24);
-            LFecha.Name = "LFecha";
-            LFecha.Size = new Size(61, 25);
-            LFecha.TabIndex = 0;
-            LFecha.Text = "Fecha:";
-            // 
-            // panel2
-            // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(BCancelar);
-            panel2.Controls.Add(BAceptar);
-            panel2.Controls.Add(label11);
-            panel2.Controls.Add(textBox1);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(TBDomicilio);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(TBDni);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(TBApellido);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(TBNombre);
-            panel2.Location = new Point(695, 20);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(651, 406);
-            panel2.TabIndex = 9;
-            // 
-            // BCancelar
-            // 
-            BCancelar.ForeColor = SystemColors.ActiveCaptionText;
-            BCancelar.Location = new Point(357, 293);
-            BCancelar.Name = "BCancelar";
-            BCancelar.Size = new Size(98, 23);
-            BCancelar.TabIndex = 14;
-            BCancelar.Text = "Cancelar";
-            BCancelar.UseVisualStyleBackColor = true;
-            // 
-            // BAceptar
-            // 
-            BAceptar.ForeColor = SystemColors.ActiveCaptionText;
-            BAceptar.Location = new Point(137, 293);
-            BAceptar.Name = "BAceptar";
-            BAceptar.Size = new Size(98, 23);
-            BAceptar.TabIndex = 13;
-            BAceptar.Text = "Aceptar";
-            BAceptar.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 13F);
-            label11.Location = new Point(203, 357);
-            label11.Name = "label11";
-            label11.Size = new Size(47, 25);
-            label11.TabIndex = 12;
-            label11.Text = "DNI:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(290, 360);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(216, 23);
-            textBox1.TabIndex = 11;
-            // 
-            // button3
-            // 
-            button3.ForeColor = SystemColors.ActiveCaptionText;
-            button3.Location = new Point(48, 360);
-            button3.Name = "button3";
-            button3.Size = new Size(105, 23);
-            button3.TabIndex = 10;
-            button3.Text = "Buscar Cliente";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.ForeColor = SystemColors.ActiveCaptionText;
-            button2.Location = new Point(538, 156);
-            button2.Name = "button2";
-            button2.Size = new Size(105, 25);
-            button2.TabIndex = 9;
-            button2.Text = "Agregar Cliente";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 13F);
-            label6.Location = new Point(33, 238);
-            label6.Name = "label6";
-            label6.Size = new Size(91, 25);
-            label6.TabIndex = 8;
-            label6.Text = "Domicilio:";
-            // 
-            // TBDomicilio
-            // 
-            TBDomicilio.Location = new Point(193, 241);
-            TBDomicilio.Name = "TBDomicilio";
-            TBDomicilio.Size = new Size(313, 23);
-            TBDomicilio.TabIndex = 7;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 13F);
-            label5.Location = new Point(33, 184);
-            label5.Name = "label5";
-            label5.Size = new Size(47, 25);
-            label5.TabIndex = 6;
-            label5.Text = "DNI:";
-            // 
-            // TBDni
-            // 
-            TBDni.Location = new Point(193, 187);
-            TBDni.Name = "TBDni";
-            TBDni.Size = new Size(313, 23);
-            TBDni.TabIndex = 5;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 13F);
-            label4.Location = new Point(33, 134);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 25);
-            label4.TabIndex = 4;
-            label4.Text = "Apellido: ";
-            // 
-            // TBApellido
-            // 
-            TBApellido.Location = new Point(193, 137);
-            TBApellido.Name = "TBApellido";
-            TBApellido.Size = new Size(313, 23);
-            TBApellido.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13F);
-            label3.Location = new Point(33, 76);
-            label3.Name = "label3";
-            label3.Size = new Size(87, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Nombre: ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 15F);
-            label2.Location = new Point(203, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(157, 28);
-            label2.TabIndex = 0;
-            label2.Text = "Datos del cliente";
-            // 
-            // TBNombre
-            // 
-            TBNombre.Location = new Point(193, 78);
-            TBNombre.Name = "TBNombre";
-            TBNombre.Size = new Size(313, 23);
-            TBNombre.TabIndex = 1;
-            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -421,13 +455,13 @@
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDetalleVenta).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -436,10 +470,6 @@
         private Panel panel5;
         private Panel panel6;
         private DataGridView dgvDetalleVenta;
-        private DataGridViewTextBoxColumn id_producto;
-        private DataGridViewTextBoxColumn producto_descripcion;
-        private DataGridViewTextBoxColumn producto_cantidad;
-        private DataGridViewTextBoxColumn producto_costo;
         private Panel panel4;
         private Button BBuscarProducto;
         private TextBox TBDescripcion;
@@ -455,8 +485,8 @@
         private Button BCancelar;
         private Button BAceptar;
         private Label label11;
-        private TextBox textBox1;
-        private Button button3;
+        private TextBox TBDniSearch;
+        private Button BBuscarCliente;
         private Button button2;
         private Label label6;
         private TextBox TBDomicilio;
@@ -467,5 +497,11 @@
         private Label label3;
         private Label label2;
         private TextBox TBNombre;
+        private DataGridViewTextBoxColumn id_producto;
+        private DataGridViewTextBoxColumn producto_descripcion;
+        private DataGridViewTextBoxColumn producto_cantidad;
+        private DataGridViewTextBoxColumn producto_precio;
+        private Label LTelefono;
+        private TextBox TBTelefono;
     }
 }

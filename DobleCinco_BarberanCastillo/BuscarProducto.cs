@@ -20,12 +20,13 @@ namespace DobleCinco_BarberanCastillo
         public decimal PrecioCostoProducto;
 
         string connectionString = ConfigurationManager.ConnectionStrings["doble_cinco"].ConnectionString;
-        private string filtroBusqueda;
+        private string filtro_nombre, filtro_descripcion;
 
-        public BuscarProducto(string filtro)
+        public BuscarProducto(string filtro, string filtro2)
         {
             InitializeComponent();
-            this.filtroBusqueda = filtro;
+            this.filtro_nombre = filtro;
+            this.filtro_descripcion = filtro2;
         }
 
         private void BuscarProducto_Load(object sender, EventArgs e)
@@ -43,16 +44,17 @@ namespace DobleCinco_BarberanCastillo
             {
                 string query = @"SELECT id_producto AS ID, 
                                         descripcion_producto AS Descripción, 
-                                        precio_producto AS 'Precio Costo' 
+                                        precio_producto AS 'Precio' 
                                  FROM Producto 
-                                 WHERE descripcion_producto LIKE @filtro OR nombre_producto LIKE @filtro"; // Buscamos por descripción o por un ID de texto si lo tuvieras
+                                 WHERE descripcion_producto LIKE @filtro_descripcion OR nombre_producto LIKE @filtro_nombre"; // Buscamos por descripción o por un ID de texto si lo tuvieras
 
                 try
                 {
                     conn.Open();
                     var da = new SqlDataAdapter(query, conn);
                     // Usamos el filtro que recibimos en el constructor
-                    da.SelectCommand.Parameters.AddWithValue("@filtro", "%" + this.filtroBusqueda + "%");
+                    da.SelectCommand.Parameters.AddWithValue("@filtro_descripcion", "%" + this.filtro_descripcion + "%");
+                    da.SelectCommand.Parameters.AddWithValue("@filtro_nombre", this.filtro_nombre + "%");
 
                     var dt = new DataTable();
                     da.Fill(dt);
@@ -74,7 +76,7 @@ namespace DobleCinco_BarberanCastillo
                 var fila = dgvProductos.CurrentRow;
                 IdProductoSeleccionado = Convert.ToInt32(fila.Cells["ID"].Value);
                 DescripcionProducto = fila.Cells["Descripción"].Value.ToString();
-                PrecioCostoProducto = Convert.ToDecimal(fila.Cells["Precio Costo"].Value);
+                PrecioCostoProducto = Convert.ToDecimal(fila.Cells["Precio"].Value);
 
                 // Dispara el evento
                 ProductoSeleccionado?.Invoke(IdProductoSeleccionado, DescripcionProducto, PrecioCostoProducto);
