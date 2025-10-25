@@ -166,7 +166,7 @@
             // CBEstadoSearch
             // 
             CBEstadoSearch.FormattingEnabled = true;
-            CBEstadoSearch.Items.AddRange(new object[] { "Inactivo", "Activo" });
+            CBEstadoSearch.Items.AddRange(new object[] { "Todos", "Activo", "Inactivo" });
             CBEstadoSearch.Location = new Point(987, 35);
             CBEstadoSearch.Name = "CBEstadoSearch";
             CBEstadoSearch.Size = new Size(135, 23);
@@ -435,7 +435,7 @@
             // CBRolSearch
             // 
             CBRolSearch.FormattingEnabled = true;
-            CBRolSearch.Items.AddRange(new object[] { "Gerente", "Administrador", "Vendedor" });
+            CBRolSearch.Items.AddRange(new object[] { "Todos", "Gerente", "Administrador", "Vendedor" });
             CBRolSearch.Location = new Point(738, 35);
             CBRolSearch.Name = "CBRolSearch";
             CBRolSearch.Size = new Size(135, 23);

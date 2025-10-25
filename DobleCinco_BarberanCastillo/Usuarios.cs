@@ -55,9 +55,11 @@ namespace DobleCinco_BarberanCastillo
                         u.contraseña_usuario AS [Contraseña],
                         u.dni_usuario AS [DNI],
                         u.direccion_usuario AS [Dirección],
-                        u.id_perfil AS [Perfil],
+                        u.id_perfil AS [IdPerfil],           -- Agrega el ID del perfil
+                        p.perfil_descripcion AS [Perfil],    -- Mantén la descripción para mostrar
                         u.id_estado AS [Estado]
-                     FROM Usuario u";
+                     FROM Usuario u
+                     INNER JOIN perfil p ON u.id_perfil = p.id_perfil";
 
             /*var parametros = new List<SqlParameter>();
             var condiciones = new List<string>();
@@ -108,6 +110,9 @@ namespace DobleCinco_BarberanCastillo
             // Oculta la columna id_estado
             if (dgvUsuarios.Columns.Contains("Estado"))
                 dgvUsuarios.Columns["Estado"].Visible = false;
+
+            if (dgvUsuarios.Columns.Contains("IdPerfil"))
+                dgvUsuarios.Columns["IdPerfil"].Visible = false;
         }
 
         private void BAgregar_Click(object sender, EventArgs e)
@@ -528,7 +533,7 @@ namespace DobleCinco_BarberanCastillo
                 TContraseña.Text = fila.Cells["Contraseña"].Value.ToString();
                 TDni.Text = fila.Cells["DNI"].Value.ToString();
                 TDireccion.Text = fila.Cells["Dirección"].Value.ToString();
-                cuPerfil2.IdSeleccionado = Convert.ToInt32(fila.Cells["Perfil"].Value);
+                cuPerfil2.IdSeleccionado = Convert.ToInt32(fila.Cells["IdPerfil"].Value);
                 // DTNacimiento no se está cargando porque no está en el DataGridView
 
             }
@@ -605,55 +610,55 @@ namespace DobleCinco_BarberanCastillo
         {
             try
             {
-                // --- 1. Recolectar valores de los filtros ---
                 string nombreFiltro = TBNombreSearch.Text.Trim();
                 string dniFiltro = TBDniSearch.Text.Trim();
-                int perfilFiltro = Convert.ToInt32(CBRolSearch.SelectedValue);
-                int estadoFiltro = 0; 
-                if (CBEstadoSearch.SelectedIndex == 1) estadoFiltro = 1; // Activo
-                else if (CBEstadoSearch.SelectedIndex == 2) estadoFiltro = 0; // Inactivo
+                int perfilFiltro = CBRolSearch.SelectedIndex; // Asume que 0 es "Todos"
+                int estadoFiltro = CBEstadoSearch.SelectedIndex; // 0: Todos, 1: Activo, 2: Inactivo
 
-                // --- 2. Construir la consulta dinámica ---
                 string query = @"SELECT 
-                        u.id_usuario AS [ID], 
-                        u.nombre_usuario AS [Nombre], 
-                        u.apellido_usuario AS [Apellido], 
-                        u.correo_usuario AS [Correo], 
-                        u.telefono_usuario AS [Teléfono],
-                        u.contraseña_usuario AS [Contraseña],
-                        u.dni_usuario AS [DNI],
-                        u.direccion_usuario AS [Dirección],
-                        u.id_perfil AS [Perfil],
-                        e.estado_descripcion AS [Estado] 
-                     FROM Usuario u
-                     INNER JOIN Estado e ON u.id_estado = e.id_estado"; 
+                u.id_usuario AS [ID], 
+                u.nombre_usuario AS [Nombre], 
+                u.apellido_usuario AS [Apellido], 
+                u.correo_usuario AS [Correo], 
+                u.telefono_usuario AS [Teléfono],
+                u.contraseña_usuario AS [Contraseña],
+                u.dni_usuario AS [DNI],
+                u.direccion_usuario AS [Dirección],
+                u.id_perfil AS [IdPerfil],
+                p.perfil_descripcion AS [Perfil],
+                u.id_estado AS [Estado]
+                FROM Usuario u
+                INNER JOIN perfil p ON u.id_perfil = p.id_perfil";
 
+                List<string> condiciones = new();
                 SqlCommand cmd = new SqlCommand();
 
                 if (!string.IsNullOrEmpty(nombreFiltro))
                 {
-                    query += " AND U.nombre_usuario LIKE @Nombre";
+                    condiciones.Add("u.nombre_usuario LIKE @Nombre");
                     cmd.Parameters.AddWithValue("@Nombre", "%" + nombreFiltro + "%");
                 }
                 if (!string.IsNullOrEmpty(dniFiltro))
                 {
-                    query += " AND U.dni_usuario LIKE @Dni";
+                    condiciones.Add("u.dni_usuario LIKE @Dni");
                     cmd.Parameters.AddWithValue("@Dni", "%" + dniFiltro + "%");
                 }
-                if (perfilFiltro > 0)
+                if (perfilFiltro > 0) // 0 es "Todos"
                 {
-                    query += " AND U.id_perfil = @Perfil";
+                    condiciones.Add("u.id_perfil = @Perfil");
                     cmd.Parameters.AddWithValue("@Perfil", perfilFiltro);
                 }
-                if (estadoFiltro > -1)
+                if (estadoFiltro > 0) // 0 es "Todos", 1: Activo, 2: Inactivo
                 {
-                    query += " AND U.id_estado = @Estado";
-                    cmd.Parameters.AddWithValue("@Estado", estadoFiltro);
+                    condiciones.Add("u.id_estado = @Estado");
+                    cmd.Parameters.AddWithValue("@Estado", estadoFiltro == 1 ? 1 : 0);
                 }
+
+                if (condiciones.Count > 0)
+                    query += " WHERE " + string.Join(" AND ", condiciones);
 
                 cmd.CommandText = query;
 
-                // --- 3. Ejecutar la consulta y mostrar resultados ---
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = conn;
@@ -667,6 +672,9 @@ namespace DobleCinco_BarberanCastillo
             {
                 MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (dgvUsuarios.Columns.Contains("Estado"))
+                dgvUsuarios.Columns["Estado"].Visible = false;
         }
 
         // Evento para el botón "Limpiar Filtros"
@@ -696,9 +704,9 @@ namespace DobleCinco_BarberanCastillo
         private void dgvUsuarios_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             var dgv = dgvUsuarios;
-            if (dgv.Rows[e.RowIndex].Cells["id_estado"].Value != null)
+            if (dgv.Rows[e.RowIndex].Cells["Estado"].Value != null)
             {
-                if (int.TryParse(dgv.Rows[e.RowIndex].Cells["id_estado"].Value.ToString(), out int estado) && estado == 0)
+                if (int.TryParse(dgv.Rows[e.RowIndex].Cells["Estado"].Value.ToString(), out int estado) && estado == 0)
                 {
                     dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
                     dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
