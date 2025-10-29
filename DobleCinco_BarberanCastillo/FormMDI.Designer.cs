@@ -32,6 +32,8 @@ namespace DobleCinco_BarberanCastillo
         private void InitializeComponent()
         {
             menuStrip1 = new MenuStrip();
+            TSTB_Nombre = new ToolStripTextBox();
+            TSTB_Rol = new ToolStripTextBox();
             usuarioToolStripMenuItem = new ToolStripMenuItem();
             productosToolStripMenuItem = new ToolStripMenuItem();
             ventasToolStripMenuItem = new ToolStripMenuItem();
@@ -46,12 +48,26 @@ namespace DobleCinco_BarberanCastillo
             // 
             menuStrip1.BackColor = Color.LightGreen;
             menuStrip1.Dock = DockStyle.Left;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSTB_Nombre, TSTB_Rol, usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(134, 450);
+            menuStrip1.Size = new Size(134, 456);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // TSTB_Nombre
+            // 
+            TSTB_Nombre.BackColor = Color.PaleGreen;
+            TSTB_Nombre.Name = "TSTB_Nombre";
+            TSTB_Nombre.Size = new Size(119, 23);
+            TSTB_Nombre.TextBoxTextAlign = HorizontalAlignment.Center;
+            // 
+            // TSTB_Rol
+            // 
+            TSTB_Rol.BackColor = Color.PaleGreen;
+            TSTB_Rol.Name = "TSTB_Rol";
+            TSTB_Rol.Size = new Size(119, 23);
+            TSTB_Rol.TextBoxTextAlign = HorizontalAlignment.Center;
             // 
             // usuarioToolStripMenuItem
             // 
@@ -141,7 +157,7 @@ namespace DobleCinco_BarberanCastillo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(909, 450);
+            ClientSize = new Size(909, 456);
             Controls.Add(menuStrip1);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -165,5 +181,7 @@ namespace DobleCinco_BarberanCastillo
         private ToolStripMenuItem RUsuarioToolStripMenuItem;
         private ToolStripMenuItem RVentasToolStripMenuItem;
         private ToolStripMenuItem cerrarSesionToolStripMenuItem;
+        private ToolStripTextBox TSTB_Nombre;
+        private ToolStripTextBox TSTB_Rol;
     }
 }

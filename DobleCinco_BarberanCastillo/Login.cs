@@ -54,6 +54,16 @@ namespace DobleCinco_BarberanCastillo
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
+                    Models.Sesion.UsuarioActual = new Models.UsuarioSesion
+                    {
+                        Id = Convert.ToInt32(dr["id_usuario"]),
+                        Nombre = dr["nombre_usuario"]?.ToString() ?? string.Empty,
+                        Apellido = dr["apellido_usuario"]?.ToString() ?? string.Empty,
+                        Dni = dr["dni_usuario"]?.ToString() ?? string.Empty,
+                        PerfilId = Convert.ToInt32(dr["id_perfil"]),
+                        rol = Convert.ToInt32(dr["id_perfil"])
+                    };
+
                     int idPerfil = Convert.ToInt32(dr["id_perfil"]); // Asegúrate de que la consulta traiga este campo
                     FormMDI mainForm = new FormMDI(idPerfil);
                     mainForm.Show();

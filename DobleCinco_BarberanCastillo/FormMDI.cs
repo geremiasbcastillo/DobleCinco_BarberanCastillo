@@ -80,6 +80,19 @@ namespace DobleCinco_BarberanCastillo
 
         private void FormMDI_Load(object sender, EventArgs e)
         {
+            var u = Models.Sesion.UsuarioActual;
+            if (u != null)
+            {
+                TSTB_Nombre.Text = $"{u.Nombre} {u.Apellido}";
+                TSTB_Rol.Text = u.rol switch
+                {
+                    1 => "Gerente",
+                    2 => "Administrador",
+                    3 => "Vendedor",
+                    _ => "Desconocido"
+                };
+            }
+
             usuarioToolStripMenuItem.Enabled = perfilUsuario == 1 || perfilUsuario == 2;
             productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador)
             ventasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
@@ -167,5 +180,6 @@ namespace DobleCinco_BarberanCastillo
             this.Hide();
 
         }
+
     }
 }
