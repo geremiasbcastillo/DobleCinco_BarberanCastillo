@@ -42,9 +42,10 @@ namespace DobleCinco_BarberanCastillo
         {
             using (var conn = new SqlConnection(connectionString))
             {
-                string query = @"SELECT id_producto AS ID, 
+                string query = @"SELECT id_producto AS 'ID', 
                                         descripcion_producto AS Descripción, 
-                                        precio_producto AS 'Precio' 
+                                        precio_producto AS 'Precio',
+                                        cantidad_producto AS 'Cantidad'
                                  FROM Producto 
                                  WHERE descripcion_producto LIKE @filtro_descripcion OR nombre_producto LIKE @filtro_nombre"; // Buscamos por descripción o por un ID de texto si lo tuvieras
 

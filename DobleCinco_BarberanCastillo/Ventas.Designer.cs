@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             LVentas = new Label();
             panel5 = new Panel();
@@ -107,6 +108,7 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(1440, 833);
             panel6.TabIndex = 7;
+            panel6.Paint += panel6_Paint;
             // 
             // panel3
             // 
@@ -347,16 +349,20 @@
             dgvDetalleVenta.AllowUserToDeleteRows = false;
             dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_precio });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvDetalleVenta.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvDetalleVenta.Location = new Point(944, 481);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dgvDetalleVenta.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvDetalleVenta.Location = new Point(949, 498);
             dgvDetalleVenta.Name = "dgvDetalleVenta";
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.DodgerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dgvDetalleVenta.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvDetalleVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDetalleVenta.Size = new Size(444, 122);
             dgvDetalleVenta.TabIndex = 7;
@@ -389,7 +395,7 @@
             panel4.Controls.Add(LDesc);
             panel4.Controls.Add(TBProducto);
             panel4.Controls.Add(LProducto);
-            panel4.Location = new Point(13, 481);
+            panel4.Location = new Point(18, 498);
             panel4.Name = "panel4";
             panel4.Size = new Size(893, 122);
             panel4.TabIndex = 6;

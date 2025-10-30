@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms;// Reemplaza el using al inicio del archivo
 
 namespace DobleCinco_BarberanCastillo
 {
     public partial class Ventas : Form
     {
+
         string connectionString = ConfigurationManager.ConnectionStrings["doble_cinco"].ConnectionString;
+        int id_vendedor;
         public Ventas()
         {
             InitializeComponent();
@@ -25,7 +27,11 @@ namespace DobleCinco_BarberanCastillo
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-
+            var vendedor = Models.Sesion.UsuarioActual;
+            if (vendedor != null)
+            {
+                id_vendedor = vendedor.Id;
+            }
         }
 
         private void TBVendedor_KeyPress(object sender, KeyPressEventArgs e)
@@ -121,10 +127,8 @@ namespace DobleCinco_BarberanCastillo
 
         private void BVenta_Click(object sender, EventArgs e)
         {
-            /*
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection outerConn = new SqlConnection(connectionString)) // Renombrado a 'outerConn'
             {
-
                 try
                 {
                     if (dgvDetalleVenta.Rows.Count == 0 || dgvDetalleVenta.Rows[0].IsNewRow)
@@ -132,19 +136,117 @@ namespace DobleCinco_BarberanCastillo
                         MessageBox.Show("Debe agregar al menos un producto a la venta.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
-                    if(dgvDetalleVenta.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToInt32(row.Cells["producto_cantidad"].Value) <= 0))
-                    {
-                        MessageBox.Show("La cantidad de los productos debe ser mayor a cero.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    if(dgvDetalleVenta.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToInt32(row.Cells["producto_cantidad"].Value) > ))
-                    {
-                        MessageBox.Show("La cantidad de un producto excede el stock disponible.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    else
-                    {
 
+                    // Validar cantidades > 0
+                    foreach (DataGridViewRow row in dgvDetalleVenta.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+                        if (!int.TryParse(row.Cells["producto_cantidad"].Value?.ToString(), out int qty) || qty <= 0)
+                        {
+                            MessageBox.Show("La cantidad de los productos debe ser mayor a cero.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                    }
+
+                    // Obtener id_cliente a partir del DNI mostrado en el formulario
+                    if (!int.TryParse(TBDni.Text, out int dniCliente) || dniCliente == 0)
+                    {
+                        MessageBox.Show("Cliente no seleccionado o DNI inválido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    using (var innerConn = new SqlConnection(connectionString)) // Renombrado a 'innerConn'
+                    {
+                        innerConn.Open();
+                        using (var tran = innerConn.BeginTransaction())
+                        {
+                            try
+                            {
+                                // Buscar id_cliente por DNI
+                                int idCliente;
+                                using (var cmd = new SqlCommand("SELECT id_cliente FROM cliente WHERE dni_cliente = @dni", innerConn, tran))
+                                {
+                                    cmd.Parameters.AddWithValue("@dni", dniCliente);
+                                    var obj = cmd.ExecuteScalar();
+                                    if (obj == null)
+                                    {
+                                        MessageBox.Show("Cliente no encontrado en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        tran.Rollback();
+                                        return;
+                                    }
+                                    idCliente = Convert.ToInt32(obj);
+                                }
+
+                                // Insertar venta y obtener id_venta
+                                int idVenta;
+                                int idForma = 4;
+                                using (var cmd = new SqlCommand("INSERT INTO venta (id_usuarios, id_forma, id_cliente) VALUES (@usuario, @forma, @cliente); SELECT CAST(SCOPE_IDENTITY() AS INT);", innerConn, tran))
+                                {
+                                    cmd.Parameters.AddWithValue("@usuario", id_vendedor);
+                                    cmd.Parameters.AddWithValue("@forma", idForma);
+                                    cmd.Parameters.AddWithValue("@cliente", idCliente);
+                                    idVenta = (int)cmd.ExecuteScalar()!;
+                                }
+
+                                using (var cmdDetalle = new SqlCommand("", innerConn, tran))
+                                using (var cmdUpdate = new SqlCommand("", innerConn, tran))
+                                {
+                                    cmdDetalle.CommandText = @"INSERT INTO detalle_ventas (cantidad_detalle, precio_detalle, id_producto, id_ventas, id_cliente)
+                                               VALUES (@cantidad, @precio, @idproducto, @idventa, @idcliente)";
+                                    cmdDetalle.Parameters.Add(new SqlParameter("@cantidad", System.Data.SqlDbType.Int));
+                                    cmdDetalle.Parameters.Add(new SqlParameter("@precio", System.Data.SqlDbType.Float));
+                                    cmdDetalle.Parameters.Add(new SqlParameter("@idproducto", System.Data.SqlDbType.Int));
+                                    cmdDetalle.Parameters.AddWithValue("@idventa", idVenta);
+                                    cmdDetalle.Parameters.AddWithValue("@idcliente", idCliente);
+
+                                    cmdUpdate.CommandText = @"UPDATE producto
+                                      SET cantidad_producto = cantidad_producto - @qty
+                                      WHERE id_producto = @idproduct AND cantidad_producto >= @qty";
+
+                                    cmdUpdate.Parameters.Add(new SqlParameter("@qty", System.Data.SqlDbType.Int));
+                                    cmdUpdate.Parameters.Add(new SqlParameter("@idproduct", System.Data.SqlDbType.Int));
+
+                                    foreach (DataGridViewRow row in dgvDetalleVenta.Rows)
+                                    {
+                                        if (row.IsNewRow) continue;
+                                        int idProd = Convert.ToInt32(row.Cells["id_producto"].Value);
+                                        int cantidad = Convert.ToInt32(row.Cells["producto_cantidad"].Value);
+                                        decimal precio = Convert.ToDecimal(row.Cells["producto_precio"].Value);
+
+                                        cmdUpdate.Parameters["@qty"].Value = cantidad;
+                                        cmdUpdate.Parameters["@idproduct"].Value = idProd;
+                                        int updated = cmdUpdate.ExecuteNonQuery();
+                                        if (updated == 0)
+                                        {
+                                            MessageBox.Show($"Stock insuficiente para el producto ID {idProd}.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            tran.Rollback();
+                                            return;
+                                        }
+
+                                        cmdDetalle.Parameters["@cantidad"].Value = cantidad;
+                                        cmdDetalle.Parameters["@precio"].Value = (double)precio;
+                                        cmdDetalle.Parameters["@idproducto"].Value = idProd;
+                                        cmdDetalle.ExecuteNonQuery();
+                                    }
+                                }
+
+                                tran.Commit();
+                                MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Limpiar UI si procede
+                                dgvDetalleVenta.Rows.Clear();
+                                TBNombre.Clear();
+                                TBApellido.Clear();
+                                TBDni.Clear();
+                                TBDomicilio.Clear();
+                                TBTelefono.Clear();
+                            }
+                            catch (Exception ex)
+                            {
+                                try { tran.Rollback(); } catch { }
+                                MessageBox.Show("Error al guardar la venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -152,7 +254,6 @@ namespace DobleCinco_BarberanCastillo
                     MessageBox.Show("Error al realizar venta: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            */
         }
 
         private void BBuscarCliente_Click(object sender, EventArgs e)
@@ -173,6 +274,11 @@ namespace DobleCinco_BarberanCastillo
             formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
 
             formBusqueda.Show();
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
