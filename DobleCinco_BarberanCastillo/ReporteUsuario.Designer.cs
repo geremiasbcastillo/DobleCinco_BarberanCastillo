@@ -32,9 +32,9 @@
             LVentas = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            comboBox1 = new ComboBox();
             label1 = new Label();
             button1 = new Button();
-            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -80,6 +80,15 @@
             panel3.Size = new Size(530, 268);
             panel3.TabIndex = 0;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Gerente", "Administrador", "Dueño", "Todos" });
+            comboBox1.Location = new Point(254, 52);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 7;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -99,15 +108,6 @@
             button1.TabIndex = 5;
             button1.Text = "Generar";
             button1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Gerente", "Administrador", "Dueño", "Todos" });
-            comboBox1.Location = new Point(254, 52);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 7;
             // 
             // ReporteUsuario
             // 

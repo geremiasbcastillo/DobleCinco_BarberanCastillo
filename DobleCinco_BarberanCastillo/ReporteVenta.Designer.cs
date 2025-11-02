@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             LVentas = new Label();
             panel2 = new Panel();
+            reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             panel3 = new Panel();
             button1 = new Button();
             dateTimePicker2 = new DateTimePicker();
@@ -38,9 +40,11 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            bindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -67,11 +71,31 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 192, 0);
+            panel2.Controls.Add(reportViewer1);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(-7, 93);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1629, 539);
+            panel2.Size = new Size(1629, 1071);
             panel2.TabIndex = 1;
+            panel2.Paint += panel2_Paint;
+            // 
+            // reportViewer1
+            // 
+            reportViewer1.BackColor = Color.Green;
+            reportViewer1.Location = new Point(269, 211);
+            reportViewer1.Name = "reportViewer1";
+            reportViewer1.ServerReport.BearerToken = null;
+            reportViewer1.ShowBackButton = false;
+            reportViewer1.ShowExportButton = false;
+            reportViewer1.ShowFindControls = false;
+            reportViewer1.ShowPageNavigationControls = false;
+            reportViewer1.ShowPrintButton = false;
+            reportViewer1.ShowRefreshButton = false;
+            reportViewer1.ShowStopButton = false;
+            reportViewer1.ShowToolBar = false;
+            reportViewer1.ShowZoomControl = false;
+            reportViewer1.Size = new Size(514, 309);
+            reportViewer1.TabIndex = 1;
             // 
             // panel3
             // 
@@ -82,9 +106,9 @@
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(582, 76);
+            panel3.Location = new Point(53, 9);
             panel3.Name = "panel3";
-            panel3.Size = new Size(530, 268);
+            panel3.Size = new Size(372, 106);
             panel3.TabIndex = 0;
             // 
             // button1
@@ -147,11 +171,15 @@
             label1.TabIndex = 0;
             label1.Text = "--- Fecha ---";
             // 
+            // bindingSource1
+            // 
+            bindingSource1.CurrentChanged += bindingSource1_CurrentChanged;
+            // 
             // ReporteVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1608, 622);
+            ClientSize = new Size(1608, 1025);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ReporteVenta";
@@ -161,6 +189,7 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
 
@@ -176,5 +205,7 @@
         private DateTimePicker dateTimePicker2;
         private DateTimePicker dateTimePicker1;
         private Label label3;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private BindingSource bindingSource1;
     }
 }

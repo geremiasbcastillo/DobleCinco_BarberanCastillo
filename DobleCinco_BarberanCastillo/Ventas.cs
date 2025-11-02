@@ -210,6 +210,7 @@ namespace DobleCinco_BarberanCastillo
                                     {
                                         if (row.IsNewRow) continue;
                                         int idProd = Convert.ToInt32(row.Cells["id_producto"].Value);
+                                        string nombreProd = row.Cells["producto_descripcion"].Value.ToString();
                                         int cantidad = Convert.ToInt32(row.Cells["producto_cantidad"].Value);
                                         decimal precio = Convert.ToDecimal(row.Cells["producto_precio"].Value);
 
@@ -218,7 +219,7 @@ namespace DobleCinco_BarberanCastillo
                                         int updated = cmdUpdate.ExecuteNonQuery();
                                         if (updated == 0)
                                         {
-                                            MessageBox.Show($"Stock insuficiente para el producto ID {idProd}.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                            MessageBox.Show($"Stock insuficiente para el producto {nombreProd}.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                             tran.Rollback();
                                             return;
                                         }
@@ -274,11 +275,6 @@ namespace DobleCinco_BarberanCastillo
             formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
 
             formBusqueda.Show();
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

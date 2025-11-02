@@ -41,6 +41,7 @@ namespace DobleCinco_BarberanCastillo
             RUsuarioToolStripMenuItem = new ToolStripMenuItem();
             RVentasToolStripMenuItem = new ToolStripMenuItem();
             cerrarSesionToolStripMenuItem = new ToolStripMenuItem();
+            backUpToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,7 +49,7 @@ namespace DobleCinco_BarberanCastillo
             // 
             menuStrip1.BackColor = Color.LightGreen;
             menuStrip1.Dock = DockStyle.Left;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSTB_Nombre, TSTB_Rol, usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSTB_Nombre, TSTB_Rol, usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem, backUpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(134, 456);
@@ -153,6 +154,15 @@ namespace DobleCinco_BarberanCastillo
             cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             cerrarSesionToolStripMenuItem.Click += cerrarSesionToolStripMenuItem_Click;
             // 
+            // backUpToolStripMenuItem
+            // 
+            backUpToolStripMenuItem.Font = new Font("Segoe UI", 11F);
+            backUpToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
+            backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            backUpToolStripMenuItem.Size = new Size(121, 24);
+            backUpToolStripMenuItem.Text = "Back Up";
+            backUpToolStripMenuItem.Click += backUpToolStripMenuItem_Click;
+            // 
             // FormMDI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -183,5 +193,6 @@ namespace DobleCinco_BarberanCastillo
         private ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private ToolStripTextBox TSTB_Nombre;
         private ToolStripTextBox TSTB_Rol;
+        private ToolStripMenuItem backUpToolStripMenuItem;
     }
 }

@@ -181,5 +181,26 @@ namespace DobleCinco_BarberanCastillo
 
         }
 
+        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm is BackUp)
+                {
+                    frm.BringToFront();
+                    frm.Focus();
+                    return;
+                }
+                else
+                {
+                    frm.Close();
+                }
+            }
+            BackUp bup = new BackUp();
+            bup.MdiParent = this;
+            bup.StartPosition = FormStartPosition.Manual;
+            bup.Location = new Point(0, 0);
+            bup.Show();
+        }
     }
 }
