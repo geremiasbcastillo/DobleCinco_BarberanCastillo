@@ -61,46 +61,7 @@ namespace DobleCinco_BarberanCastillo
                      FROM Usuario u
                      INNER JOIN perfil p ON u.id_perfil = p.id_perfil";
 
-            /*var parametros = new List<SqlParameter>();
-            var condiciones = new List<string>();
-
-            // 1. Filtrar por Nombre (si se proporcionó)
-            if (!string.IsNullOrWhiteSpace(TBNombreSearch.Text))
-            {
-                condiciones.Add("u.nombre_usuario LIKE @Nombre");
-                parametros.Add(new SqlParameter("@Nombre", "%" + TBNombreSearch.Text + "%"));
-            }
-
-            // 2. Filtrar por DNI (si se proporcionó)
-            if (!string.IsNullOrWhiteSpace(TBDniSearch.Text))
-            {
-                condiciones.Add("u.dni_usuario LIKE @Dni");
-                parametros.Add(new SqlParameter("@Dni", "%" + TBDniSearch.Text + "%"));
-            }
-
-            // 3. Filtrar por Rol/Perfil (si se seleccionó uno válido)
-            if (CBRolSearch.SelectedIndex > 0)
-            {
-                condiciones.Add("u.id_perfil = @IdPerfil");
-                parametros.Add(new SqlParameter("@IdPerfil", CBRolSearch.SelectedIndex));
-            }
-
-            // 3. Filtrar por Estado (si se seleccionó uno válido)
-            if (CBEstadoSearch.SelectedIndex > -1)
-            {
-                condiciones.Add("u.id_estado = @EstadoUsuario");
-                parametros.Add(new SqlParameter("@EstadoUsuario", CBEstadoSearch.SelectedIndex));
-            }
-
-            // Si hay alguna condición, se agrega el WHERE a la consulta
-            if (condiciones.Any())
-            {
-                query += " WHERE " + string.Join(" AND ", condiciones);
-            }
-            */
             var da = new SqlDataAdapter(query, conn);
-            /*da.SelectCommand.Parameters.AddRange(parametros.ToArray());
-            */
             var dt = new DataTable();
             da.Fill(dt);
             dgvUsuarios.DataSource = null;
