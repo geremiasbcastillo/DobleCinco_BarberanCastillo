@@ -50,6 +50,7 @@
             BCancelar.TabIndex = 4;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
+            BCancelar.Click += BCancelar_Click;
             // 
             // BAceptar
             // 

@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Corrected.Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1358.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.26" />
     <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>

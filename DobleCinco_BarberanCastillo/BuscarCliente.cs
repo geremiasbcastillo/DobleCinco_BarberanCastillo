@@ -84,5 +84,11 @@ namespace DobleCinco_BarberanCastillo
                 this.Close();
             }
         }
+
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

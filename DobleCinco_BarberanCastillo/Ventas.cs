@@ -10,7 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Forms;// Reemplaza el using al inicio del archivo
+using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;// Reemplaza el using al inicio del archivo
 
 namespace DobleCinco_BarberanCastillo
 {
@@ -180,7 +183,7 @@ namespace DobleCinco_BarberanCastillo
 
                                 // Insertar venta y obtener id_venta
                                 int idVenta;
-                                int idForma = 4;
+                                int idForma = 6;
                                 using (var cmd = new SqlCommand("INSERT INTO venta (id_usuarios, id_forma, id_cliente) VALUES (@usuario, @forma, @cliente); SELECT CAST(SCOPE_IDENTITY() AS INT);", innerConn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@usuario", id_vendedor);
@@ -235,6 +238,13 @@ namespace DobleCinco_BarberanCastillo
                                 tran.Commit();
                                 MessageBox.Show("Venta registrada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                                // Preguntar si desea descargar la factura
+                                var result = MessageBox.Show("¿Desea descargar la factura en PDF?", "Descargar factura", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (result == DialogResult.Yes)
+                                {
+                                    DescargarFacturaPDF(idVenta, idCliente); // Implementa este método para generar el PDF
+                                }
+
                                 // Limpiar UI si procede
                                 dgvDetalleVenta.Rows.Clear();
                                 TBNombre.Clear();
@@ -260,7 +270,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void BBuscarCliente_Click(object sender, EventArgs e)
         {
-            BBuscarCliente.Enabled = false;
+            
             string filtro = TBDniSearch.Text.Trim();
             var formBusqueda = new BuscarCliente(filtro);
 
@@ -376,6 +386,107 @@ namespace DobleCinco_BarberanCastillo
                     MessageBox.Show("Error al agregar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LimpiarCamposCliente();
                 }
+            }
+        }
+
+        private void DescargarFacturaPDF(int idVenta, int idCliente)
+        {
+            // 1. Obtener los datos del cliente y la venta desde la base de datos
+            string nombreCliente = "";
+            string apellidoCliente = "";
+            string dniCliente = "";
+            string domicilioCliente = "";
+            string telefonoCliente = "";
+            List<(string Producto, int Cantidad, decimal Precio)> productos = new();
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Datos del cliente
+                using (var cmd = new SqlCommand("SELECT nombre_cliente, apellido_cliente, dni_cliente, domicilio_cliente, telefono_cliente FROM cliente WHERE id_cliente = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCliente);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nombreCliente = reader.GetString(0);
+                            apellidoCliente = reader.GetString(1);
+                            dniCliente = reader.GetValue(2).ToString();
+                            domicilioCliente = reader.GetString(3);
+                            telefonoCliente = reader.GetValue(4).ToString();
+                        }
+                    }
+                }
+
+                // Productos de la venta
+                using (var cmd = new SqlCommand(
+                    @"SELECT p.descripcion_producto, d.cantidad_detalle, d.precio_detalle
+                      FROM detalle_ventas d
+                      INNER JOIN producto p ON d.id_producto = p.id_producto
+                      WHERE d.id_ventas = @idVenta", conn))
+                {
+                    cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            productos.Add((
+                                reader.GetString(0),
+                                reader.GetInt32(1),
+                                Convert.ToDecimal(reader.GetValue(2))
+                            ));
+                        }
+                    }
+                }
+            }
+
+            // 2. Crear el PDF
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                FileName = $"Factura_{idVenta}.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    Document doc = new Document(PageSize.A4);
+                    PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
+
+                    doc.Add(new Paragraph("Factura de Venta"));
+                    doc.Add(new Paragraph($"Fecha: {DateTime.Now:dd/MM/yyyy}"));
+                    doc.Add(new Paragraph($"Cliente: {nombreCliente} {apellidoCliente}"));
+                    doc.Add(new Paragraph($"DNI: {dniCliente}"));
+                    doc.Add(new Paragraph($"Domicilio: {domicilioCliente}"));
+                    doc.Add(new Paragraph($"Teléfono: {telefonoCliente}"));
+                    doc.Add(new Paragraph(" "));
+
+                    PdfPTable table = new PdfPTable(3);
+                    table.AddCell("Producto");
+                    table.AddCell("Cantidad");
+                    table.AddCell("Precio");
+
+                    decimal total = 0;
+                    foreach (var item in productos)
+                    {
+                        table.AddCell(item.Producto);
+                        table.AddCell(item.Cantidad.ToString());
+                        table.AddCell(item.Precio.ToString("C"));
+                        total += item.Precio * item.Cantidad;
+                    }
+
+                    doc.Add(table);
+                    doc.Add(new Paragraph(" "));
+                    doc.Add(new Paragraph($"Total: {total:C}"));
+
+                    doc.Close();
+                }
+
+                MessageBox.Show("Factura PDF generada correctamente.", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
