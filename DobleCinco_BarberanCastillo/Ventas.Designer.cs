@@ -200,6 +200,7 @@
             BCancelar.TabIndex = 14;
             BCancelar.Text = "Cancelar";
             BCancelar.UseVisualStyleBackColor = true;
+            BCancelar.Click += BCancelar_Click;
             // 
             // BAceptar
             // 
@@ -210,6 +211,7 @@
             BAceptar.TabIndex = 13;
             BAceptar.Text = "Aceptar";
             BAceptar.UseVisualStyleBackColor = true;
+            BAceptar.Click += BAceptar_Click;
             // 
             // label11
             // 
@@ -248,6 +250,7 @@
             button2.TabIndex = 9;
             button2.Text = "Agregar Cliente";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label6
             // 
@@ -284,6 +287,7 @@
             TBDni.Name = "TBDni";
             TBDni.Size = new Size(313, 23);
             TBDni.TabIndex = 5;
+            TBDni.KeyPress += TBDni_KeyPress;
             // 
             // label4
             // 
@@ -302,6 +306,7 @@
             TBApellido.Name = "TBApellido";
             TBApellido.Size = new Size(313, 23);
             TBApellido.TabIndex = 3;
+            TBApellido.KeyPress += TBApellido_KeyPress;
             // 
             // label3
             // 
@@ -330,6 +335,7 @@
             TBNombre.Name = "TBNombre";
             TBNombre.Size = new Size(313, 23);
             TBNombre.TabIndex = 1;
+            TBNombre.KeyPress += TBNombre_KeyPress;
             // 
             // BVenta
             // 

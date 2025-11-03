@@ -32,6 +32,7 @@ namespace DobleCinco_BarberanCastillo
             {
                 id_vendedor = vendedor.Id;
             }
+            DeshabilitarCamposCliente();
         }
 
         private void TBVendedor_KeyPress(object sender, KeyPressEventArgs e)
@@ -275,6 +276,107 @@ namespace DobleCinco_BarberanCastillo
             formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
 
             formBusqueda.Show();
+        }
+
+        private void HabilitarCamposCliente()
+        {
+            TBNombre.Enabled = true;
+            TBApellido.Enabled = true;
+            TBDni.Enabled = true;
+            TBDomicilio.Enabled = true;
+            TBTelefono.Enabled = true;
+        }
+
+        private void DeshabilitarCamposCliente()
+        {
+            TBNombre.Enabled = false;
+            TBApellido.Enabled = false;
+            TBDni.Enabled = false;
+            TBDomicilio.Enabled = false;
+            TBTelefono.Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            HabilitarCamposCliente();
+            TBNombre.Clear();
+            TBApellido.Clear();
+            TBDni.Clear();
+            TBDomicilio.Clear();
+            TBTelefono.Clear();
+            TBNombre.Focus();
+        }
+
+        private void BCancelar_Click(object sender, EventArgs e)
+        {
+            DeshabilitarCamposCliente();
+            LimpiarCamposCliente();
+        }
+
+        private void LimpiarCamposCliente()
+        {
+            TBNombre.Clear();
+            TBApellido.Clear();
+            TBDni.Clear();
+            TBDomicilio.Clear();
+            TBTelefono.Clear();
+        }
+
+        private void BAceptar_Click(object sender, EventArgs e)
+        {
+            // Validar que el campo DNI no esté vacío
+            if (string.IsNullOrWhiteSpace(TBDni.Text))
+            {
+                MessageBox.Show("El campo DNI no puede estar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TBDni.Focus();
+                return;
+            }
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    // 1. Verificar si el DNI ya existe
+                    string checkQuery = "SELECT COUNT(*) FROM Cliente WHERE dni_cliente = @Dni";
+                    SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                    checkCmd.Parameters.AddWithValue("@Dni", TBDni.Text);
+
+                    conn.Open();
+                    int count = (int)checkCmd.ExecuteScalar();
+                    conn.Close();
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("El DNI ingresado ya está registrado. Por favor, ingresa uno diferente.", "DNI duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TBDni.Clear();
+                        TBDni.Focus();
+                        return;
+                    }
+
+                    // 2. Insertar el cliente si no hay duplicados
+                    string query = @"INSERT INTO Cliente (nombre_cliente, apellido_cliente, dni_cliente, domicilio_cliente, telefono_cliente)
+                             VALUES (@Nombre, @Apellido, @Dni, @Domicilio, @Telefono)";
+                    SqlCommand cmdInsert = new SqlCommand(query, conn);
+                    cmdInsert.Parameters.AddWithValue("@Nombre", TBNombre.Text);
+                    cmdInsert.Parameters.AddWithValue("@Apellido", TBApellido.Text);
+                    cmdInsert.Parameters.AddWithValue("@Dni", TBDni.Text);
+                    cmdInsert.Parameters.AddWithValue("@Domicilio", TBDomicilio.Text);
+                    cmdInsert.Parameters.AddWithValue("@Telefono", TBTelefono.Text);
+
+                    conn.Open();
+                    cmdInsert.ExecuteNonQuery();
+                    conn.Close();
+
+                    MessageBox.Show("Cliente agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCamposCliente();
+                    DeshabilitarCamposCliente();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar cliente: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimpiarCamposCliente();
+                }
+            }
         }
     }
 }
