@@ -29,12 +29,17 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             LVentas = new Label();
             panel2 = new Panel();
+            ChVentaPorProducto = new System.Windows.Forms.DataVisualization.Charting.Chart();
             dgvVentas = new DataGridView();
             label4 = new Label();
             panel3 = new Panel();
+            BGenerar = new Button();
             button1 = new Button();
             DTFechaHasta = new DateTimePicker();
             DTFechaDesde = new DateTimePicker();
@@ -42,9 +47,9 @@
             label2 = new Label();
             label1 = new Label();
             bindingSource1 = new BindingSource(components);
-            BGenerar = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ChVentaPorProducto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
@@ -74,6 +79,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 192, 0);
+            panel2.Controls.Add(ChVentaPorProducto);
             panel2.Controls.Add(dgvVentas);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(panel3);
@@ -83,10 +89,29 @@
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
             // 
+            // ChVentaPorProducto
+            // 
+            ChVentaPorProducto.BackColor = Color.Transparent;
+            ChVentaPorProducto.BorderlineColor = Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            ChVentaPorProducto.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            ChVentaPorProducto.Legends.Add(legend1);
+            ChVentaPorProducto.Location = new Point(637, 21);
+            ChVentaPorProducto.Name = "ChVentaPorProducto";
+            ChVentaPorProducto.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            ChVentaPorProducto.Series.Add(series1);
+            ChVentaPorProducto.Size = new Size(385, 233);
+            ChVentaPorProducto.TabIndex = 3;
+            ChVentaPorProducto.Text = "chart1";
+            // 
             // dgvVentas
             // 
             dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVentas.Location = new Point(455, 365);
+            dgvVentas.Location = new Point(516, 660);
             dgvVentas.Name = "dgvVentas";
             dgvVentas.Size = new Size(795, 274);
             dgvVentas.TabIndex = 2;
@@ -95,7 +120,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(771, 301);
+            label4.Location = new Point(832, 596);
             label4.Name = "label4";
             label4.Size = new Size(163, 28);
             label4.TabIndex = 1;
@@ -111,10 +136,20 @@
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(576, 62);
+            panel3.Location = new Point(637, 357);
             panel3.Name = "panel3";
             panel3.Size = new Size(528, 202);
             panel3.TabIndex = 0;
+            // 
+            // BGenerar
+            // 
+            BGenerar.Location = new Point(218, 165);
+            BGenerar.Name = "BGenerar";
+            BGenerar.Size = new Size(108, 23);
+            BGenerar.TabIndex = 6;
+            BGenerar.Text = "Generar";
+            BGenerar.UseVisualStyleBackColor = true;
+            BGenerar.Click += BGenerar_Click;
             // 
             // button1
             // 
@@ -180,21 +215,11 @@
             // 
             bindingSource1.CurrentChanged += bindingSource1_CurrentChanged;
             // 
-            // BGenerar
-            // 
-            BGenerar.Location = new Point(218, 165);
-            BGenerar.Name = "BGenerar";
-            BGenerar.Size = new Size(108, 23);
-            BGenerar.TabIndex = 6;
-            BGenerar.Text = "Generar";
-            BGenerar.UseVisualStyleBackColor = true;
-            BGenerar.Click += BGenerar_Click;
-            // 
             // ReporteVenta
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1608, 1025);
+            ClientSize = new Size(1608, 1061);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "ReporteVenta";
@@ -204,6 +229,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ChVentaPorProducto).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -227,5 +253,6 @@
         private Label label4;
         private DataGridView dgvVentas;
         private Button BGenerar;
+        private System.Windows.Forms.DataVisualization.Charting.Chart ChVentaPorProducto;
     }
 }
