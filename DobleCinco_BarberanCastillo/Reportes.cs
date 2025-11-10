@@ -34,11 +34,16 @@ namespace DobleCinco_BarberanCastillo
             rp.StartPosition = FormStartPosition.Manual;
             rp.Location = new Point(0, 0);
             rp.Show();
+            this.Close();
         }
 
         private void BVendedores_Click(object sender, EventArgs e)
         {
-
+            ReporteVendedores rve = new ReporteVendedores();
+            rve.MdiParent = this.MdiParent;
+            rve.StartPosition = FormStartPosition.Manual;
+            rve.Location = new Point(0, 0);
+            rve.Show();
         }
     }
 }
