@@ -159,6 +159,12 @@ namespace DobleCinco_BarberanCastillo
                         return;
                     }
 
+                    if(CUFormaDePago.IdSeleccionado <= 0)
+                    {
+                        MessageBox.Show("Debe seleccionar una forma de pago.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     using (var innerConn = new SqlConnection(connectionString)) // Renombrado a 'innerConn'
                     {
                         innerConn.Open();
@@ -183,7 +189,7 @@ namespace DobleCinco_BarberanCastillo
 
                                 // Insertar venta y obtener id_venta
                                 int idVenta;
-                                int idForma = 6;
+                                int idForma = CUFormaDePago.IdSeleccionado;
                                 using (var cmd = new SqlCommand("INSERT INTO venta (id_usuarios, id_forma, id_cliente) VALUES (@usuario, @forma, @cliente); SELECT CAST(SCOPE_IDENTITY() AS INT);", innerConn, tran))
                                 {
                                     cmd.Parameters.AddWithValue("@usuario", id_vendedor);
@@ -270,7 +276,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void BBuscarCliente_Click(object sender, EventArgs e)
         {
-            
+
             string filtro = TBDniSearch.Text.Trim();
             var formBusqueda = new BuscarCliente(filtro);
 
@@ -488,6 +494,11 @@ namespace DobleCinco_BarberanCastillo
 
                 MessageBox.Show("Factura PDF generada correctamente.", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void CUFormaDePago_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

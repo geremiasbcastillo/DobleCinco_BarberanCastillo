@@ -16,5 +16,24 @@ namespace DobleCinco_BarberanCastillo
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ReporteVenta rv = new ReporteVenta();
+            rv.MdiParent = this.MdiParent;
+            rv.StartPosition = FormStartPosition.Manual;
+            rv.Location = new Point(0, 0);
+            rv.Show();
+
+        }
+
+        private void BProductos_Click(object sender, EventArgs e)
+        {
+            ReporteProducto rp = new ReporteProducto();
+            rp.MdiParent = this.MdiParent;
+            rp.StartPosition = FormStartPosition.Manual;
+            rp.Location = new Point(0, 0);
+            rp.Show();
+        }
     }
 }

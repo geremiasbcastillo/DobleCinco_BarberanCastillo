@@ -1,6 +1,6 @@
 ﻿namespace DobleCinco_BarberanCastillo.Controles
 {
-    partial class CUPerfil
+    partial class CUFormaDePago
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -28,34 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CBPerfil = new ComboBox();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            CBFormaDePago = new ComboBox();
             SuspendLayout();
             // 
-            // CBPerfil
+            // CBFormaDePago
             // 
-            CBPerfil.FormattingEnabled = true;
-            CBPerfil.Location = new Point(0, 0);
-            CBPerfil.Name = "CBPerfil";
-            CBPerfil.Size = new Size(225, 23);
-            CBPerfil.TabIndex = 0;
-            CBPerfil.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            CBFormaDePago.FormattingEnabled = true;
+            CBFormaDePago.Location = new Point(0, 0);
+            CBFormaDePago.Name = "CBFormaDePago";
+            CBFormaDePago.Size = new Size(195, 23);
+            CBFormaDePago.TabIndex = 0;
+            CBFormaDePago.SelectedIndexChanged += CBFormaDePago_SelectedIndexChanged;
             // 
-            // CUPerfil
+            // CUFormaDePago
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Transparent;
-            Controls.Add(CBPerfil);
-            Name = "CUPerfil";
-            Size = new Size(270, 24);
-            Load += CUPerfil_Load;
+            Controls.Add(CBFormaDePago);
+            Name = "CUFormaDePago";
+            Size = new Size(210, 24);
+            Load += UserControl1_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ComboBox CBPerfil;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private ComboBox CBFormaDePago;
     }
 }

@@ -32,20 +32,13 @@
             LVentas = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
-            button3 = new Button();
+            BProductos = new Button();
             button2 = new Button();
-            button1 = new Button();
+            BVendedores = new Button();
             label4 = new Label();
-            panel3 = new Panel();
-            label1 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
-            label3 = new Label();
-            label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -72,7 +65,6 @@
             // 
             panel2.BackColor = Color.FromArgb(0, 192, 0);
             panel2.Controls.Add(panel4);
-            panel2.Controls.Add(panel3);
             panel2.Location = new Point(2, 84);
             panel2.Name = "panel2";
             panel2.Size = new Size(1601, 800);
@@ -81,24 +73,25 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(0, 64, 0);
-            panel4.Controls.Add(button3);
+            panel4.Controls.Add(BProductos);
             panel4.Controls.Add(button2);
-            panel4.Controls.Add(button1);
+            panel4.Controls.Add(BVendedores);
             panel4.Controls.Add(label4);
-            panel4.Location = new Point(392, 395);
+            panel4.Location = new Point(399, 110);
             panel4.Name = "panel4";
             panel4.Size = new Size(848, 221);
             panel4.TabIndex = 3;
             // 
-            // button3
+            // BProductos
             // 
-            button3.Font = new Font("Segoe UI", 9F);
-            button3.Location = new Point(361, 151);
-            button3.Name = "button3";
-            button3.Size = new Size(119, 44);
-            button3.TabIndex = 5;
-            button3.Text = "Productos más vendidos:";
-            button3.UseVisualStyleBackColor = true;
+            BProductos.Font = new Font("Segoe UI", 9F);
+            BProductos.Location = new Point(361, 151);
+            BProductos.Name = "BProductos";
+            BProductos.Size = new Size(119, 44);
+            BProductos.TabIndex = 5;
+            BProductos.Text = "Productos más vendidos";
+            BProductos.UseVisualStyleBackColor = true;
+            BProductos.Click += BProductos_Click;
             // 
             // button2
             // 
@@ -109,16 +102,17 @@
             button2.TabIndex = 4;
             button2.Text = "Ventas";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // button1
+            // BVendedores
             // 
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.Location = new Point(110, 85);
-            button1.Name = "button1";
-            button1.Size = new Size(148, 44);
-            button1.TabIndex = 3;
-            button1.Text = "Usuario";
-            button1.UseVisualStyleBackColor = true;
+            BVendedores.Font = new Font("Segoe UI", 9F);
+            BVendedores.Location = new Point(110, 85);
+            BVendedores.Name = "BVendedores";
+            BVendedores.Size = new Size(148, 44);
+            BVendedores.TabIndex = 3;
+            BVendedores.Text = "Vendedores con mas ventas";
+            BVendedores.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -130,69 +124,6 @@
             label4.Size = new Size(271, 38);
             label4.TabIndex = 2;
             label4.Text = "Generar reporte por:";
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.FromArgb(0, 64, 0);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(dateTimePicker2);
-            panel3.Controls.Add(dateTimePicker1);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(540, 113);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(525, 178);
-            panel3.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(213, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(119, 25);
-            label1.TabIndex = 0;
-            label1.Text = "--- Fecha ---";
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(337, 105);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(104, 23);
-            dateTimePicker2.TabIndex = 4;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(88, 105);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(104, 23);
-            dateTimePicker1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.Control;
-            label3.Location = new Point(353, 67);
-            label3.Name = "label3";
-            label3.Size = new Size(68, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Hasta: ";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(70, 67);
-            label2.Name = "label2";
-            label2.Size = new Size(144, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Generar desde: ";
             // 
             // Reportes
             // 
@@ -208,8 +139,6 @@
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -217,17 +146,11 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Panel panel3;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
-        private Label label3;
-        private Label label2;
-        private Label label1;
         private Label LVentas;
         private Panel panel4;
         private Button button2;
-        private Button button1;
+        private Button BVendedores;
         private Label label4;
-        private Button button3;
+        private Button BProductos;
     }
 }

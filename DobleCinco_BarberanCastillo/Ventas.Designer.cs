@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             LVentas = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
             panel3 = new Panel();
-            label7 = new Label();
+            CUFormaDePago = new DobleCinco_BarberanCastillo.Controles.CUFormaDePago();
+            LForma = new Label();
             DTPFecha = new DateTimePicker();
             LFecha = new Label();
             panel2 = new Panel();
@@ -112,7 +113,8 @@
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(label7);
+            panel3.Controls.Add(CUFormaDePago);
+            panel3.Controls.Add(LForma);
             panel3.Controls.Add(DTPFecha);
             panel3.Controls.Add(LFecha);
             panel3.Location = new Point(51, 35);
@@ -120,15 +122,23 @@
             panel3.Size = new Size(550, 133);
             panel3.TabIndex = 10;
             // 
-            // label7
+            // CUFormaDePago
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 13F);
-            label7.Location = new Point(42, 75);
-            label7.Name = "label7";
-            label7.Size = new Size(72, 25);
-            label7.TabIndex = 2;
-            label7.Text = "Factura:";
+            CUFormaDePago.Location = new Point(268, 75);
+            CUFormaDePago.Name = "CUFormaDePago";
+            CUFormaDePago.Size = new Size(200, 24);
+            CUFormaDePago.TabIndex = 3;
+            CUFormaDePago.Load += CUFormaDePago_Load;
+            // 
+            // LForma
+            // 
+            LForma.AutoSize = true;
+            LForma.Font = new Font("Segoe UI", 13F);
+            LForma.Location = new Point(42, 75);
+            LForma.Name = "LForma";
+            LForma.Size = new Size(139, 25);
+            LForma.TabIndex = 2;
+            LForma.Text = "Forma de pago:";
             // 
             // DTPFecha
             // 
@@ -354,20 +364,20 @@
             dgvDetalleVenta.AllowUserToDeleteRows = false;
             dgvDetalleVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDetalleVenta.Columns.AddRange(new DataGridViewColumn[] { id_producto, producto_descripcion, producto_cantidad, producto_precio });
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvDetalleVenta.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlLightLight;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvDetalleVenta.DefaultCellStyle = dataGridViewCellStyle3;
             dgvDetalleVenta.Location = new Point(949, 498);
             dgvDetalleVenta.Name = "dgvDetalleVenta";
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.DodgerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dgvDetalleVenta.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DodgerBlue;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dgvDetalleVenta.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvDetalleVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDetalleVenta.Size = new Size(444, 122);
             dgvDetalleVenta.TabIndex = 7;
@@ -489,7 +499,7 @@
         private Label LProducto;
         private Button BVenta;
         private Panel panel3;
-        private Label label7;
+        private Label LForma;
         private DateTimePicker DTPFecha;
         private Label LFecha;
         private Panel panel2;
@@ -514,5 +524,6 @@
         private DataGridViewTextBoxColumn producto_precio;
         private Label LTelefono;
         private TextBox TBTelefono;
+        private Controles.CUFormaDePago CUFormaDePago;
     }
 }

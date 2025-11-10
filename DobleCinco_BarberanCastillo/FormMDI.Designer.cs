@@ -38,7 +38,7 @@ namespace DobleCinco_BarberanCastillo
             productosToolStripMenuItem = new ToolStripMenuItem();
             ventasToolStripMenuItem = new ToolStripMenuItem();
             ReportesToolStripMenuItem = new ToolStripMenuItem();
-            RUsuarioToolStripMenuItem = new ToolStripMenuItem();
+            RProductoToolStripMenuItem = new ToolStripMenuItem();
             RVentasToolStripMenuItem = new ToolStripMenuItem();
             cerrarSesionToolStripMenuItem = new ToolStripMenuItem();
             backUpToolStripMenuItem = new ToolStripMenuItem();
@@ -49,10 +49,10 @@ namespace DobleCinco_BarberanCastillo
             // 
             menuStrip1.BackColor = Color.LightGreen;
             menuStrip1.Dock = DockStyle.Left;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { TSTB_Nombre, TSTB_Rol, usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RUsuarioToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem, backUpToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { TSTB_Nombre, TSTB_Rol, usuarioToolStripMenuItem, productosToolStripMenuItem, ventasToolStripMenuItem, ReportesToolStripMenuItem, RProductoToolStripMenuItem, RVentasToolStripMenuItem, cerrarSesionToolStripMenuItem, backUpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(134, 456);
+            menuStrip1.Size = new Size(144, 456);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -121,16 +121,16 @@ namespace DobleCinco_BarberanCastillo
             ReportesToolStripMenuItem.Text = "Reportes";
             ReportesToolStripMenuItem.Click += ReportesToolStripMenuItem_Click;
             // 
-            // RUsuarioToolStripMenuItem
+            // RProductoToolStripMenuItem
             // 
-            RUsuarioToolStripMenuItem.BackColor = Color.LightGreen;
-            RUsuarioToolStripMenuItem.Font = new Font("Segoe UI", 11F);
-            RUsuarioToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
-            RUsuarioToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
-            RUsuarioToolStripMenuItem.Name = "RUsuarioToolStripMenuItem";
-            RUsuarioToolStripMenuItem.Size = new Size(121, 24);
-            RUsuarioToolStripMenuItem.Text = "Reporte Usuario";
-            RUsuarioToolStripMenuItem.Click += RUsuarioToolStripMenuItem_Click;
+            RProductoToolStripMenuItem.BackColor = Color.LightGreen;
+            RProductoToolStripMenuItem.Font = new Font("Segoe UI", 11F);
+            RProductoToolStripMenuItem.ForeColor = SystemColors.ActiveCaptionText;
+            RProductoToolStripMenuItem.Margin = new Padding(0, 15, 0, 0);
+            RProductoToolStripMenuItem.Name = "RProductoToolStripMenuItem";
+            RProductoToolStripMenuItem.Size = new Size(131, 24);
+            RProductoToolStripMenuItem.Text = "Reporte Producto";
+            RProductoToolStripMenuItem.Click += RProductoToolStripMenuItem_Click;
             // 
             // RVentasToolStripMenuItem
             // 
@@ -188,7 +188,7 @@ namespace DobleCinco_BarberanCastillo
         private ToolStripMenuItem productosToolStripMenuItem;
         private ToolStripMenuItem ventasToolStripMenuItem;
         private ToolStripMenuItem ReportesToolStripMenuItem;
-        private ToolStripMenuItem RUsuarioToolStripMenuItem;
+        private ToolStripMenuItem RProductoToolStripMenuItem;
         private ToolStripMenuItem RVentasToolStripMenuItem;
         private ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private ToolStripTextBox TSTB_Nombre;

@@ -25,7 +25,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void CargarGraficoCategorias()
         {
-            // 1. CAMBIA ESTO por tu cadena de conexión
+            // 1. Cadena de conexión
             using var conn = new SqlConnection(connectionString);
 
             // 2. La consulta SQL
@@ -131,8 +131,6 @@ namespace DobleCinco_BarberanCastillo
 
             var da = new SqlDataAdapter(query, conn);
 
-            // --- CORRECCIÓN DEL ERROR ---
-            // Descomenta esta sección para agregar los parámetros al comando.
             if (parametros.Count > 0)
             {
                 da.SelectCommand.Parameters.AddRange(parametros.ToArray());

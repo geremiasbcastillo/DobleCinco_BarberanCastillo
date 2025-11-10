@@ -97,7 +97,7 @@ namespace DobleCinco_BarberanCastillo
             productosToolStripMenuItem.Enabled = perfilUsuario == 2 || perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente) o 2 (administrador)
             ventasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
             ReportesToolStripMenuItem.Enabled = perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente)
-            RUsuarioToolStripMenuItem.Enabled = perfilUsuario == 2; // Solo habilita el menú si el perfil es 2 (administrador)
+            RProductoToolStripMenuItem.Enabled = perfilUsuario == 2; // Solo habilita el menú si el perfil es 2 (administrador)
             RVentasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
         }
 
@@ -123,11 +123,11 @@ namespace DobleCinco_BarberanCastillo
             rtes.Show();
         }
 
-        private void RUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RProductoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (Form frm in this.MdiChildren)
             {
-                if (frm is ReporteUsuario)
+                if (frm is ReporteProducto)
                 {
                     frm.BringToFront();
                     frm.Focus();
@@ -138,7 +138,7 @@ namespace DobleCinco_BarberanCastillo
                     frm.Close();
                 }
             }
-            ReporteUsuario rusr = new ReporteUsuario();
+            ReporteProducto rusr = new ReporteProducto();
             rusr.MdiParent = this;
             rusr.StartPosition = FormStartPosition.Manual;
             rusr.Location = new Point(0, 0);
