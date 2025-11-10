@@ -99,6 +99,7 @@ namespace DobleCinco_BarberanCastillo
             ReportesToolStripMenuItem.Enabled = perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente)
             RProductoToolStripMenuItem.Enabled = perfilUsuario == 2; // Solo habilita el menú si el perfil es 2 (administrador)
             RVentasToolStripMenuItem.Enabled = perfilUsuario == 3; // Habilita el menú si el perfil es 3 (vendedor)
+            backUpToolStripMenuItem.Enabled = perfilUsuario == 1; // Solo habilita el menú si el perfil es 1 (gerente)
         }
 
         private void ReportesToolStripMenuItem_Click(object sender, EventArgs e)
