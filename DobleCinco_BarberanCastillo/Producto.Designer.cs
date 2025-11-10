@@ -101,7 +101,7 @@
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.ControlLightLight;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlLightLight;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
@@ -315,6 +315,7 @@
             // numericUpDown1
             // 
             numericUpDown1.Location = new Point(696, 19);
+            numericUpDown1.Maximum = new decimal(new int[] { 1215752191, 23, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(107, 23);
             numericUpDown1.TabIndex = 47;
