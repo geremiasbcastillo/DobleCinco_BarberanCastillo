@@ -206,7 +206,7 @@ namespace DobleCinco_BarberanCastillo
             }
         }
 
-        
+
 
         private void LCategoria_Click(object sender, EventArgs e)
         {
@@ -297,7 +297,7 @@ namespace DobleCinco_BarberanCastillo
                         CBCategoria.SelectedIndex = -1;
                         PBproducto_imagen.Image = imagenInicialProducto; // Restaura la imagen inicial
                         rutaImagenProducto = "";
-                        
+
                         CargarProductos(); // Actualiza la grilla después de agregar
                     }
                     catch (Exception ex)
@@ -491,12 +491,17 @@ namespace DobleCinco_BarberanCastillo
         }
 
         private void BLimpiar_Click(object sender, EventArgs e)
-            {
-                textBox1.Clear();
-                numericUpDown1.Value = 0;
-                comboBox1.SelectedIndex = -1; // "Todos"
-                CargarProductos();
-            }
+        {
+            textBox1.Clear();
+            numericUpDown1.Value = 0;
+            comboBox1.SelectedIndex = -1; // "Todos"
+            CargarProductos();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
