@@ -29,13 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             LVentas = new Label();
             panel2 = new Panel();
-            ChVentaPorProducto = new System.Windows.Forms.DataVisualization.Charting.Chart();
             dgvVentas = new DataGridView();
             label4 = new Label();
             panel3 = new Panel();
@@ -49,7 +45,6 @@
             bindingSource1 = new BindingSource(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ChVentaPorProducto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
@@ -61,7 +56,7 @@
             panel1.Controls.Add(LVentas);
             panel1.Location = new Point(1, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1624, 96);
+            panel1.Size = new Size(1022, 96);
             panel1.TabIndex = 0;
             // 
             // LVentas
@@ -79,39 +74,19 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 192, 0);
-            panel2.Controls.Add(ChVentaPorProducto);
             panel2.Controls.Add(dgvVentas);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(-10, 93);
+            panel2.Location = new Point(1, 91);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1632, 1071);
+            panel2.Size = new Size(1022, 678);
             panel2.TabIndex = 1;
             panel2.Paint += panel2_Paint;
-            // 
-            // ChVentaPorProducto
-            // 
-            ChVentaPorProducto.BackColor = Color.Transparent;
-            ChVentaPorProducto.BorderlineColor = Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            ChVentaPorProducto.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            ChVentaPorProducto.Legends.Add(legend1);
-            ChVentaPorProducto.Location = new Point(637, 21);
-            ChVentaPorProducto.Name = "ChVentaPorProducto";
-            ChVentaPorProducto.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            ChVentaPorProducto.Series.Add(series1);
-            ChVentaPorProducto.Size = new Size(385, 233);
-            ChVentaPorProducto.TabIndex = 3;
-            ChVentaPorProducto.Text = "chart1";
             // 
             // dgvVentas
             // 
             dgvVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVentas.Location = new Point(516, 660);
+            dgvVentas.Location = new Point(106, 338);
             dgvVentas.Name = "dgvVentas";
             dgvVentas.Size = new Size(795, 274);
             dgvVentas.TabIndex = 2;
@@ -120,7 +95,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(832, 596);
+            label4.Location = new Point(430, 295);
             label4.Name = "label4";
             label4.Size = new Size(163, 28);
             label4.TabIndex = 1;
@@ -136,7 +111,7 @@
             panel3.Controls.Add(label3);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(637, 357);
+            panel3.Location = new Point(242, 43);
             panel3.Name = "panel3";
             panel3.Size = new Size(528, 202);
             panel3.TabIndex = 0;
@@ -229,7 +204,6 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ChVentaPorProducto).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvVentas).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -253,6 +227,5 @@
         private Label label4;
         private DataGridView dgvVentas;
         private Button BGenerar;
-        private System.Windows.Forms.DataVisualization.Charting.Chart ChVentaPorProducto;
     }
 }

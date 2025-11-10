@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace DobleCinco_BarberanCastillo
 {
@@ -23,75 +26,7 @@ namespace DobleCinco_BarberanCastillo
             InitializeComponent();
         }
 
-        private void CargarGraficoCategorias()
-        {
-            // 1. Cadena de conexión
-            using var conn = new SqlConnection(connectionString);
-
-            // 2. La consulta SQL
-            string query = @"
-                            SELECT
-                                c.nombre_categoria AS Categoria,
-                                SUM(dv.cantidad_detalle) AS TotalVendido
-                            FROM
-                                detalle_ventas AS dv
-                            JOIN
-                                producto AS p ON dv.id_producto = p.id_producto
-                            JOIN
-                                categoria AS c ON p.id_categoria = c.id_categoria
-                            GROUP BY
-                                c.nombre_categoria
-                            ORDER BY
-                                TotalVendido DESC;
-                            ";
-
-            DataTable dt = new DataTable();
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, con))
-                    {
-                        con.Open();
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        adapter.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar datos del gráfico: " + ex.Message);
-                return;
-            }
-
-            ChVentaPorProducto.Series.Clear();
-            ChVentaPorProducto.Titles.Clear();
-
-            // Si quieres ocultar el borde exterior del control Chart (el control en sí)
-            ChVentaPorProducto.BorderSkin.SkinStyle = BorderSkinStyle.None;
-            ChVentaPorProducto.BorderlineWidth = 0;
-
-            ChartArea chartArea = ChVentaPorProducto.ChartAreas[0];
-
-            // Quitar el borde (BorderWidth = 0) o hacerlo transparente
-            chartArea.BorderWidth = 0;
-            chartArea.BackColor = Color.Transparent;
-
-            Title mainTitle = ChVentaPorProducto.Titles.Add("Categorías Más Vendidas");
-            mainTitle.Font = new Font("Arial", 16, FontStyle.Bold); // Ejemplo: Arial, tamaño 16, negrita
-            mainTitle.ForeColor = Color.Black;
-
-            Series series = new Series("Categorias");
-            series.ChartType = SeriesChartType.Pie; // Gráfico de Columnas
-
-            // Usamos el DataTable 'dt' que llenamos desde la BD
-            series.Points.DataBind(dt.AsEnumerable(), "Categoria", "TotalVendido", "");
-
-            series.IsValueShownAsLabel = true; // Mostrar el número en cada columna
-            ChVentaPorProducto.Series.Add(series);
-            ChVentaPorProducto.DataBind();
-        }
+       
 
         private void LVentas_Click(object sender, EventArgs e)
         {
@@ -151,7 +86,22 @@ namespace DobleCinco_BarberanCastillo
         private void ReporteVenta_Load(object sender, EventArgs e)
         {
             CargarDatos();
-            CargarGraficoCategorias();
+
+            // Verifica si la columna ya existe para evitar duplicados
+            if (!dgvVentas.Columns.Contains("DescargarFactura"))
+            {
+                var btnCol = new DataGridViewButtonColumn
+                {
+                    Name = "DescargarFactura",
+                    HeaderText = "Factura",
+                    Text = "Descargar",
+                    UseColumnTextForButtonValue = true,
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                };
+                dgvVentas.Columns.Add(btnCol);
+            }
+
+            dgvVentas.CellClick += dgvVentas_CellClick;
         }
 
         private void BGenerar_Click(object sender, EventArgs e)
@@ -208,6 +158,148 @@ namespace DobleCinco_BarberanCastillo
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al buscar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ChVentaPorProducto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvVentas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvVentas.Columns[e.ColumnIndex].Name == "DescargarFactura")
+            {
+                var idVenta = dgvVentas.Rows[e.RowIndex].Cells["Nro Venta"].Value;
+                if (idVenta != null)
+                {
+                    int idCliente = ObtenerIdClientePorVenta(Convert.ToInt32(idVenta));
+                    DescargarFacturaPDF(Convert.ToInt32(idVenta), idCliente);
+                }
+            }
+        }
+
+        private int ObtenerIdClientePorVenta(int idVenta)
+        {
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand("SELECT id_cliente FROM venta WHERE id_venta = @idVenta", conn))
+                {
+                    cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                    var result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+        }
+
+        private void DescargarFacturaVenta(int idVenta, int idCliente)
+        {
+            // Aquí deberías reutilizar tu lógica existente para generar/descargar la factura
+            // Por ejemplo, podrías mostrar el reporte o guardar el PDF
+            // Ejemplo: Mostrar un MessageBox (reemplaza por tu lógica real)
+            MessageBox.Show($"Descargando factura para venta #{idVenta}", "Descargar Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            DescargarFacturaPDF(idVenta, idCliente); // Llama a la función para descargar el PDF
+        }
+
+        private void DescargarFacturaPDF(int idVenta, int idCliente)
+        {
+            string nombreCliente = "";
+            string apellidoCliente = "";
+            string dniCliente = "";
+            string domicilioCliente = "";
+            string telefonoCliente = "";
+            List<(string Producto, int Cantidad, decimal Precio)> productos = new();
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                // Datos del cliente
+                using (var cmd = new SqlCommand("SELECT nombre_cliente, apellido_cliente, dni_cliente, domicilio_cliente, telefono_cliente FROM cliente WHERE id_cliente = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", idCliente);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            nombreCliente = reader.GetString(0);
+                            apellidoCliente = reader.GetString(1);
+                            dniCliente = reader.GetValue(2).ToString();
+                            domicilioCliente = reader.GetString(3);
+                            telefonoCliente = reader.GetValue(4).ToString();
+                        }
+                    }
+                }
+
+                // Productos de la venta
+                using (var cmd = new SqlCommand(
+                    @"SELECT p.descripcion_producto, d.cantidad_detalle, d.precio_detalle
+                      FROM detalle_ventas d
+                      INNER JOIN producto p ON d.id_producto = p.id_producto
+                      WHERE d.id_ventas = @idVenta", conn))
+                {
+                    cmd.Parameters.AddWithValue("@idVenta", idVenta);
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            productos.Add((
+                                reader.GetString(0),
+                                reader.GetInt32(1),
+                                Convert.ToDecimal(reader.GetValue(2))
+                            ));
+                        }
+                    }
+                }
+            }
+
+            // Crear el PDF
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                FileName = $"Factura_{idVenta}.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fs = new FileStream(saveFileDialog.FileName, FileMode.Create))
+                {
+                    Document doc = new Document(PageSize.A4);
+                    PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
+
+                    doc.Add(new Paragraph("Factura de Venta"));
+                    doc.Add(new Paragraph($"Fecha: {DateTime.Now:dd/MM/yyyy}"));
+                    doc.Add(new Paragraph($"Cliente: {nombreCliente} {apellidoCliente}"));
+                    doc.Add(new Paragraph($"DNI: {dniCliente}"));
+                    doc.Add(new Paragraph($"Domicilio: {domicilioCliente}"));
+                    doc.Add(new Paragraph($"Teléfono: {telefonoCliente}"));
+                    doc.Add(new Paragraph(" "));
+
+                    PdfPTable table = new PdfPTable(3);
+                    table.AddCell("Producto");
+                    table.AddCell("Cantidad");
+                    table.AddCell("Precio");
+
+                    decimal total = 0;
+                    foreach (var item in productos)
+                    {
+                        table.AddCell(item.Producto);
+                        table.AddCell(item.Cantidad.ToString());
+                        table.AddCell(item.Precio.ToString("C"));
+                        total += item.Precio * item.Cantidad;
+                    }
+
+                    doc.Add(table);
+                    doc.Add(new Paragraph(" "));
+                    doc.Add(new Paragraph($"Total: {total:C}"));
+
+                    doc.Close();
+                }
+
+                MessageBox.Show("Factura PDF generada correctamente.", "PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
