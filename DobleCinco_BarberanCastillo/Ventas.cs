@@ -103,11 +103,44 @@ namespace DobleCinco_BarberanCastillo
 
             formBusqueda.ProductoSeleccionado += (id, descripcion, precio) =>
             {
-                dgvDetalleVenta.Rows.Add(id, descripcion, 1, precio);
+                // =========================================================
+                // 1. REVISAR SI EL PRODUCTO YA EXISTE
+                // =========================================================
+                bool yaExiste = false;
+                foreach (DataGridViewRow row in dgvDetalleVenta.Rows)
+                {
+                    // Omitir la fila nueva (la que está vacía al final)
+                    if (row.IsNewRow) continue;
+
+                    // Comparar el ID del producto seleccionado (int)
+                    // con el ID de la celda de la grilla (object)
+                    if (row.Cells["id_producto"].Value != null && Convert.ToInt32(row.Cells["id_producto"].Value) == id)
+                    {
+                        yaExiste = true;
+                        break; // Salimos del bucle, ya lo encontramos
+                    }
+                }
+
+                if (yaExiste)
+                {
+                    // Si ya existe, mostrar el mensaje de advertencia
+                    MessageBox.Show("Ese producto ya está agregado.", "Producto Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // Si no existe, agregarlo a la grilla
+                    dgvDetalleVenta.Rows.Add(id, descripcion, 1, precio);
+                }
+
+                // Limpieza (esto se hace siempre, exista o no)
                 TBDescripcion.Clear();
                 TBDescripcion.Focus();
                 BBuscarProducto.Enabled = true;
             };
+
+            formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
+
+            formBusqueda.Show();
 
             formBusqueda.FormClosed += (s, args) => BBuscarProducto.Enabled = true;
 
@@ -131,7 +164,7 @@ namespace DobleCinco_BarberanCastillo
 
         private void BVenta_Click(object sender, EventArgs e)
         {
-            using (SqlConnection outerConn = new SqlConnection(connectionString)) // Renombrado a 'outerConn'
+            using (SqlConnection outerConn = new SqlConnection(connectionString)) 
             {
                 try
                 {

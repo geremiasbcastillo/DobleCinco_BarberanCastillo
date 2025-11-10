@@ -24,7 +24,7 @@ namespace DobleCinco_BarberanCastillo
             rv.StartPosition = FormStartPosition.Manual;
             rv.Location = new Point(0, 0);
             rv.Show();
-
+            this.Close();
         }
 
         private void BProductos_Click(object sender, EventArgs e)
@@ -44,6 +44,7 @@ namespace DobleCinco_BarberanCastillo
             rve.StartPosition = FormStartPosition.Manual;
             rve.Location = new Point(0, 0);
             rve.Show();
+            this.Close();
         }
     }
 }
