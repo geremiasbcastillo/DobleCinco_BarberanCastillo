@@ -24,26 +24,10 @@ namespace DobleCinco_BarberanCastillo
         {
 
         }
-
-        private void BElegirCarpeta_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            if (folderDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFolderPath = folderDialog.SelectedPath;
-
-                TBRuta.Text = selectedFolderPath;
-            }
-        }
-
         private void BRealizar_Click(object sender, EventArgs e)
         {
-            string folder = TBRuta.Text?.Trim() ?? string.Empty;
-            if (string.IsNullOrEmpty(folder) || !Directory.Exists(folder))
-            {
-                MessageBox.Show("Selecciona una carpeta válida para guardar el backup.", "Ruta inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            string folder = "C:\\DobleCinco_BackUp\\";
+
             try
             {
                 // Obtener el nombre de la base de datos desde la cadena de conexión

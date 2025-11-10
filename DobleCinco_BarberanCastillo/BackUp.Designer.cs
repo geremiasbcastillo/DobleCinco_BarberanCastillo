@@ -33,8 +33,6 @@
             folderBrowserDialog1 = new FolderBrowserDialog();
             panel2 = new Panel();
             BRealizar = new Button();
-            BElegirCarpeta = new Button();
-            TBRuta = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -63,8 +61,6 @@
             // 
             panel2.BackColor = Color.FromArgb(0, 64, 0);
             panel2.Controls.Add(BRealizar);
-            panel2.Controls.Add(BElegirCarpeta);
-            panel2.Controls.Add(TBRuta);
             panel2.Location = new Point(397, 198);
             panel2.Name = "panel2";
             panel2.Size = new Size(679, 277);
@@ -79,23 +75,6 @@
             BRealizar.Text = "Realizar back up";
             BRealizar.UseVisualStyleBackColor = true;
             BRealizar.Click += BRealizar_Click;
-            // 
-            // BElegirCarpeta
-            // 
-            BElegirCarpeta.Location = new Point(93, 58);
-            BElegirCarpeta.Name = "BElegirCarpeta";
-            BElegirCarpeta.Size = new Size(94, 23);
-            BElegirCarpeta.TabIndex = 1;
-            BElegirCarpeta.Text = "Elegir carpeta";
-            BElegirCarpeta.UseVisualStyleBackColor = true;
-            BElegirCarpeta.Click += BElegirCarpeta_Click;
-            // 
-            // TBRuta
-            // 
-            TBRuta.Location = new Point(325, 58);
-            TBRuta.Name = "TBRuta";
-            TBRuta.Size = new Size(270, 23);
-            TBRuta.TabIndex = 0;
             // 
             // BackUp
             // 
@@ -112,7 +91,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -122,8 +100,6 @@
         private Label LTitulo;
         private FolderBrowserDialog folderBrowserDialog1;
         private Panel panel2;
-        private Button BElegirCarpeta;
-        private TextBox TBRuta;
         private Button BRealizar;
     }
 }
