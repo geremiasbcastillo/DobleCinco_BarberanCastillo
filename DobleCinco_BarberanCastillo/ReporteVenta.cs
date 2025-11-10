@@ -177,7 +177,7 @@ namespace DobleCinco_BarberanCastillo
                 if (Models.Sesion.UsuarioActual.PerfilId == 3) // Si es Vendedor
                 {
                     condiciones.Add("v.id_usuarios = @IdUsuarioLogueado");
-                    cmd.Parameters.AddWithValue("@IdUsuarioLogueado", Models.Sesion.UsuarioActual.PerfilId);
+                    cmd.Parameters.AddWithValue("@IdUsuarioLogueado", Models.Sesion.UsuarioActual.Id);
                 }
                 if (!string.IsNullOrEmpty(fechaDesde))
                 {

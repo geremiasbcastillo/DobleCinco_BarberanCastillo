@@ -35,5 +35,10 @@ namespace DobleCinco_BarberanCastillo
             rp.Location = new Point(0, 0);
             rp.Show();
         }
+
+        private void BVendedores_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -113,6 +113,7 @@
             BVendedores.TabIndex = 3;
             BVendedores.Text = "Vendedores con mas ventas";
             BVendedores.UseVisualStyleBackColor = true;
+            BVendedores.Click += BVendedores_Click;
             // 
             // label4
             // 
